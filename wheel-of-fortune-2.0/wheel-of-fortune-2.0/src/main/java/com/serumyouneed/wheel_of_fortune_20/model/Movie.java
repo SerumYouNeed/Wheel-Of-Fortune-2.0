@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
  *
  */
 @Entity
-@Table(name = "mo")
+@Table(name = "mo"vie)
 public class Movie implements Guessable{
     private final int id;
     private final String title;
