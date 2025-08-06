@@ -1,2 +1,2 @@
-# Wheel-Of-Fortune-refactor
-This is my previous "Wheel-Of-Fortune" project rewriten using Spring Boots.
+# Wheel-Of-Fortune-2.0
+This is my previous "Wheel-Of-Fortune" project rewriten using React and Spring Boots.
