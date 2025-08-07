@@ -1,7 +1,6 @@
 package com.serumyouneed.wheel_of_fortune_20.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 /**
  * Supporting class to create Movie object. Title field will be used as a puzzle string to mask during the game.
@@ -10,6 +9,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "movies")
 public class Movie implements Guessable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private final int id;
     private final String title;
     private final int releaseYear;
