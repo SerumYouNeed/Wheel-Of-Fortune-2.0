@@ -6,7 +6,7 @@ import jakarta.persistence.*;
  * Class for logging purpose. Help to create player profile in database.
  */
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
