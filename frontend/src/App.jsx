@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-     <h1>Wheel of fortune</h1>
+     <WelcomeHeader />
      <ul>
          <li>Log in</li>
          <li>Sign in</li>
@@ -16,8 +16,13 @@ function App() {
      </ul>
 
      <button>Log in</button>
+     <button>Log in</button>
     </>
   )
 }
 
 export default App
+
+function WelcomeHeader() {
+    return <h1>Welcome to "Wheel of fortune"!</h1>
+}
