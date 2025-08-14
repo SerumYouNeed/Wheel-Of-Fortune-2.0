@@ -17,6 +17,7 @@ function App() {
 
      <button>Log in</button>
      <button>Log in</button>
+     <button>Log in</button>
     </>
   )
 }
