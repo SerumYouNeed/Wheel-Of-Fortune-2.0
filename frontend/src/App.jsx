@@ -14,7 +14,7 @@ function App() {
          <li>Sign in</li>
          <li>Play as guest</li>
      </ul>
-
+    <h1>My app</h>
      <button>Log in</button>
      <button>Log in</button>
      <button>Log in</button>
