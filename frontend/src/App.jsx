@@ -13,6 +13,7 @@ function App() {
          <li>Log in</li>
          <li>Sign in</li>
          <li>Play as guest</li>
+         <li>delete</li>
      </ul>
     <h1>My app</h>
      <button>Log in</button>
