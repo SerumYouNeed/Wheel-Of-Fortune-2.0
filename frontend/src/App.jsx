@@ -28,3 +28,7 @@ export default App
 function WelcomeHeader() {
     return <h1>Welcome to "Wheel of fortune"!</h1>
 }
+
+function Menu() {
+    return <
+    }
