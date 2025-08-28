@@ -9,13 +9,7 @@ function App() {
   return (
     <>
      <WelcomeHeader />
-     <ul>
-         <li>Log in</li>
-         <li>Sign in</li>
-         <li>Play as guest</li>
-         <li>delete</li>
-     </ul>
-    <h1>My app</h>
+     <Menu />
      <button>Log in</button>
      <button>Log in</button>
      <button>Log in</button>
@@ -30,5 +24,13 @@ function WelcomeHeader() {
 }
 
 function Menu() {
-    return <
+    return
+    <>
+     <ul>
+         <li>Log in</li>
+         <li>Sign in</li>
+         <li>Play as guest</li>
+         <li>delete</li>
+     </ul>
+     </>
     }
