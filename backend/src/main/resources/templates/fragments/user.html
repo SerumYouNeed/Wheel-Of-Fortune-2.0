@@ -1,0 +1,9 @@
+<div th:fragment="user-card" xmlns:th="http://www.w3.org/1999/xhtml">
+    <p>Welcome, <span th:text="${user.nickname}"></span>!</p>
+    <p th:if="${user.guest}">(Guest)</p>
+</div>
+
+
+<div th:fragment="error">
+    <p th:text="${error}"></p>
+</div>

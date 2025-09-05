@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play as Guest - Wheel of Fortune</title>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js" integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>WHEEL OF FORTUNE</header>
+    <nav>
+        <ul>
+            <li><a href="../../../../../frontend/guide.html">How to play</a></li>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h2>Play as Guest</h2>
+        <form hx-post="/users/guest"
+              hx-target="#user-container"
+              hx-swap="innerHTML">
+            <label>Nickname: <input type="text" name="nickname" required></label><br>
+            <button type="submit">Play as Guest</button>
+        </form>
+
+    </main>
+    <footer>&copy; 2025 Created by SerumYouNeed</footer>
+</body>
+</html>
