@@ -11,58 +11,18 @@
 <body>
    <div id="main">
 
-    
-        <div class="login-container">
-            <h2>Logowanie</h2>
-            <form>
-                <label for="nick">Nick:</label>
-                <input type="text" id="nick" name="nick" required>
-
-                <label for="password">Hasło:</label>
-                <input type="password" id="password" name="password" required>
-
-                <button type="submit">Zaloguj się</button>
-            </form>
-        </div>
-        
-        <div id="guess">
-            
-            <div id="category">
-                <h1>CATEGORY: </h1>
-            </div>
-
-            <div id="puzzle">
-                <h1>_ _ _ _ _ _ _</h1>
+        <div id="login-container">
+            <h1>Wheel of Fortune</h1>
+            <div class="welcome">Welcome! Please choose an option to start playing.</div>
+            <div class="btn-group">
+                <button onclick="window.location.href='play-as-guest.html'">Play as Guest</button>
+                <button onclick="window.location.href='register.html'">Create New Account</button>
+                <button onclick="window.location.href='login.html'">Log In to Existing Account</button>
             </div>
         </div>
 
+   </div>
         
-        <div id="game">
-            <div id="wheel">
-                <h1>WHEEL</h1>
-                <button>SPIN</button>
-            </div>
-            
-            <div id="player">
-                <div id="name">
-                    <h1>NAME</h1>
-                </div>
-                <div id="money">
-                    <h1>$0</h1>
-                </div>
-            </div>
-            
-            <div id="input">
-                <button>Pick a consonant</button>
-                <button>Buy a vowel</button>
-                <button>Try to guess</button>
-            </div>
-
-            <div id="answer"></div>
-            
-        </div>
-    </div>
-        
-    <footer>&copy; 2025 Created by SerumYouNeed</footer>
+   <footer>&copy; 2025 Created by SerumYouNeed</footer>
 </body>
 </html>
