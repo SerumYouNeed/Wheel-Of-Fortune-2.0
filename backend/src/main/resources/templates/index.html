@@ -15,10 +15,22 @@
             <h1>Wheel of Fortune</h1>
             <div class="welcome">Welcome! Please choose an option to start playing.</div>
             <div class="btn-group">
-                <button onclick="window.location.href='play-as-guest.html'">Play as Guest</button>
-                <button onclick="window.location.href='register.html'">Create New Account</button>
-                <button onclick="window.location.href='login.html'">Log In to Existing Account</button>
+                <button
+                        hx-get="@{/guest}"
+                        hx-target="#main"
+                        hx-swap="innerHTML">Play as Guest</button>
+
+                <button
+                        hx-get="@{/register}"
+                        hx-target="#main"
+                        hx-swap="innerHTML">Create New Account</button>
+
+                <button
+                        hx-get="@{/login}"
+                        hx-target="#main"
+                        hx-swap="innerHTML">Log In to Existing Account</button>
             </div>
+
         </div>
 
    </div>
