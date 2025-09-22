@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class PageController {
 
-@GetMapping("/guest")
+    @GetMapping("/guest")
     public String guest() {
         return "fragments/guest :: guestFragment";
     }

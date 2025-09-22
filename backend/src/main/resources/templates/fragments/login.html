@@ -1,4 +1,59 @@
+<div th:fragment="registerFragment" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container">
+            <h2>Create New Account</h2>
+            <form action="/api/register" method="POST">
+                <label for="username">User name</label>
+                <input type="text" id="new-username" name="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="new-password" name="password" autocomplete="off" required>
+
+                <label for="confirm-password">Confirm password</label>
+                <input type="password" id="confirm-password" name="confirm_password" required>
+
+                <button type="submit">Create Account</button>
+            </form>
+    </div>
+    <button class="back-button"
+            hx-get="@{/}"
+            hx-target="#main"
+            hx-swap="innerHTML">Back
+    </button>
+</div>
+
+<div th:fragment="loginFragment">
+    <div class="container">
+        <h2>Login</h2>
+        <form action="/api/login" method="POST">
+            <label for="username">User name</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="off" required>
+            
+            <button type="submit">Log in</button>
+        </form>
+    </div>
+    <button class="back-button"
+            hx-get="@{/}"
+            hx-target="#main"
+            hx-swap="innerHTML">Back
+    </button>
+    
+</div>
+
 <div th:fragment="guestFragment">
-    <h2>Playing as guest</h2>
-    <p>Welcome! Spin the wheel...</p>
+    <div class="container">
+        <h2>Enter nickname</h2>
+        <form action="/api/assGuest" method="POST">
+            <label for="username">User name</label>
+            <input type="text" id="nickname" name="username" required>
+            <button type="submit">Create Account</button>
+        </form>
+        <button class="back-button"
+                hx-get="@{/}"
+                hx-target="#main"
+                hx-swap="innerHTML">Back
+        </button>
+    </div>
 </div>
