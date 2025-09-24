@@ -8,12 +8,12 @@ public class PageController {
 
     @GetMapping("/guest")
     public String guest() {
-        return "fragments/guest :: guestFragment";
+        return "fragments/login :: guestFragment";
     }
 
     @GetMapping("/register")
     public String register() {
-        return "fragments/register :: registerFragment";
+        return "fragments/login :: registerFragment";
     }
 
     @GetMapping("/login")

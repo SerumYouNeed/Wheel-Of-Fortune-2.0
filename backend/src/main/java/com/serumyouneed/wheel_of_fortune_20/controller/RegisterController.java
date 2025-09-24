@@ -22,7 +22,7 @@ public class RegisterController {
         return "Dostałem: username=" + username + ", password=" + password;
     }
 
-    @PostMapping("/api/assGuest")
+    @PostMapping("/api/asGuest")
     @ResponseBody // <- zwraca zwykły tekst, nie szablon
     public String assGuest(@RequestParam String username) {
         return "Dostałem: username=" + username;

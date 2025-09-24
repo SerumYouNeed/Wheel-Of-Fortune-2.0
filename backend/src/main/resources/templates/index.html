@@ -16,17 +16,17 @@
             <div class="welcome">Welcome! Please choose an option to start playing.</div>
             <div class="btn-group">
                 <button
-                        hx-get="@{/guest}"
+                        hx-get="/guest"
                         hx-target="#main"
                         hx-swap="innerHTML">Play as Guest</button>
 
                 <button
-                        hx-get="@{/register}"
+                        hx-get="/register"
                         hx-target="#main"
                         hx-swap="innerHTML">Create New Account</button>
 
                 <button
-                        hx-get="@{/login}"
+                        hx-get="/login"
                         hx-target="#main"
                         hx-swap="innerHTML">Log In to Existing Account</button>
             </div>
