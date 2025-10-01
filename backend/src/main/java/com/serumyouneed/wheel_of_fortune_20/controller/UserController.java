@@ -16,7 +16,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/register")
+    @PostMapping("/api/register")
     public String register(@RequestParam String nickname,
                            @RequestParam String password,
                            Model model) {
@@ -31,7 +31,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/login")
+    @PostMapping("/api/login")
     public String login(@RequestParam String nickname,
                         @RequestParam String password,
                         Model model) {
@@ -45,7 +45,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/guest")
+    @PostMapping("/api/guest")
     public String guest(@RequestParam String nickname,
                         Model model) {
         User guest = userService.createGuestUser(nickname);
