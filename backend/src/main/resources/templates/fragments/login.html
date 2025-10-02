@@ -1,10 +1,10 @@
 <div th:fragment="registerFragment" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container">
             <h2>Create New Account</h2>
-            <form hx-post="/api/register" hx-target="#main" hx-swap="innerHTML">
+            <form hx-post="users/api/register" hx-target="#main" hx-swap="innerHTML">
 
                 <label for="username">User name</label>
-                <input type="text" id="new-username" name="username" required>
+                <input type="text" id="new-username" name="nickname" required>
 
                 <label for="password">Password</label>
                 <input type="password" id="new-password" name="password" autocomplete="off" required>
@@ -27,9 +27,9 @@
 <div th:fragment="loginFragment">
     <div class="container">
         <h2>Login</h2>
-        <form hx-post="/api/login" hx-target="#main" hx-swap="innerHTML">
+        <form hx-post="users/api/login" hx-target="#main" hx-swap="innerHTML">
             <label for="username">User name</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="username" name="nickname" required>
             
             <label for="password">Password</label>
             <input type="password" id="password" name="password" autocomplete="off" required>
@@ -49,9 +49,9 @@
 <div th:fragment="guestFragment">
     <div class="container">
         <h2>Enter nickname</h2>
-        <form hx-post="/api/asGuest" hx-target="#main" hx-swap="innerHTML">
+        <form hx-post="users/api/asGuest" hx-target="#main" hx-swap="innerHTML">
             <label for="username">User name</label>
-            <input type="text" id="nickname" name="username" required>
+            <input type="text" id="nickname" name="nickname" required>
             <button class="submit-btn" type="submit">Create Account</button>
         </form>
         <div class="btn-group">
