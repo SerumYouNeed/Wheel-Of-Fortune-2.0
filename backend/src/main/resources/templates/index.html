@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
 <body>
    <div id="main">
 
-        <div class="container">
+        <div th:fragment="home" class="container">
             <h1>Wheel of Fortune</h1>
             <div class="welcome">Welcome! Please choose an option to start playing.</div>
             <div class="btn-group">
