@@ -11,5 +11,8 @@ public class HomeController {
         // return file src/main/resources/templates/index.html
         return "index";
     }
+
+    @GetMapping("/home")
+    public String back() { return "index :: home";}
 }
 

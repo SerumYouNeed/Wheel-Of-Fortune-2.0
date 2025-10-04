@@ -20,7 +20,4 @@ public class PageController {
     public String login() {
         return "fragments/login :: loginFragment";
     }
-
-    @GetMapping("/")
-    public String back() { return "index :: home";}
 }
