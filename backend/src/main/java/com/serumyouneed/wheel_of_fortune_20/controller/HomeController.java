@@ -13,6 +13,6 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String back() { return "index :: home";}
+    public String back() { return "index :: home"; }
 }
 

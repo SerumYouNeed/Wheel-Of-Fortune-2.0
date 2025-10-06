@@ -3,7 +3,7 @@
     <p th:if="${user.guest}">(Guest)</p>
     <div class="btn-group">
         <button class="play-btn"
-                hx-get="@{/play}"
+                hx-get="/play"
                 hx-target="#main"
                 hx-swap="innerHTML">Play
         </button>

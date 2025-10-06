@@ -16,7 +16,7 @@
             </form>
     <div class="btn-group">
         <button class="back-button"
-                hx-get="@{/home}"
+                hx-get="/home"
                 hx-target="#main"
                 hx-swap="innerHTML">Back
         </button>
@@ -38,7 +38,7 @@
         </form>
     <div class="btn-group">
         <button class="back-button"
-                hx-get="@{/home}"
+                hx-get="/home"
                 hx-target="#main"
                 hx-swap="innerHTML">Back
         </button>
@@ -49,14 +49,14 @@
 <div th:fragment="guestFragment">
     <div class="container">
         <h2>Enter nickname</h2>
-        <form hx-post="users/api/asGuest" hx-target="#main" hx-swap="innerHTML">
+        <form hx-post="users/api/guest" hx-target="#main" hx-swap="innerHTML">
             <label for="username">User name</label>
             <input type="text" id="nickname" name="nickname" required>
             <button class="submit-btn" type="submit">Create Account</button>
         </form>
         <div class="btn-group">
             <button class="back-button"
-                    hx-get="@{/home}"
+                    hx-get="/home"
                     hx-target="#main"
                     hx-swap="innerHTML">Back
             </button>

@@ -12,7 +12,7 @@
 
             <!-- pole user: tu ma być imię i kasa -->
             <div class="user">
-                <span class="nickname">user</span>
+                <span class="nickname">user: </span>
                 <span class="money">$0</span>
             </div>
             
@@ -28,6 +28,34 @@
                 </h2>
             </div>
 
+            <!-- tu ma być koło z nagrodami i przyciskiem do kręcenia -->
+            <div class="wheel">
+                <div class="wheel-img">
+
+                    <svg width="220" height="220" viewBox="0 0 220 220">
+                        <g>
+                            <!-- 6 sektorów -->
+                            <path d="M110,110 L110,10 A100,100 0 0,1 203.511,55.000 Z" fill="#FFD700"/>
+                            <path d="M110,110 L203.511,55.000 A100,100 0 0,1 203.511,165.000 Z" fill="#FF6347"/>
+                            <path d="M110,110 L203.511,165.000 A100,100 0 0,1 110,210 Z" fill="#90EE90"/>
+                            <path d="M110,110 L110,210 A100,100 0 0,1 16.489,165.000 Z" fill="#87CEEB"/>
+                            <path d="M110,110 L16.489,165.000 A100,100 0 0,1 16.489,55.000 Z" fill="#FFB6C1"/>
+                            <path d="M110,110 L16.489,55.000 A100,100 0 0,1 110,10 Z" fill="#D3D3D3"/>
+                            <!-- Nagrody -->
+                            <text x="110" y="40" text-anchor="middle" font-size="16" fill="#333">$10</text>
+                            <text x="175" y="80" text-anchor="middle" font-size="16" fill="#333">$20</text>
+                            <text x="175" y="150" text-anchor="middle" font-size="16" fill="#333">$30</text>
+                            <text x="110" y="190" text-anchor="middle" font-size="16" fill="#333">$40</text>
+                            <text x="45" y="150" text-anchor="middle" font-size="16" fill="#333">$50</text>
+                            <text x="45" y="80" text-anchor="middle" font-size="16" fill="#333">$100</text>
+                        </g>
+                        <!-- Strzałka na górze -->
+                        <polygon points="105,0 115,0 110,20" fill="#333"/>
+                    </svg>
+                </div>
+                <button class="spin-btn">Kręć kołem!</button>
+            </div>
+
             <!-- tu ma być pole z literami do wyboru -->
             <div class="letters">
                 <div class="letter-input">
@@ -37,30 +65,6 @@
                 </div>
             </div>
 
-            <!-- tu ma być koło z nagrodami i przyciskiem do kręcenia -->
-            <div class="wheel">
-                <svg width="220" height="220" viewBox="0 0 220 220">
-                    <g>
-                        <!-- 6 sektorów -->
-                        <path d="M110,110 L110,10 A100,100 0 0,1 203.511,55.000 Z" fill="#FFD700"/>
-                        <path d="M110,110 L203.511,55.000 A100,100 0 0,1 203.511,165.000 Z" fill="#FF6347"/>
-                        <path d="M110,110 L203.511,165.000 A100,100 0 0,1 110,210 Z" fill="#90EE90"/>
-                        <path d="M110,110 L110,210 A100,100 0 0,1 16.489,165.000 Z" fill="#87CEEB"/>
-                        <path d="M110,110 L16.489,165.000 A100,100 0 0,1 16.489,55.000 Z" fill="#FFB6C1"/>
-                        <path d="M110,110 L16.489,55.000 A100,100 0 0,1 110,10 Z" fill="#D3D3D3"/>
-                        <!-- Nagrody -->
-                        <text x="110" y="40" text-anchor="middle" font-size="16" fill="#333">$10</text>
-                        <text x="175" y="80" text-anchor="middle" font-size="16" fill="#333">$20</text>
-                        <text x="175" y="150" text-anchor="middle" font-size="16" fill="#333">$30</text>
-                        <text x="110" y="190" text-anchor="middle" font-size="16" fill="#333">$40</text>
-                        <text x="45" y="150" text-anchor="middle" font-size="16" fill="#333">$50</text>
-                        <text x="45" y="80" text-anchor="middle" font-size="16" fill="#333">$100</text>
-                    </g>
-                    <!-- Strzałka na górze -->
-                    <polygon points="105,0 115,0 110,20" fill="#333"/>
-                </svg>
-                <button class="spin-btn">Kręć kołem!</button>
-            </div>
         
         </div>
     </div>
@@ -68,16 +72,3 @@
     
 </body>
 </html>
-
-<!-- .puzzle-img .letter {
-    display: inline-block;
-    width: 2em;
-    text-align: center;
-    font-size: 2em;
-    border-bottom: 2px solid #333;
-    margin: 0 0.2em;
-}
-.puzzle-img .space {
-    display: inline-block;
-    width: 1em;
-} -->

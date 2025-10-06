@@ -73,3 +73,17 @@ input[type="text"], input[type="email"], input[type="password"] {
     border: 1px solid #ccc; 
     border-radius: 4px;
 }
+
+/* PLAY FILED */
+.puzzle-img .letter {
+    display: inline-block;
+    width: 2em;
+    text-align: center;
+    font-size: 2em;
+    border-bottom: 2px solid #333;
+    margin: 0 0.2em;
+}
+.puzzle-img .space {
+    display: inline-block;
+    width: 1em;
+}
