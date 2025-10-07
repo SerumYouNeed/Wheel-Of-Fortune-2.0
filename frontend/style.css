@@ -4,6 +4,11 @@ body {
     font-family: Arial, sans-serif;
     background: #f4f6fa;
     color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #main {
@@ -18,63 +23,16 @@ body {
     gap: 24px;
 }
 
-#guess, #game {
+.container {
+    background: rgba(255,255,255,0.85);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    padding: 40px 32px;
+    text-align: center;
+    max-width: 350px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 16px;
-    margin-bottom: 30px;
-}
-
-#game {
-    margin-top: 20px;
-}
-
-#category, #puzzle, #wheel, #player {
-    margin: 10px 0;
-    text-align: center;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-    width: 300px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-}
-
-#category h1, #puzzle h1, #wheel h1, #player h1, #money h1, #name h1 {
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 0;
-    color: #2a4d7c;
-}
-
-#input {
-    display: flex;
-    gap: 12px;
-    margin-top: 18px;
-}
-
-button {
-    padding: 10px 22px;
-    background: #2a4d7c;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-
-button:hover {
-    background: #16325c;
-}
-
-footer {
-    text-align: center;
-    margin-top: 40px;
-    color: #888;
-    font-size: 0.95em;
 }
 
 .user {
@@ -82,9 +40,34 @@ footer {
     justify-content: center;
     gap: 15px;
     margin-top: 20px;
-    font-size: 2em;
-    color: #333;
+    font-size: 1.5em;
+    color: #2a4d7c;
     font-weight: bold;
+    background: #f7f7fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 12px 0;
+}
+
+h1, h2 {
+    font-size: 2em;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    color: #2a4d7c;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+#category, #puzzle, #wheel, #player {
+    margin: 10px 0;
+    text-align: center;
+    border: 1px solid #e0e0e0;
+    padding: 14px;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .wheel-img {
@@ -93,27 +76,48 @@ footer {
     align-items: center;
 }
 
+.wheel-img svg {
+    width: 220px;
+    height: 220px;
+    display: block;
+    margin: auto;
+}
+
 .wheel {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 15px;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
-    color: #d9534f;
+    color: #2a4d7c;
+    background: #f7f7fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    padding: 18px 0;
 }
 
-.spin-btn {
-    display: block;
-    margin: 16px auto 0 auto;
-    padding: 6px 18px;
-    font-size: 1.2rem;
-    border-radius: 8px;
-    border: 1px solid #aaa;
+button,
+.spin-btn,
+.submit-letter-btn {
+    padding: 10px 24px;
+    background: #2a4d7c;
     color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
     cursor: pointer;
-    transition: background 0.2s;
     font-weight: 600;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    transition: background 0.2s;
+    margin: 0 4px;
+    min-width: 100px;
+}
+
+button:hover,
+.spin-btn:hover,
+.submit-letter-btn:hover {
+    background: #16325c;
 }
 
 .letters {
@@ -137,8 +141,8 @@ footer {
 
 .letter-input label {
     font-size: 1.1em;
-    font-weight: bold;
-    color: #333;
+    font-weight: 600;
+    color: #2a4d7c;
 }
 
 #custom-letter {
@@ -146,23 +150,75 @@ footer {
     font-size: 1.2em;
     text-align: center;
     padding: 4px;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid #bbb;
     background: #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 
-.submit-letter-btn {
-    padding: 6px 16px;
-    font-size: 1em;
-    border-radius: 8px;
-    background: #43c6ac;
-    border: 1px solid #aaa;
-    color: #fff;
-    cursor: pointer;
-    transition: background 0.2s;
-    font-weight: 600;
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #888;
+    font-size: 0.95em;
 }
 
-.submit-letter-btn:hover {
-    background: #2d6a4f;
+/* Puzzle stylizacja */
+.puzzle-img {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5em;
+    max-width: 95vw;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.puzzle-img .letter {
+    display: inline-block;
+    width: 2em;
+    text-align: center;
+    font-size: 2em;
+    border-bottom: 2px solid #2a4d7c;
+    margin: 0 0.2em;
+    color: #2a4d7c;
+    background: #eaf0fa;
+    border-radius: 4px;
+}
+
+.puzzle-img .space {
+    display: inline-block;
+    width: 1em;
+}
+
+.word {
+    display: flex;
+    gap: 0.2em;
+}
+
+.space {
+    width: 1.5em;
+    display: inline-block;
+}
+
+/* Formularze */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+label {
+    display: block; 
+    margin-bottom: 6px; 
+    font-weight: bold; 
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%; 
+    padding: 8px; 
+    margin-bottom: 16px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px;
+    background: #fff;
 }

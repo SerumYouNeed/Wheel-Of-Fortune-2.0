@@ -1,6 +1,5 @@
 <div th:fragment="user-card" xmlns:th="http://www.w3.org/1999/xhtml">
     <h1>Welcome, <span th:text="${user.nickname}"></span>!</h1>
-    <p th:if="${user.guest}">(Guest)</p>
     <div class="btn-group">
         <button class="play-btn"
                 hx-get="/play"
@@ -13,3 +12,4 @@
 <div th:fragment="error">
     <p th:text="${error}"></p>
 </div>
+

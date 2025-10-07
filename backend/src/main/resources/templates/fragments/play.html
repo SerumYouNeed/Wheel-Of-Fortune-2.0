@@ -9,14 +9,52 @@
 
         <!-- Field with button for puzzle select and puzzle itself -->
         <div class="puzzle" id="puzzle" hx-target="this">
-            <h2 class="puzzle-img">
-                <span class="letter">_</span>
-                <span class="letter">_</span>
+            <div class="puzzle-img">
+                <div class="word">
+                    <span class="letter">_</span>
+                    <span class="letter">_</span>
+                    <span class="letter">_</span>
+                </div>
                 <span class="space"></span>
-                <span class="letter">_</span>
-                <span class="letter">_</span>
-                <span class="letter">_</span>
-            </h2>
+                <div class="word">
+                    <span class="letter">_</span>
+                    <span class="letter">_</span>
+                </div>
+                <span class="space"></span>
+                <div class="word">
+                    <span class="letter">_</span>
+                    <span class="letter">_</span>
+                    <span class="letter">_</span>
+                    <span class="letter">_</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wheel with prices -->
+        <div class="wheel">
+            <div class="wheel-img">
+                <svg width="220" height="220" viewBox="0 0 220 220">
+                    <g>
+                        <!-- 6 sectors on wheel -->
+                        <path d="M110,110 L110,10 A100,100 0 0,1 203.511,55.000 Z" fill="#FFD700"/>
+                        <path d="M110,110 L203.511,55.000 A100,100 0 0,1 203.511,165.000 Z" fill="#FF6347"/>
+                        <path d="M110,110 L203.511,165.000 A100,100 0 0,1 110,210 Z" fill="#90EE90"/>
+                        <path d="M110,110 L110,210 A100,100 0 0,1 16.489,165.000 Z" fill="#87CEEB"/>
+                        <path d="M110,110 L16.489,165.000 A100,100 0 0,1 16.489,55.000 Z" fill="#FFB6C1"/>
+                        <path d="M110,110 L16.489,55.000 A100,100 0 0,1 110,10 Z" fill="#D3D3D3"/>
+                        <!-- Prices -->
+                        <text x="110" y="40" text-anchor="middle" font-size="16" fill="#333">$10</text>
+                        <text x="175" y="80" text-anchor="middle" font-size="16" fill="#333">$20</text>
+                        <text x="175" y="150" text-anchor="middle" font-size="16" fill="#333">$30</text>
+                        <text x="110" y="190" text-anchor="middle" font-size="16" fill="#333">$40</text>
+                        <text x="45" y="150" text-anchor="middle" font-size="16" fill="#333">$50</text>
+                        <text x="45" y="80" text-anchor="middle" font-size="16" fill="#333">$100</text>
+                    </g>
+                    <!-- Arrow on top -->
+                    <polygon points="105,0 115,0 110,20" fill="#333"/>
+                </svg>
+            </div>
+            <button class="spin-btn">Spin the wheel!</button>
         </div>
 
         <!-- Input field for letter from user -->
@@ -26,31 +64,6 @@
                 <input type="text" id="custom-letter" maxlength="1" pattern="[A-Za-z]" />
                 <button class="submit-letter-btn">OK</button>
             </div>
-        </div>
-
-        <!-- Wheel with prices -->
-        <div class="wheel">
-            <svg width="220" height="220" viewBox="0 0 220 220">
-                <g>
-                    <!-- 6 sectors on wheel -->
-                    <path d="M110,110 L110,10 A100,100 0 0,1 203.511,55.000 Z" fill="#FFD700"/>
-                    <path d="M110,110 L203.511,55.000 A100,100 0 0,1 203.511,165.000 Z" fill="#FF6347"/>
-                    <path d="M110,110 L203.511,165.000 A100,100 0 0,1 110,210 Z" fill="#90EE90"/>
-                    <path d="M110,110 L110,210 A100,100 0 0,1 16.489,165.000 Z" fill="#87CEEB"/>
-                    <path d="M110,110 L16.489,165.000 A100,100 0 0,1 16.489,55.000 Z" fill="#FFB6C1"/>
-                    <path d="M110,110 L16.489,55.000 A100,100 0 0,1 110,10 Z" fill="#D3D3D3"/>
-                    <!-- Prices -->
-                    <text x="110" y="40" text-anchor="middle" font-size="16" fill="#333">$10</text>
-                    <text x="175" y="80" text-anchor="middle" font-size="16" fill="#333">$20</text>
-                    <text x="175" y="150" text-anchor="middle" font-size="16" fill="#333">$30</text>
-                    <text x="110" y="190" text-anchor="middle" font-size="16" fill="#333">$40</text>
-                    <text x="45" y="150" text-anchor="middle" font-size="16" fill="#333">$50</text>
-                    <text x="45" y="80" text-anchor="middle" font-size="16" fill="#333">$100</text>
-                </g>
-                <!-- Arrow on top -->
-                <polygon points="105,0 115,0 110,20" fill="#333"/>
-            </svg>
-            <button class="spin-btn">Spin the wheel!</button>
         </div>
     </div>
 </div>
