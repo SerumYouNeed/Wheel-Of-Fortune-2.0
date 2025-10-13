@@ -6,3 +6,8 @@ CREATE TABLE users (
     password_hash VARCHAR(100) NOT NULL,
     guest BOOLEAN NOT NULL
 )
+
+CREATE TABLE puzzle (
+    id BIGSERIAL PRIMARY KEY,
+    title VARCHAR(50) NOT NULL UNIQUE
+)

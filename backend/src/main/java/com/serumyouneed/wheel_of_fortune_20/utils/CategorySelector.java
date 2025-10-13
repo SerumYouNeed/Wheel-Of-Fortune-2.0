@@ -1,4 +1,4 @@
-package src.main.java.com.serumyouneed.wheel_of_fortune_20.utils;
+package com.serumyouneed.wheel_of_fortune_20.utils;
 
 import java.util.Random;
 
