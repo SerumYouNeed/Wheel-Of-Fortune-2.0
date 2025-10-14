@@ -1,0 +1,10 @@
+<div th:fragment="user-card" xmlns:th="http://www.w3.org/1999/xhtml">
+  <h1>Welcome, <span th:text="${user.nickname}"></span>!</h1>
+  <div class="btn-group">
+    <button class="play-btn"
+            hx-get="/select"
+            hx-target="#main"
+            hx-swap="innerHTML">Play
+    </button>
+  </div>
+</div>

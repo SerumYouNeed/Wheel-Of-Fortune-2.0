@@ -1,6 +1,16 @@
 <div th:fragment="user-card" xmlns:th="http://www.w3.org/1999/xhtml">
     <h1>Welcome, <span th:text="${user.nickname}"></span>!</h1>
     <div class="btn-group">
+        <button class="select-category-btn"
+                hx-get="/select-category"
+                hx-target="#main"
+                hx-swap="innerHTML">Draw category
+        </button>
+        <button class="select-puzzle-btn"
+                hx-get="/select-puzzle"
+                hx-target="#main"
+                hx-swap="innerHTML">Draw puzzle
+        </button>
         <button class="play-btn"
                 hx-get="/play"
                 hx-target="#main"
