@@ -1,7 +1,7 @@
 package com.serumyouneed.wheel_of_fortune_20.repository;
 
 import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
-import com.serumyouneed.wheel_of_fortune_20.model.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

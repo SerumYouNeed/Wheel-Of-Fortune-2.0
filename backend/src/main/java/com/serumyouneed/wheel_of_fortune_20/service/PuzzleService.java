@@ -2,26 +2,19 @@ package com.serumyouneed.wheel_of_fortune_20.service;
 
 import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
 import com.serumyouneed.wheel_of_fortune_20.repository.PuzzleRepository;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
+@Service
 public class PuzzleService {
 
     private final PuzzleRepository puzzleRepository;
 
     public PuzzleService(PuzzleRepository puzzleRepository) {
         this.puzzleRepository = puzzleRepository;
-    }
-
-    private final String puzzle;
-    private String maskedPuzzle;
-    private String partiallyMaskedPuzzle;
-
-    public Puzzle(Guessable puzzle) {
-        this.maskedPuzzle = maskingProverb(puzzle.getText().toUpperCase());
-        this.puzzle = puzzle.getText().toUpperCase();
-        this.partiallyMaskedPuzzle = maskingProverb(puzzle.getText().toUpperCase());
-
     }
 
     /**
@@ -31,7 +24,14 @@ public class PuzzleService {
         Random random = new Random();
         long count = puzzleRepository.count();
         long randomId = 1 + new Random().nextLong(count);
-        return puzzleRepository.findById(randomId).orElseThrow();
+        return puzzleRepository.findByID(randomId).orElseThrow();
+    }
+
+    public List<String> getMaskedPuzzleAsList(Puzzle p) {
+        String puzzle = p.getPuzzle();
+        return puzzle.chars()
+                .mapToObj(c -> String.valueOf((char) c))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -39,7 +39,7 @@ public class PuzzleService {
      * @param puzzle (String)
      * @return masked (String): Letters covered by '_'. Spaces stays.
      */
-    static String maskingPuzzle(String puzzle) {
+    public String maskingPuzzle(String puzzle) {
         StringBuilder masked = new StringBuilder();
         for (int i = 0; i < puzzle.length(); i++) {
             if (puzzle.charAt(i) == ' ') {
@@ -54,6 +54,7 @@ public class PuzzleService {
         }
         return masked.toString();
     }
+
 
     /**
      * Function uncover masked field if player input is in puzzle.
@@ -72,11 +73,9 @@ public class PuzzleService {
                 found = true;
             }
         }
-
         if (!found) {
             return "";
         }
-
         return updated.toString();
     }
 

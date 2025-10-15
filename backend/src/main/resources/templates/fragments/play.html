@@ -3,39 +3,17 @@
 
         <!-- user nickname and money -->
         <div class="user">
-            <span class="nickname">user</span>
+            <span th:text="${user.nickname}"></span>
             <span class="money">$0</span>
         </div>
 
         <!-- Field with button for puzzle select and puzzle itself -->
-        <div class="puzzle" id="puzzle" hx-target="this">
-            <div class="puzzle-selector-btn">
-                <button class="puzzle-selector"
-                        hx-get="/home"
-                        hx-target="#main"
-                        hx-swap="innerHTML">Draw the category
-                </button>
-            </div>
-            <div class="puzzle-img">
-                <div class="word">
-                    <span class="letter">_</span>
-                    <span class="letter">_</span>
-                    <span class="letter">_</span>
-                </div>
-                <span class="space"></span>
-                <div class="word">
-                    <span class="letter">_</span>
-                    <span class="letter">_</span>
-                </div>
-                <span class="space"></span>
-                <div class="word">
-                    <span class="letter">_</span>
-                    <span class="letter">_</span>
-                    <span class="letter">_</span>
-                    <span class="letter">_</span>
-                </div>
-            </div>
+        <div class="puzzle" id="puzzle"
+             hx-get="/select-puzzle"
+             hx-trigger="load"
+             hx-swap="innerHTML">
         </div>
+
 
         <!-- Wheel with prices -->
         <div class="wheel">

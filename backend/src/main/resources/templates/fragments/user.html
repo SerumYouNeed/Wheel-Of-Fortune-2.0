@@ -3,14 +3,10 @@
     <div class="btn-group">
         <button class="select-category-btn"
                 hx-get="/select-category"
-                hx-target="#main"
+                hx-target="#category-result"
                 hx-swap="innerHTML">Draw category
         </button>
-        <button class="select-puzzle-btn"
-                hx-get="/select-puzzle"
-                hx-target="#main"
-                hx-swap="innerHTML">Draw puzzle
-        </button>
+        <div id="category-result"></div>
         <button class="play-btn"
                 hx-get="/play"
                 hx-target="#main"

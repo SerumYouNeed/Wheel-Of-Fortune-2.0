@@ -1,16 +1,13 @@
 package com.serumyouneed.wheel_of_fortune_20.utils;
 
+import com.serumyouneed.wheel_of_fortune_20.model.Category;
+
 import java.util.Random;
 
 /**
  * Utility class for selecting puzzle's category.
  */
 public class CategorySelector {
-
-    public enum Category {
-        MOVIE,
-        PROVERB
-    }
 
     /**
      * Select category based on a random number generated.

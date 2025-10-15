@@ -8,17 +8,22 @@ public class Puzzle{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long ID;
 
     @Column(unique = true, nullable = false, length = 50)
-    private String title;
+    private String puzzle;
 
-    public String getTitle() {
-        return title;
+    @Column(nullable = false, length = 50)
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
+
+    public String getPuzzle() {
+        return puzzle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setPuzzle(String puzzle) {
+        this.puzzle = puzzle;
     }
 
     // Constructor required for JPA
@@ -26,8 +31,9 @@ public class Puzzle{
     }
 
     // Constructor for the rest of the logic
-    public Puzzle(String title) {
-        this.title = title;
+    public Puzzle(String puzzle) {
+        this.puzzle = puzzle;
     }
+
 
 }

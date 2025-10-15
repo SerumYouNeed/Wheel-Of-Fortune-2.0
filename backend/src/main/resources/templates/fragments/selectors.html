@@ -1,10 +1,9 @@
-<div th:fragment="user-card" xmlns:th="http://www.w3.org/1999/xhtml">
-  <h1>Welcome, <span th:text="${user.nickname}"></span>!</h1>
-  <div class="btn-group">
-    <button class="play-btn"
-            hx-get="/select"
-            hx-target="#main"
-            hx-swap="innerHTML">Play
-    </button>
-  </div>
+<div th:fragment="categorySelected" xmlns:th="http://www.w3.org/1999/xhtml">
+  <h1>
+    <span class="category">Selected category: <b th:text="${category}"></b></span>
+  </h1>
+</div>
+
+<div th:fragment="puzzleSelected" xmlns:th="http://www.w3.org/1999/xhtml">
+    <span class="letter" th:each="letter : ${puzzle}" th:text="${letter}"></span>
 </div>
