@@ -15,6 +15,39 @@
     </div>
 </div>
 
+<div th:fragment="starting-singleplayer-card" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="btn-group">
+        <button class="load-previous-game-btn"
+                hx-get="/game/load-previous-game"
+                hx-target="#main"
+                hx-swap="innerHTML">Load last game
+        </button>
+        <button class="start-new-game-btn"
+                hx-get="/start-new-game"
+                hx-target="#main"
+                hx-swap="innerHTML">Star new game
+        </button>
+    </div>
+</div>
+
+<div th:fragment="mode-card" xmlns:th="http://www.w3.org/1999/xhtml">
+    <h1>Welcome, <span th:text="${user.nickname}"></span>!</h1>
+    <h2>Choose a game mode:</h2>
+    <div class="btn-group">
+        <button class="single-player-btn"
+                hx-get="/game/single-player-mode"
+                hx-target="#main"
+                hx-swap="innerHTML">Single-player
+        </button>
+        <button class="multiplayer-btn"
+                hx-get="/game/multiplayer-mode"
+                hx-target="#main"
+                hx-swap="innerHTML">Multiplayer
+        </button>
+    </div>
+</div>
+
+
 <div th:fragment="error">
     <p th:text="${error}"></p>
 </div>

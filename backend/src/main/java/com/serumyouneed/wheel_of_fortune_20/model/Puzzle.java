@@ -8,7 +8,7 @@ public class Puzzle{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ID;
+    private Long id;
 
     @Column(unique = true, nullable = false, length = 50)
     private String puzzle;
@@ -41,6 +41,6 @@ public class Puzzle{
     }
 
     public Long getId() {
-        return ID;
+        return id;
     }
 }

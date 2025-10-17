@@ -2,6 +2,9 @@ package com.serumyouneed.wheel_of_fortune_20.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Class for logging purpose. Represents a player profile in the database.
  */
@@ -21,6 +24,10 @@ public class User {
 
     @Column(nullable = false)
     private boolean guest;
+
+    // Relation to GameState entity
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<GameState> games = new ArrayList<>();
 
     // Constructor required for JPA
     protected User() {
@@ -65,5 +72,11 @@ public class User {
 
     public void setGuest(boolean guest) {
         this.guest = guest;
+    }
+
+    public List<GameState> getGames() { return games; }
+    public void addGame(GameState gameState) {
+        games.add(gameState);
+        gameState.setUser(this);
     }
 }

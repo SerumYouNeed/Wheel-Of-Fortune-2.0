@@ -26,8 +26,7 @@ public class UserController {
             User newUser = userService.registerUser(nickname, password);
             session.setAttribute("user", newUser);
             model.addAttribute("user", newUser);
-            // return piece of HTML for htmx
-            return "fragments/user :: user-card";
+            return "fragments/user :: mode-card";
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", "Nickname already used");
             return "fragments/user :: error";
@@ -43,7 +42,7 @@ public class UserController {
         if (user != null) {
             session.setAttribute("user", user);
             model.addAttribute("user", user);
-            return "fragments/user :: user-card";
+            return "fragments/user :: mode-card";
         } else {
             model.addAttribute("error", "Invalid credentials");
             return "fragments/user :: error";
@@ -57,7 +56,7 @@ public class UserController {
         User guest = userService.createGuestUser(nickname);
         session.setAttribute("user", guest);
         model.addAttribute("user", guest);
-        return "fragments/user :: user-card";
+        return "fragments/user :: mode-card";
     }
 }
 

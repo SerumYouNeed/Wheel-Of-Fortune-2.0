@@ -2,8 +2,11 @@ package com.serumyouneed.wheel_of_fortune_20.service;
 
 import com.serumyouneed.wheel_of_fortune_20.model.GameState;
 import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
+import com.serumyouneed.wheel_of_fortune_20.model.User;
 import com.serumyouneed.wheel_of_fortune_20.repository.GameStateRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class GameStateService {
@@ -16,17 +19,22 @@ public class GameStateService {
         this.puzzleService = puzzleService;
     }
 
+    public GameState loadPreviousGame(User user) {
+        return repo.findTopByUserOrderByLastUpdatedDesc(user)
+                .orElseThrow(() -> new IllegalStateException("No game found for user"));
+    }
+
     public GameState startNewGame(Long userId) {
         Puzzle puzzle = puzzleService.getPuzzle();
         String masked = puzzleService.maskingPuzzle(puzzle);
 
-        GameState state = new GameState(puzzle, masked);
+        GameState state = new GameState(user, puzzle, masked);
         state.setUserId(userId);
         return repo.save(state);
     }
 
-    public GameState guessLetter(Long userId, char letter) {
-        GameState state = repo.findByUserId(userId)
+    public GameState guessLetter(User user, char letter) {
+        GameState state = repo.findByUserAndSolvedIsFalse(user)
                 .orElseThrow(() -> new IllegalStateException("No game found for user"));
 
         String puzzleText = state.getPuzzle().getPuzzle();
@@ -46,7 +54,7 @@ public class GameStateService {
         return repo.save(state);
     }
 
-    public GameState getGame(Long userId) {
-        return repo.findByUserId(userId).orElse(null);
+    public GameState getGame(User user) {
+        return repo.findByUserAndSolvedIsFalse(user).orElse(null);
     }
 }

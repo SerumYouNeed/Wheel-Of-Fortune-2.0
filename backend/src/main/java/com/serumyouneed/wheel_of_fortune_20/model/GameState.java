@@ -2,49 +2,59 @@ package com.serumyouneed.wheel_of_fortune_20.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "game_state")
 public class GameState {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    private Long puzzleId;
+    @ManyToOne
+    @JoinColumn(name = "puzzle_id", nullable = false)
+    private Puzzle puzzle;
 
     @Column(length = 255)
     private String masked;
 
     private boolean solved = false;
 
-    // relation to Puzzle entity
-    @ManyToOne
-    @JoinColumn(name = "puzzle_id", insertable = false, updatable = false)
-    private Puzzle puzzle;
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    private LocalDateTime lastUpdated = LocalDateTime.now();
 
     public GameState() {}
 
-    public GameState(Puzzle puzzle, String masked) {
+    public GameState(User user, Puzzle puzzle, String masked) {
+        this.user = user;
         this.puzzle = puzzle;
-        this.puzzleId = puzzle.getId();
         this.masked = masked;
     }
 
     // getters & setters
     public Long getId() { return id; }
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
 
-    public Long getPuzzleId() { return puzzleId; }
-    public void setPuzzleId(Long puzzleId) { this.puzzleId = puzzleId; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+
+    public Puzzle getPuzzle() { return puzzle; }
+    public void setPuzzle(Puzzle puzzle) { this.puzzle = puzzle; }
 
     public String getMasked() { return masked; }
     public void setMasked(String masked) { this.masked = masked; }
 
     public boolean isSolved() { return solved; }
     public void setSolved(boolean solved) { this.solved = solved; }
-
-    public Puzzle getPuzzle() { return puzzle; }
 }
