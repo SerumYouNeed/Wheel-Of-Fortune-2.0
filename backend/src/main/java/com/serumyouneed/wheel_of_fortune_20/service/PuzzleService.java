@@ -21,14 +21,12 @@ public class PuzzleService {
      * Fetch random puzzle from database.
      */
     public Puzzle getPuzzle() {
-        Random random = new Random();
         long count = puzzleRepository.count();
         long randomId = 1 + new Random().nextLong(count);
         return puzzleRepository.findByID(randomId).orElseThrow();
     }
 
-    public List<String> getMaskedPuzzleAsList(Puzzle p) {
-        String puzzle = p.getPuzzle();
+    public List<String> getMaskedPuzzleAsList(String puzzle) {
         return puzzle.chars()
                 .mapToObj(c -> String.valueOf((char) c))
                 .collect(Collectors.toList());
@@ -36,10 +34,11 @@ public class PuzzleService {
 
     /**
      * Function masking an input string
-     * @param puzzle (String)
+     * @param p (Puzzle)
      * @return masked (String): Letters covered by '_'. Spaces stays.
      */
-    public String maskingPuzzle(String puzzle) {
+    public String maskingPuzzle(Puzzle p) {
+        String puzzle = p.getPuzzle();
         StringBuilder masked = new StringBuilder();
         for (int i = 0; i < puzzle.length(); i++) {
             if (puzzle.charAt(i) == ' ') {
@@ -54,7 +53,6 @@ public class PuzzleService {
         }
         return masked.toString();
     }
-
 
     /**
      * Function uncover masked field if player input is in puzzle.

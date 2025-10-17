@@ -26,8 +26,10 @@ public class PuzzleController {
 
     @GetMapping("/select-puzzle")
     public String drawPuzzle(Model model) {
-        List<String> masked = puzzleService.getMaskedPuzzleAsList(puzzleService.getPuzzle());
-        model.addAttribute("puzzle", masked);
+        Puzzle puzzle = puzzleService.getPuzzle();
+        String masked = puzzleService.maskingPuzzle(puzzle);
+        List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(masked);
+        model.addAttribute("puzzle", maskedPuzzleAsList);
         return "fragments/selectors :: puzzleSelected";
     }
 

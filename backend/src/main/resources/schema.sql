@@ -13,3 +13,11 @@ CREATE TABLE puzzles (
     puzzle VARCHAR(50) NOT NULL UNIQUE,
     category VARCHAR(50) NOT NULL
 );
+
+CREATE TABLE game_state (
+    id SERIAL PRIMARY KEY,
+        user_id INT,
+        puzzle_id INT,
+        masked TEXT,
+        solved BOOLEAN DEFAULT FALSE
+);

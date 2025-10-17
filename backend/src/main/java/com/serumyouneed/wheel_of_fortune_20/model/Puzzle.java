@@ -35,5 +35,12 @@ public class Puzzle{
         this.puzzle = puzzle;
     }
 
+    @Override
+    public String toString() {
+        return "Puzzle: " + puzzle + '\'';
+    }
 
+    public Long getId() {
+        return ID;
+    }
 }
