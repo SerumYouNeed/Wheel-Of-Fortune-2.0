@@ -1,9 +1,13 @@
 package com.serumyouneed.wheel_of_fortune_20.controller;
 
 import com.serumyouneed.wheel_of_fortune_20.model.Category;
+import com.serumyouneed.wheel_of_fortune_20.model.GameState;
 import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
+import com.serumyouneed.wheel_of_fortune_20.model.User;
+import com.serumyouneed.wheel_of_fortune_20.service.GameStateService;
 import com.serumyouneed.wheel_of_fortune_20.service.PuzzleService;
 import com.serumyouneed.wheel_of_fortune_20.utils.CategorySelector;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +18,12 @@ import java.util.List;
 public class PuzzleController {
 
     private final PuzzleService puzzleService;
+    private final GameStateService gameStateService;
 
-    public PuzzleController(PuzzleService puzzleService) {this.puzzleService = puzzleService; }
+    public PuzzleController(PuzzleService puzzleService, GameStateService gameStateService) {
+        this.gameStateService = gameStateService;
+        this.puzzleService = puzzleService;
+    }
 
     @GetMapping("/select-category")
     public String drawCategory(Model model) {
@@ -25,10 +33,25 @@ public class PuzzleController {
     }
 
     @GetMapping("/select-puzzle")
-    public String drawPuzzle(Model model) {
-        Puzzle puzzle = puzzleService.getPuzzle();
-        String masked = puzzleService.maskingPuzzle(puzzle);
-        List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(masked);
+    public String drawPuzzle(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+
+        String mode = (String) session.getAttribute("mode");
+
+        GameState gameState;
+        Puzzle puzzle;
+
+        if ("load".equals(mode)) {
+            gameState = gameStateService.loadPreviousGame(user);
+            puzzle = gameState.getPuzzle();
+        } else {
+            puzzle = puzzleService.getPuzzle();
+            String masked = puzzleService.maskingPuzzle(puzzle);
+
+            gameState = gameStateService.createNewGame(user, puzzle, masked);
+            session.setAttribute("mode", "load");
+        }
+        List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(gameState.getMasked());
         model.addAttribute("puzzle", maskedPuzzleAsList);
         return "fragments/selectors :: puzzleSelected";
     }

@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface GameStateRepository extends JpaRepository<GameState, Long> {
     Optional<GameState> findByUserAndSolvedIsFalse(User user);
     Optional<GameState> findTopByUserOrderByLastUpdatedDesc(User user);
+    Optional<GameState> findTopByUserOrderByIdDesc(User user);
 }

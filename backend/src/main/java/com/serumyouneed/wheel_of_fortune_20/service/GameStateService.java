@@ -23,14 +23,13 @@ public class GameStateService {
         return repo.findTopByUserOrderByLastUpdatedDesc(user)
                 .orElseThrow(() -> new IllegalStateException("No game found for user"));
     }
-
-    public GameState startNewGame(Long userId) {
-        Puzzle puzzle = puzzleService.getPuzzle();
-        String masked = puzzleService.maskingPuzzle(puzzle);
-
-        GameState state = new GameState(user, puzzle, masked);
-        state.setUserId(userId);
-        return repo.save(state);
+    public GameState createNewGame(User user, Puzzle puzzle, String masked) {
+        GameState newGame = new GameState();
+        newGame.setUser(user);
+        newGame.setPuzzle(puzzle);
+        newGame.setMasked(masked);
+        newGame.setSolved(false);
+        return repo.save(newGame);
     }
 
     public GameState guessLetter(User user, char letter) {
@@ -55,6 +54,6 @@ public class GameStateService {
     }
 
     public GameState getGame(User user) {
-        return repo.findByUserAndSolvedIsFalse(user).orElse(null);
+        return repo.findTopByUserOrderByIdDesc(user).orElse(null);
     }
 }

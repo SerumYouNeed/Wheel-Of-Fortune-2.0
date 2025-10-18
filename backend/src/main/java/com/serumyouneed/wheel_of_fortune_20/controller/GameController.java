@@ -1,9 +1,11 @@
 package com.serumyouneed.wheel_of_fortune_20.controller;
 
 import com.serumyouneed.wheel_of_fortune_20.model.GameState;
+import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
 import com.serumyouneed.wheel_of_fortune_20.model.User;
 import com.serumyouneed.wheel_of_fortune_20.repository.UserRepository;
 import com.serumyouneed.wheel_of_fortune_20.service.GameStateService;
+import com.serumyouneed.wheel_of_fortune_20.service.PuzzleService;
 import com.serumyouneed.wheel_of_fortune_20.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -18,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class GameController {
 
     private final GameStateService gameStateService;
+    private final PuzzleService puzzleService;
 
-    public GameController(GameStateService gameStateService) {
+    public GameController(GameStateService gameStateService, PuzzleService puzzleService) {
         this.gameStateService = gameStateService;
+        this.puzzleService = puzzleService;
     }
 
     @GetMapping("/single-player-mode")
@@ -33,12 +37,15 @@ public class GameController {
         User user = (User) session.getAttribute("user");
         GameState state = gameStateService.loadPreviousGame(user);
         model.addAttribute("game", state);
+        model.addAttribute("user", user);
+        return "fragments/play :: playField";
     }
 
+    // TO !!!!!!
     @GetMapping("/start-new-game")
-    public String startGame(HttpSession session, Model model) {
+    public String startNewGame(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
-        GameState game = gameStateService.startNewGame(user);
+        GameState game = gameStateService.createNewGame(user);
         model.addAttribute("puzzle", game.getMasked().chars()
                 .mapToObj(c -> String.valueOf((char) c))
                 .toList());
