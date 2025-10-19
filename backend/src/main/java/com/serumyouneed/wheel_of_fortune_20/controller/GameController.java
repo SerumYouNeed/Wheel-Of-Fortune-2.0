@@ -41,7 +41,7 @@ public class GameController {
         return "fragments/play :: playField";
     }
 
-    // TO !!!!!!
+    // TO !!!!!! napraw to
     @GetMapping("/start-new-game")
     public String startNewGame(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
