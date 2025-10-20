@@ -1,4 +1,4 @@
-<div th:fragment="user-card" xmlns:th="http://www.w3.org/1999/xhtml">
+<div th:fragment="starting-singleplayer-card" xmlns:th="http://www.w3.org/1999/xhtml">
     <h1>Welcome, <span th:text="${user.nickname}"></span>!</h1>
     <div class="btn-group">
         <button class="select-category-btn"
@@ -7,28 +7,28 @@
                 hx-swap="innerHTML">Draw category
         </button>
         <div id="category-result"></div>
-        <button class="play-btn"
-                hx-get="/game/play"
-                hx-target="#main"
-                hx-swap="innerHTML">Play
-        </button>
-    </div>
-</div>
-
-<div th:fragment="starting-singleplayer-card" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div class="btn-group">
-        <button class="load-previous-game-btn"
-                hx-get="/game/load-previous-game"
-                hx-target="#main"
-                hx-swap="innerHTML">Load last game
-        </button>
         <button class="start-new-game-btn"
-                hx-get="/start-new-game"
+                hx-get="/game/start-new-game"
                 hx-target="#main"
                 hx-swap="innerHTML">Star new game
         </button>
     </div>
 </div>
+
+<!--<div th:fragment="starting-singleplayer-card" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--    <div class="btn-group">-->
+<!--        <button class="load-previous-game-btn"-->
+<!--                hx-get="/game/load-previous-game"-->
+<!--                hx-target="#main"-->
+<!--                hx-swap="innerHTML">Load last game-->
+<!--        </button>-->
+<!--        <button class="start-new-game-btn"-->
+<!--                hx-get="/game/start-new-game"-->
+<!--                hx-target="#main"-->
+<!--                hx-swap="innerHTML">Star new game-->
+<!--        </button>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div th:fragment="mode-card" xmlns:th="http://www.w3.org/1999/xhtml">
     <h1>Welcome, <span th:text="${user.nickname}"></span>!</h1>

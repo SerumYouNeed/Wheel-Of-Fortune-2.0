@@ -11,10 +11,13 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.util.List;
 
 @Controller
+@SessionAttributes("selectedCategory")
 public class PuzzleController {
 
     private final PuzzleService puzzleService;
@@ -33,7 +36,7 @@ public class PuzzleController {
     }
 
     @GetMapping("/select-puzzle")
-    public String drawPuzzle(HttpSession session, Model model) {
+    public String drawPuzzle(@ModelAttribute("selectedCategory") Category category, HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
 
         String mode = (String) session.getAttribute("mode");
@@ -43,12 +46,12 @@ public class PuzzleController {
 
         if ("load".equals(mode)) {
             gameState = gameStateService.loadPreviousGame(user);
-            puzzle = gameState.getPuzzle();
+    puzzle = gameState.getPuzzle();
         } else {
-            puzzle = puzzleService.getPuzzle();
+            puzzle = puzzleService.getPuzzle(category);
             String masked = puzzleService.maskingPuzzle(puzzle);
 
-            gameState = gameStateService.createNewGame(user, puzzle, masked);
+            gameState = gameStateService.createNewGame(user, puzzle);
             session.setAttribute("mode", "load");
         }
         List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(gameState.getMasked());

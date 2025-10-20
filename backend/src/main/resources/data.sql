@@ -3,7 +3,7 @@ INSERT INTO users (id, nickname, password_hash, guest)
 VALUES
     (1, 'Alice', '$2a$10$fakeHashForExample1', false),
     (2, 'Bob',   '$2a$10$fakeHashForExample2', false),
-    (3, 'Guest123', NULL, true);
+    (3, 'John',  '$2a$10$fakeHashForExample3', false);
 
 -- ========== PUZZLES ==========
 INSERT INTO puzzles (id, puzzle, category)

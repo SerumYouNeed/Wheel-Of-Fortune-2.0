@@ -23,11 +23,16 @@ public class GameStateService {
         return repo.findTopByUserOrderByLastUpdatedDesc(user)
                 .orElseThrow(() -> new IllegalStateException("No game found for user"));
     }
-    public GameState createNewGame(User user, Puzzle puzzle, String masked) {
+    public GameState createNewGame(User user, Puzzle puzzle) {
         GameState newGame = new GameState();
-        newGame.setUser(user);
         newGame.setPuzzle(puzzle);
-        newGame.setMasked(masked);
+
+        if (user.isGuest()) {
+            newGame.setUser(null);
+        } else {
+            newGame.setUser(user);
+        }
+        newGame.setMasked(puzzleService.maskingPuzzle(newGame.getPuzzle()));
         newGame.setSolved(false);
         return repo.save(newGame);
     }

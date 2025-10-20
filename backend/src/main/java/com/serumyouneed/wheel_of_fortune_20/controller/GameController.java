@@ -1,5 +1,6 @@
 package com.serumyouneed.wheel_of_fortune_20.controller;
 
+import com.serumyouneed.wheel_of_fortune_20.model.Category;
 import com.serumyouneed.wheel_of_fortune_20.model.GameState;
 import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
 import com.serumyouneed.wheel_of_fortune_20.model.User;
@@ -10,10 +11,7 @@ import com.serumyouneed.wheel_of_fortune_20.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/game")
@@ -28,7 +26,9 @@ public class GameController {
     }
 
     @GetMapping("/single-player-mode")
-    public String singlePlayerMode() {
+    public String singlePlayerMode(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+        model.addAttribute("user", user);
         return "fragments/user :: starting-singleplayer-card";
     }
 
@@ -41,15 +41,13 @@ public class GameController {
         return "fragments/play :: playField";
     }
 
-    // TO !!!!!! napraw to
     @GetMapping("/start-new-game")
-    public String startNewGame(HttpSession session, Model model) {
+    public String startNewGame(@ModelAttribute("selectedCategory") Category category, HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
-        GameState game = gameStateService.createNewGame(user);
-        model.addAttribute("puzzle", game.getMasked().chars()
-                .mapToObj(c -> String.valueOf((char) c))
-                .toList());
-        return "fragments/selectors :: puzzleSelected";
+        GameState game = gameStateService.createNewGame(user, puzzleService.getPuzzle(category));
+        model.addAttribute("puzzle", puzzleService.getMaskedPuzzleAsList(game.getMasked()));
+        model.addAttribute("user", user);
+        return "fragments/play :: playField";
     }
 
 //    @PostMapping("/guess")
@@ -60,12 +58,4 @@ public class GameController {
 //                .toList());
 //        return "fragments/selectors :: puzzleSelected";
 //    }
-
-    @GetMapping("/play")
-    public String play(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
-        model.addAttribute("user", user);
-        return "fragments/play :: playField";
-    }
-
 }

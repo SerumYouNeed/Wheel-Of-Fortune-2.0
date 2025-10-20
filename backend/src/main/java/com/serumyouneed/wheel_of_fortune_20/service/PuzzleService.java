@@ -1,5 +1,6 @@
 package com.serumyouneed.wheel_of_fortune_20.service;
 
+import com.serumyouneed.wheel_of_fortune_20.model.Category;
 import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
 import com.serumyouneed.wheel_of_fortune_20.repository.PuzzleRepository;
 import org.springframework.stereotype.Service;
@@ -20,10 +21,15 @@ public class PuzzleService {
     /**
      * Fetch random puzzle from database.
      */
-    public Puzzle getPuzzle() {
-        long count = puzzleRepository.count();
-        long randomId = 1 + new Random().nextLong(count);
-        return puzzleRepository.findByID(randomId).orElseThrow();
+    public Puzzle getPuzzle(Category category) {
+
+        List<Puzzle> puzzles = puzzleRepository.findByCategory(category);
+        if (puzzles.isEmpty()) {
+            throw new IllegalStateException("No puzzles in category!");
+        }
+
+        int randomIndex = new Random().nextInt(puzzles.size());
+        return puzzles.get(randomIndex);
     }
 
     public List<String> getMaskedPuzzleAsList(String puzzle) {
@@ -55,8 +61,8 @@ public class PuzzleService {
     }
 
     /**
-     * Function uncover masked field if player input is in puzzle.
-     * @param puzzle       (String): Actual puzzle from database, set before round.
+     * Function unwield masked field if player input is in puzzle.
+     * @param puzzle       (String): Actual puzzle set before round.
      * @param input        (String): Player's guessed letter.
      * @return updated     (String): Modified masked puzzle after letter checking.
      */
