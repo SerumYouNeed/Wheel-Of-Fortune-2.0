@@ -58,3 +58,12 @@
         </div>
     </div>
 </div>
+
+<!-- Current prize from wheel -->
+<div th:fragment="spinResult" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container">
+        <h1>
+            <span class="prize">Each letter is worth: <b th:text="${prize}"></b></span>
+        </h1>
+    </div>
+

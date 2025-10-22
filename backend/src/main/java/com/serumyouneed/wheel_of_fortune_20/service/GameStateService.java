@@ -27,9 +27,7 @@ public class GameStateService {
         GameState newGame = new GameState();
         newGame.setPuzzle(puzzle);
 
-        if (user.isGuest()) {
-            newGame.setUser(null);
-        } else {
+        if (!user.isGuest()) {
             newGame.setUser(user);
         }
         newGame.setMasked(puzzleService.maskingPuzzle(newGame.getPuzzle()));

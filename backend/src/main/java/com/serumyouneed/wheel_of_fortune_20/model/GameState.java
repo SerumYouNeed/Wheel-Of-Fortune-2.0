@@ -33,6 +33,16 @@ public class GameState {
         this.lastUpdated = lastUpdated;
     }
 
+    public int getCurrentPrize() {
+        return currentPrize;
+    }
+
+    public void setCurrentPrize(int currentPrize) {
+        this.currentPrize = currentPrize;
+    }
+
+    private int currentPrize;
+
     private LocalDateTime lastUpdated = LocalDateTime.now();
 
     public GameState() {}

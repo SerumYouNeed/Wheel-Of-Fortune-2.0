@@ -1,16 +1,18 @@
-package src.main.java.com.serumyouneed.wheel_of_fortune_20.utils;
+package com.serumyouneed.wheel_of_fortune_20.utils;
 
-public class RealSleeper implements Sleeper{
+import org.springframework.stereotype.Component;
+
+@Component
+public class RealSleeper implements Sleeper {
 
     /**
      * Function stops program for two seconds.
      */
     @Override
-    public void sleep() {
+    public void sleep(long millis) {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(millis);
         } catch (InterruptedException e) {
-            System.out.println("Wheel is stopped");
             Thread.currentThread().interrupt();
         }
     }
