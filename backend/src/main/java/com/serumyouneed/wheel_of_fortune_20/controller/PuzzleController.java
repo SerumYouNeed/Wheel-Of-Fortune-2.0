@@ -28,8 +28,9 @@ public class PuzzleController {
     }
 
     @GetMapping("/select-category")
-    public String drawCategory(Model model) {
+    public String drawCategory(HttpSession session, Model model) {
         Category randomCategory = CategorySelector.selectCategory();
+        session.setAttribute("category", randomCategory);
         model.addAttribute("category", randomCategory.name());
         return "fragments/selectors :: categorySelected";
     }
@@ -37,7 +38,7 @@ public class PuzzleController {
     @GetMapping("/select-puzzle")
     public String drawPuzzle(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
-
+        Category category = (Category) session.getAttribute("category");
         String mode = (String) session.getAttribute("mode");
 
         GameState gameState;
