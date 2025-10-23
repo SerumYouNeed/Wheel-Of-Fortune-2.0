@@ -73,7 +73,7 @@ public class GameController {
         int prize = wheelService.switchToField(field, 2000);
         gameState.setCurrentPrize(prize);
         session.setAttribute("gameState", gameState);
-
+        session.setAttribute("prize", prize);
         model.addAttribute("prize", prize);
         return "fragments/play :: spinResult";
     }
