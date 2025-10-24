@@ -68,8 +68,7 @@ public class GameController {
             return "fragments/error :: noGameActive";
         }
 
-        Random random = new Random();
-        int field = random.nextInt(6);
+        int field = wheelService.spinTheWheel();
         int prize = wheelService.switchToField(field, 2000);
         gameState.setCurrentPrize(prize);
         session.setAttribute("gameState", gameState);
