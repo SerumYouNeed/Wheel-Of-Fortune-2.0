@@ -20,7 +20,7 @@ public class GameSessionService {
         }
 
         return gameState;
-    }
+    }// refaktoryzacja
 
     public void updateGameState(HttpSession session, GameState updatedState) {
         session.setAttribute(GAME_STATE_ATTR, updatedState);
