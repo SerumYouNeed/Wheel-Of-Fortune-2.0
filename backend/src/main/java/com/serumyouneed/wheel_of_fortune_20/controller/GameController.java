@@ -34,9 +34,9 @@ public class GameController {
 
     @GetMapping("/single-player-mode")
     public String singlePlayerMode(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
+        String user_name = (String) session.getAttribute("user_name");
         GameState state = gameSessionService.getOrCreateGameState(session);
-        model.addAttribute("user", user);
+        model.addAttribute("user", user_name);
         model.addAttribute("state", state);
         return "fragments/user :: starting-singleplayer-card";
     }
@@ -52,11 +52,13 @@ public class GameController {
 
     @GetMapping("/start-new-game")
     public String startNewGame(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
         Category category = (Category) session.getAttribute("category");
-        GameState game = gameStateService.createNewGame(user, puzzleService.getPuzzle(category));
+        GameState game = gameStateService.createNewGame(puzzleService.getPuzzle(category));
+        Long game_id = game.getId();
+        session.setAttribute("game_id", game_id);
+        String user_name = (String) session.getAttribute(user_name)
+        model.addAttribute("user_name", session.getAttribute(user_name));
         model.addAttribute("puzzle", puzzleService.getMaskedPuzzleAsList(game.getMasked()));
-        model.addAttribute("user", user);
         return "fragments/play :: playField";
     }
 
@@ -76,12 +78,4 @@ public class GameController {
         model.addAttribute("prize", prize);
         return "fragments/play :: spinResult";
     }
-//    @PostMapping("/guess")
-//    public String guess(@RequestParam("letter") char letter, Model model) {
-//        GameState game = gameStateService.guessLetter(1L, letter);
-//        model.addAttribute("puzzle", game.getMasked().chars()
-//                .mapToObj(c -> String.valueOf((char) c))
-//                .toList());
-//        return "fragments/selectors :: puzzleSelected";
-//    }
 }

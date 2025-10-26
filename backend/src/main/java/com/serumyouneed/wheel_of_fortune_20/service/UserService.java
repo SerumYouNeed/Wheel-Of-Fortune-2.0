@@ -46,7 +46,7 @@ public class UserService {
     }
 
     /**
-     * Creating a guest player. Guest is not saved in database.
+     * Creating a guest player. Guest is not saved in data base.
      */
     public User createGuestUser(String nickname) {
         return new User(nickname, true);

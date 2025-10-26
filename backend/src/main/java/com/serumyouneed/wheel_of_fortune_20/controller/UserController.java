@@ -24,8 +24,10 @@ public class UserController {
                            Model model) {
         try {
             User newUser = userService.registerUser(nickname, password);
-            session.setAttribute("user", newUser);
-            model.addAttribute("user", newUser);
+            session.setAttribute("user_id", newUser.getId());
+            session.setAttribute("user_name", newUser.getNickname());
+            session.setAttribute("is_guest", newUser.isGuest());
+            model.addAttribute("user_name", newUser.getNickname());
             return "fragments/user :: mode-card";
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", "Nickname already used");
@@ -40,7 +42,9 @@ public class UserController {
                         Model model) {
         User user = userService.loginUser(nickname, password).orElse(null);
         if (user != null) {
-            session.setAttribute("user", user);
+            session.setAttribute("user_id", user.getId());
+            session.setAttribute("user_name", user.getNickname());
+            session.setAttribute("is_guest", user.isGuest());
             model.addAttribute("user", user);
             return "fragments/user :: mode-card";
         } else {
@@ -54,9 +58,11 @@ public class UserController {
                         HttpSession session,
                         Model model) {
         User guest = userService.createGuestUser(nickname);
-        session.setAttribute("user", guest);
-        model.addAttribute("user", guest);
+        session.setAttribute("user_id", guest.getId());
+        session.setAttribute("is_guest", guest.isGuest());
+        model.addAttribute("user_name", guest.getNickname());
         return "fragments/user :: mode-card";
     }
+
 }
 

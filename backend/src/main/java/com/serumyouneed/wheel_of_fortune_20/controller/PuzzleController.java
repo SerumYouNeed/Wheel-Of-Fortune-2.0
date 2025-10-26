@@ -37,9 +37,8 @@ public class PuzzleController {
 
     @GetMapping("/select-puzzle")
     public String drawPuzzle(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
+        Long user_id = (Long) session.getAttribute("user_id");
         Category category = (Category) session.getAttribute("category");
-        String mode = (String) session.getAttribute("mode");
 
         GameState gameState;
         Puzzle puzzle;

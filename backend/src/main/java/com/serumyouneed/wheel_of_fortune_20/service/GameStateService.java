@@ -4,6 +4,7 @@ import com.serumyouneed.wheel_of_fortune_20.model.GameState;
 import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
 import com.serumyouneed.wheel_of_fortune_20.model.User;
 import com.serumyouneed.wheel_of_fortune_20.repository.GameStateRepository;
+import com.serumyouneed.wheel_of_fortune_20.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,23 +14,21 @@ public class GameStateService {
 
     private final GameStateRepository repo;
     private final PuzzleService puzzleService;
+    private final UserRepository userRepo;
 
-    public GameStateService(GameStateRepository repo, PuzzleService puzzleService) {
+    public GameStateService(GameStateRepository repo, PuzzleService puzzleService, UserRepository userRepo) {
         this.repo = repo;
         this.puzzleService = puzzleService;
+        this.userRepo = userRepo;
     }
 
     public GameState loadPreviousGame(User user) {
         return repo.findTopByUserOrderByLastUpdatedDesc(user)
                 .orElseThrow(() -> new IllegalStateException("No game found for user"));
     }
-    public GameState createNewGame(User user, Puzzle puzzle) {
+    public GameState createNewGame(Puzzle puzzle) {
         GameState newGame = new GameState();
         newGame.setPuzzle(puzzle);
-
-        if (!user.isGuest()) {
-            newGame.setUser(user);
-        }
         newGame.setMasked(puzzleService.maskingPuzzle(newGame.getPuzzle()));
         newGame.setSolved(false);
         return repo.save(newGame);
