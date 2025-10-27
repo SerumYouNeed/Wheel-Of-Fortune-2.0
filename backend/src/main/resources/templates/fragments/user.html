@@ -1,5 +1,5 @@
 <div th:fragment="starting-singleplayer-card" xmlns:th="http://www.w3.org/1999/xhtml">
-    <h1>Welcome, <span th:text="${user.nickname}"></span>!</h1>
+    <h1>Welcome, <span th:text="${user_name}"></span>!</h1>
     <div class="btn-group">
         <button class="select-category-btn"
                 hx-get="/select-category"
@@ -16,7 +16,7 @@
 </div>
 
 <div th:fragment="mode-card" xmlns:th="http://www.w3.org/1999/xhtml">
-    <h1>Welcome, <span th:text="${user.nickname}"></span>!</h1>
+    <h1>Welcome, <span th:text="${user_name}"></span>!</h1>
     <h2>Choose a game mode:</h2>
     <div class="btn-group">
         <button class="single-player-btn"

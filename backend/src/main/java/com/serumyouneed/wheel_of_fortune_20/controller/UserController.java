@@ -24,9 +24,7 @@ public class UserController {
                            Model model) {
         try {
             User newUser = userService.registerUser(nickname, password);
-            session.setAttribute("user_id", newUser.getId());
-            session.setAttribute("user_name", newUser.getNickname());
-            session.setAttribute("is_guest", newUser.isGuest());
+            session.setAttribute("user", newUser);
             model.addAttribute("user_name", newUser.getNickname());
             return "fragments/user :: mode-card";
         } catch (IllegalArgumentException e) {
@@ -42,10 +40,8 @@ public class UserController {
                         Model model) {
         User user = userService.loginUser(nickname, password).orElse(null);
         if (user != null) {
-            session.setAttribute("user_id", user.getId());
-            session.setAttribute("user_name", user.getNickname());
-            session.setAttribute("is_guest", user.isGuest());
-            model.addAttribute("user", user);
+            session.setAttribute("user", user);
+            model.addAttribute("user_name", user.getNickname());
             return "fragments/user :: mode-card";
         } else {
             model.addAttribute("error", "Invalid credentials");
@@ -57,10 +53,9 @@ public class UserController {
     public String guest(@RequestParam String nickname,
                         HttpSession session,
                         Model model) {
-        User guest = userService.createGuestUser(nickname);
-        session.setAttribute("user_id", guest.getId());
-        session.setAttribute("is_guest", guest.isGuest());
-        model.addAttribute("user_name", guest.getNickname());
+        User user = userService.createGuestUser(nickname);
+        session.setAttribute("user", user);
+        model.addAttribute("user_name", user.getNickname());
         return "fragments/user :: mode-card";
     }
 

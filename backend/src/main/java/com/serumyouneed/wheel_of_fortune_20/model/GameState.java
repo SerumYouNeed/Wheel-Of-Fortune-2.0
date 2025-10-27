@@ -17,7 +17,7 @@ public class GameState {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "puzzle_id", nullable = false)
+    @JoinColumn(name = "puzzle_id", nullable = true)
     private Puzzle puzzle;
 
     @Column(length = 255)

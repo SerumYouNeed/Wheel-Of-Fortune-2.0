@@ -37,24 +37,14 @@ public class PuzzleController {
 
     @GetMapping("/select-puzzle")
     public String drawPuzzle(HttpSession session, Model model) {
-        Long user_id = (Long) session.getAttribute("user_id");
+        GameState gameState = (GameState) session.getAttribute("game_state");
         Category category = (Category) session.getAttribute("category");
-
-        GameState gameState;
-        Puzzle puzzle;
-
-        if ("load".equals(mode)) {
-            gameState = gameStateService.loadPreviousGame(user);
-        } else {
-            puzzle = puzzleService.getPuzzle(category);
-
-            gameState = gameStateService.createNewGame(user, puzzle);
-            session.setAttribute("mode", "load");
-        }
+        Puzzle puzzle = puzzleService.getPuzzle(category);
+        gameState.setPuzzle(puzzle);
+        gameState.setMasked(puzzleService.maskingPuzzle(puzzle));
 
         List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(gameState.getMasked());
         model.addAttribute("puzzle", maskedPuzzleAsList);
         return "fragments/selectors :: puzzleSelected";
     }
-
 }

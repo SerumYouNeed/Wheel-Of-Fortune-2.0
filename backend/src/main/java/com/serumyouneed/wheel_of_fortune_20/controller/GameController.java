@@ -34,9 +34,9 @@ public class GameController {
 
     @GetMapping("/single-player-mode")
     public String singlePlayerMode(HttpSession session, Model model) {
-        String user_name = (String) session.getAttribute("user_name");
+        User user = (User) session.getAttribute("user");
         GameState state = gameSessionService.getOrCreateGameState(session);
-        model.addAttribute("user", user_name);
+        model.addAttribute("user_name", user.getNickname());
         model.addAttribute("state", state);
         return "fragments/user :: starting-singleplayer-card";
     }
@@ -52,13 +52,11 @@ public class GameController {
 
     @GetMapping("/start-new-game")
     public String startNewGame(HttpSession session, Model model) {
-        Category category = (Category) session.getAttribute("category");
-        GameState game = gameStateService.createNewGame(puzzleService.getPuzzle(category));
-        Long game_id = game.getId();
-        session.setAttribute("game_id", game_id);
-        String user_name = (String) session.getAttribute(user_name)
-        model.addAttribute("user_name", session.getAttribute(user_name));
-        model.addAttribute("puzzle", puzzleService.getMaskedPuzzleAsList(game.getMasked()));
+        User user = (User) session.getAttribute("user");
+        GameState game_state = gameStateService.createNewGame(user);
+        String nickname = user.getNickname();
+        model.addAttribute("user_name", nickname);
+        session.setAttribute("game_state", game_state);
         return "fragments/play :: playField";
     }
 
