@@ -49,16 +49,16 @@
         </div>
 
         <!-- Input field for letter from user -->
-        <div class="letters">
+        <form hx-post="/game/guess-letter"
+              hx-target=".puzzle"
+              hx-swap="innerHTML">
             <div class="letter-input">
                 <label for="custom-letter">Enter letter:</label>
-                <input type="text" id="custom-letter" maxlength="1" pattern="[A-Za-z]" />
-                <button class="submit-letter-btn"
-                    hx-post="/game/guess-letter"
-                    hx-target=".puzzle"
-                    hx-swap="innerHTML">OK</button>
+                <input type="text" id="custom-letter" name="letter" maxlength="1" pattern="[A-Za-z]" required/>
+                <button type="submit" class="submit-letter-btn">OK</button>
             </div>
-        </div>
+        </form>
+
     </div>
 </div>
 

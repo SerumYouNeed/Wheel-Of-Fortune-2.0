@@ -3,6 +3,7 @@ package com.serumyouneed.wheel_of_fortune_20.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -44,7 +45,7 @@ public class GameState {
 
     private int currentPrize;
 
-    private List<Character> guessedLetters;
+    private final List<Character> guessedLetters = new ArrayList<>();
 
     private LocalDateTime lastUpdated = LocalDateTime.now();
 

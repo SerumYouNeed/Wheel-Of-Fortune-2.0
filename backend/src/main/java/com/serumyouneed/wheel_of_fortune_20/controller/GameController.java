@@ -75,12 +75,18 @@ public class GameController {
     }
 
     @PostMapping("/guess-letter")
-    public String guessLetter(@RequestParam("letter") char letter,
+    public String guessLetter(@RequestParam("letter") String letter,
                               HttpSession session,
                               Model model) {
+        if (letter == null || letter.isEmpty()) {
+            return "fragments/play :: puzzleField";
+        }
+        char guessed = letter.charAt(0);
+
         GameState game = (GameState) session.getAttribute("gameState");
-        gameService.guessLetter(game, letter);
-        model.addAttribute("masked", game.getMasked());
+        String puzzleAfterGuess = gameService.guessLetter(game, guessed);
+        game.setMasked(puzzleAfterGuess);
+        model.addAttribute("masked", puzzleAfterGuess);
         return "fragments/play :: puzzleField";
     }
 }
