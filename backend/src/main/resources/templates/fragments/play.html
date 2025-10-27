@@ -41,8 +41,8 @@
             </div>
 
             <button class="spin-btn"
-                    hx-get="/game/spin-the-wheel"
-                    hx-target="#spinning-result"
+                    hx-post="/game/spin-the-wheel"
+                    hx-target=".spinning-result"
                     hx-swap="innerHTML">Spin the wheel!
             </button>
             <div class="spinning-result"></div>
@@ -53,7 +53,10 @@
             <div class="letter-input">
                 <label for="custom-letter">Enter letter:</label>
                 <input type="text" id="custom-letter" maxlength="1" pattern="[A-Za-z]" />
-                <button class="submit-letter-btn">OK</button>
+                <button class="submit-letter-btn"
+                    hx-post="/game/guess-letter"
+                    hx-target=".puzzle"
+                    hx-swap="innerHTML">OK</button>
             </div>
         </div>
     </div>
@@ -61,9 +64,12 @@
 
 <!-- Current prize from wheel -->
 <div th:fragment="spinResult" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div class="container">
-        <h1>
-            <span class="prize">Each letter is worth: <b th:text="${prize}"></b></span>
-        </h1>
-    </div>
+    <h1>
+        <span class="prize">Each letter is worth: $<b th:text="${prize}"></b></span>
+    </h1>
+</div>
 
+<!-- Current state of the puzzle -->
+<div th:fragment="puzzleField" xmlns:th="http://www.w3.org/1999/xhtml">
+    <span class="letter" th:each="letter : ${masked}" th:text="${letter}"></span>&nbsp;
+</div>

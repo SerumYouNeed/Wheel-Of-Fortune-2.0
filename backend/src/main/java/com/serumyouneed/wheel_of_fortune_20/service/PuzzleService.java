@@ -60,27 +60,4 @@ public class PuzzleService {
         return masked.toString();
     }
 
-    /**
-     * Function unwield masked field if player input is in puzzle.
-     * @param puzzle       (String): Actual puzzle set before round.
-     * @param input        (String): Player's guessed letter.
-     * @return updated     (String): Modified masked puzzle after letter checking.
-     */
-    public String newDisplay (String maskedPuzzle, String puzzle, String input) {
-        input = input.toUpperCase();
-        StringBuilder updated = new StringBuilder(maskedPuzzle);
-        boolean found = false;
-
-        for (int i = 0; i < puzzle.length(); i++) {
-            if (puzzle.charAt(i) == input.charAt(0)) {
-                updated.setCharAt(i, input.charAt(0));
-                found = true;
-            }
-        }
-        if (!found) {
-            return "";
-        }
-        return updated.toString();
-    }
-
 }

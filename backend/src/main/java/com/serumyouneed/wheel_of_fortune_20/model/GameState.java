@@ -3,6 +3,7 @@ package com.serumyouneed.wheel_of_fortune_20.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "game_state")
@@ -43,6 +44,8 @@ public class GameState {
 
     private int currentPrize;
 
+    private List<Character> guessedLetters;
+
     private LocalDateTime lastUpdated = LocalDateTime.now();
 
     public GameState() {}
@@ -67,4 +70,11 @@ public class GameState {
 
     public boolean isSolved() { return solved; }
     public void setSolved(boolean solved) { this.solved = solved; }
+
+    public List<Character> addCharacterToGuessedList (char letter) {
+        guessedLetters.add(letter);
+        return guessedLetters;
+    }
+
+    public boolean ifLetterWasPicked(char letter) { return guessedLetters.contains(letter); }
 }

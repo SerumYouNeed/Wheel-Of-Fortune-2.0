@@ -21,15 +21,18 @@ public class GameController {
     private final PuzzleService puzzleService;
     private final GameSessionService gameSessionService;
     private final WheelService wheelService;
+    private final GameService gameService;
 
     public GameController(GameStateService gameStateService,
                           PuzzleService puzzleService,
                           GameSessionService gameSessionService,
-                          WheelService wheelService) {
+                          WheelService wheelService,
+                          GameService gameService) {
         this.gameStateService = gameStateService;
         this.puzzleService = puzzleService;
         this.gameSessionService = gameSessionService;
         this.wheelService = wheelService;
+        this.gameService = gameService;
     }
 
     @GetMapping("/single-player-mode")
@@ -62,18 +65,22 @@ public class GameController {
 
     @PostMapping("/spin-the-wheel")
     public String spinTheWheel(HttpSession session, Model model) {
-        GameState gameState = (GameState) session.getAttribute("gameState");
-
-        if (gameState == null) {
-            return "fragments/error :: noGameActive";
-        }
+        GameState gameState = gameSessionService.getOrCreateGameState(session);
 
         int field = wheelService.spinTheWheel();
         int prize = wheelService.switchToField(field, 2000);
         gameState.setCurrentPrize(prize);
-        session.setAttribute("gameState", gameState);
-        session.setAttribute("prize", prize);
         model.addAttribute("prize", prize);
         return "fragments/play :: spinResult";
+    }
+
+    @PostMapping("/guess-letter")
+    public String guessLetter(@RequestParam("letter") char letter,
+                              HttpSession session,
+                              Model model) {
+        GameState game = (GameState) session.getAttribute("gameState");
+        gameService.guessLetter(game, letter);
+        model.addAttribute("masked", game.getMasked());
+        return "fragments/play :: puzzleField";
     }
 }
