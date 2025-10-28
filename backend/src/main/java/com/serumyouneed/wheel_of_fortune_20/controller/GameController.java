@@ -91,7 +91,7 @@ public class GameController {
             gameState.setMasked(puzzleAfterGuess);
             gameSessionService.updateGameState(session, gameState);
             model.addAttribute("masked", puzzleAfterGuess);
-//            response.setHeader("HX-Retarget", ".puzzle");
+            response.setHeader("HX-Retarget", ".puzzle");
             return "fragments/play :: puzzleField";
         }
     }
