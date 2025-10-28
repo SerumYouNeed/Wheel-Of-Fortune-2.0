@@ -2,10 +2,17 @@ package com.serumyouneed.wheel_of_fortune_20.service;
 
 import com.serumyouneed.wheel_of_fortune_20.model.GameState;
 import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
+import com.serumyouneed.wheel_of_fortune_20.model.User;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GameService {
+
+    public GameState createNewGame(User user) {
+        GameState state = new GameState();
+        state.setUser(user);
+        return state;
+    }
 
     /**
      * Function unwield masked field if player input is in puzzle.

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GameSessionService {
     private static final String GAME_STATE_ATTR = "gameState";
+    private static final String USER_NICKNAME_ATTR = "userNickname";
 
 
 
@@ -22,11 +23,23 @@ public class GameSessionService {
         return gameState;
     }
 
+    public String getUserNicknameAttr(HttpSession session) {
+        return (String) session.getAttribute(USER_NICKNAME_ATTR);
+    }
+
+    public void setUserNickname(HttpSession session, String nickname) {
+        session.setAttribute(USER_NICKNAME_ATTR, nickname);
+    }
+
     public void updateGameState(HttpSession session, GameState updatedState) {
         session.setAttribute(GAME_STATE_ATTR, updatedState);
     }
 
     public void clearGameState(HttpSession session) {
         session.removeAttribute(GAME_STATE_ATTR);
+    }
+
+    public boolean hasActiveGame(HttpSession session) {
+        return session.getAttribute(GAME_STATE_ATTR) != null;
     }
 }

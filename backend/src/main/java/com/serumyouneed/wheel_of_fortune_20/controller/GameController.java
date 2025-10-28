@@ -56,10 +56,10 @@ public class GameController {
     @GetMapping("/start-new-game")
     public String startNewGame(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
-        GameState game_state = gameStateService.createNewGame(user);
+        GameState game_state = gameService.createNewGame(user);
         String nickname = user.getNickname();
         model.addAttribute("user_name", nickname);
-        session.setAttribute("game_state", game_state);
+        gameSessionService.updateGameState(session, game_state);
         return "fragments/play :: playField";
     }
 

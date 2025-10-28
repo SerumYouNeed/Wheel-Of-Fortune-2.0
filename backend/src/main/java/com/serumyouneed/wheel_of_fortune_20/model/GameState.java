@@ -26,23 +26,6 @@ public class GameState {
     private String masked;
 
     private boolean solved = false;
-
-    public LocalDateTime getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(LocalDateTime lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
-    public int getCurrentPrize() {
-        return currentPrize;
-    }
-
-    public void setCurrentPrize(int currentPrize) {
-        this.currentPrize = currentPrize;
-    }
-
     private int currentPrize;
 
     private final List<Character> guessedLetters = new ArrayList<>();
@@ -51,13 +34,13 @@ public class GameState {
 
     public GameState() {}
 
-    public GameState(User user, Puzzle puzzle, String masked) {
-        this.user = user;
-        this.puzzle = puzzle;
-        this.masked = masked;
-    }
-
     // getters & setters
+    public LocalDateTime getLastUpdated() { return lastUpdated; }
+    public void setLastUpdated(LocalDateTime lastUpdated) { this.lastUpdated = lastUpdated; }
+
+    public int getCurrentPrize() { return currentPrize; }
+    public void setCurrentPrize(int currentPrize) { this.currentPrize = currentPrize; }
+
     public Long getId() { return id; }
 
     public User getUser() { return user; }
@@ -72,9 +55,8 @@ public class GameState {
     public boolean isSolved() { return solved; }
     public void setSolved(boolean solved) { this.solved = solved; }
 
-    public List<Character> addCharacterToGuessedList (char letter) {
+    public void addCharacterToGuessedList (char letter) {
         guessedLetters.add(letter);
-        return guessedLetters;
     }
 
     public boolean ifLetterWasPicked(char letter) { return guessedLetters.contains(letter); }
