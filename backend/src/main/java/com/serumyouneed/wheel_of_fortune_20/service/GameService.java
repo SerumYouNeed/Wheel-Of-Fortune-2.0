@@ -8,12 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class GameService {
 
-    public GameState createNewGame(User user) {
-        GameState state = new GameState();
-        state.setUser(user);
-        return state;
-    }
-
     /**
      * Function unwield masked field if player input is in puzzle.
      * @param gameState    (GameState): Actual state of the game before round.

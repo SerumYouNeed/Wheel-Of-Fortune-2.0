@@ -4,6 +4,7 @@ import com.serumyouneed.wheel_of_fortune_20.model.Category;
 import com.serumyouneed.wheel_of_fortune_20.model.GameState;
 import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
 import com.serumyouneed.wheel_of_fortune_20.model.User;
+import com.serumyouneed.wheel_of_fortune_20.service.GameSessionService;
 import com.serumyouneed.wheel_of_fortune_20.service.GameStateService;
 import com.serumyouneed.wheel_of_fortune_20.service.PuzzleService;
 import com.serumyouneed.wheel_of_fortune_20.utils.CategorySelector;
@@ -20,31 +21,31 @@ import java.util.List;
 public class PuzzleController {
 
     private final PuzzleService puzzleService;
-    private final GameStateService gameStateService;
+    private final GameSessionService gameSessionService;
 
-    public PuzzleController(PuzzleService puzzleService, GameStateService gameStateService) {
-        this.gameStateService = gameStateService;
+    public PuzzleController(PuzzleService puzzleService, GameSessionService gameSessionService) {
+        this.gameSessionService = gameSessionService;
         this.puzzleService = puzzleService;
     }
 
     @GetMapping("/select-category")
     public String drawCategory(HttpSession session, Model model) {
         Category randomCategory = CategorySelector.selectCategory();
-        session.setAttribute("category", randomCategory);
+        gameSessionService.setCategoryAttr(session, randomCategory);
         model.addAttribute("category", randomCategory.name());
         return "fragments/selectors :: categorySelected";
     }
 
     @GetMapping("/select-puzzle")
     public String drawPuzzle(HttpSession session, Model model) {
-        GameState gameState = (GameState) session.getAttribute("game_state");
-        Category category = (Category) session.getAttribute("category");
-        Puzzle puzzle = puzzleService.getPuzzle(category);
+        Puzzle puzzle = puzzleService.getPuzzle(gameSessionService.getCategoryAttr(session));
+        GameState gameState = gameSessionService.getOrCreateGameState(session);
         gameState.setPuzzle(puzzle);
         gameState.setMasked(puzzleService.maskingPuzzle(puzzle));
 
         List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(gameState.getMasked());
         model.addAttribute("puzzle", maskedPuzzleAsList);
+        gameSessionService.updateGameState(session, gameState);
         return "fragments/selectors :: puzzleSelected";
     }
 }

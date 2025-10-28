@@ -1,5 +1,6 @@
 package com.serumyouneed.wheel_of_fortune_20.service;
 
+import com.serumyouneed.wheel_of_fortune_20.model.Category;
 import com.serumyouneed.wheel_of_fortune_20.model.GameState;
 import com.serumyouneed.wheel_of_fortune_20.model.User;
 import jakarta.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 public class GameSessionService {
     private static final String GAME_STATE_ATTR = "gameState";
     private static final String USER_NICKNAME_ATTR = "userNickname";
+    private static final String CATEGORY_ATTR = "category";
 
 
 
@@ -21,6 +23,14 @@ public class GameSessionService {
         }
 
         return gameState;
+    }
+
+    public Category getCategoryAttr(HttpSession session) {
+        return (Category) session.getAttribute(CATEGORY_ATTR);
+    }
+
+    public void setCategoryAttr(HttpSession session, Category category) {
+        session.setAttribute(CATEGORY_ATTR, category);
     }
 
     public String getUserNicknameAttr(HttpSession session) {
