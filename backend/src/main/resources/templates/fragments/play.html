@@ -48,6 +48,7 @@
             <div class="spinning-result"></div>
         </div>
 
+        <div class="message"></div>
         <!-- Input field for letter from user -->
         <form hx-post="/game/guess-letter"
               hx-target=".puzzle"
@@ -72,4 +73,11 @@
 <!-- Current state of the puzzle -->
 <div th:fragment="puzzleField" xmlns:th="http://www.w3.org/1999/xhtml">
     <span class="letter" th:each="letter : ${masked}" th:text="${letter}"></span>&nbsp;
+</div>
+
+<!-- After picking the same letter again -->
+<div th:fragment="alreadyPicked" xmlns:th="http://www.w3.org/1999/xhtml">
+    <h1>
+        <span class="letter">Sorry, but you can't pick the same letter twice. We have "<b th:text="${letter}"></b>" already. Choose another one.</span>
+    </h1>
 </div>

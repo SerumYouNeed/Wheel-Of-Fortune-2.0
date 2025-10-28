@@ -30,14 +30,12 @@ public class GameService {
                 }
             }
             if (!found) {
-                return "";
+                return gameState.getMasked();
             }
             String maskedUpdated = masked.toString();
-            gameState.setMasked(maskedUpdated);
-            gameState.addCharacterToGuessedList(letter);
             return maskedUpdated;
         } else {
-            return "";
+            return gameState.getMasked();
         }
     }
 

@@ -6,6 +6,7 @@ import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
 import com.serumyouneed.wheel_of_fortune_20.model.User;
 import com.serumyouneed.wheel_of_fortune_20.repository.UserRepository;
 import com.serumyouneed.wheel_of_fortune_20.service.*;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,6 +66,7 @@ public class GameController {
         int field = wheelService.spinTheWheel();
         int prize = wheelService.switchToField(field, 2000);
         gameState.setCurrentPrize(prize);
+        gameSessionService.updateGameState(session, gameState);
         model.addAttribute("prize", prize);
         return "fragments/play :: spinResult";
     }
@@ -72,16 +74,25 @@ public class GameController {
     @PostMapping("/guess-letter")
     public String guessLetter(@RequestParam("letter") String letter,
                               HttpSession session,
-                              Model model) {
+                              Model model,
+                              HttpServletResponse response) {
         if (letter == null || letter.isEmpty()) {
             return "fragments/play :: puzzleField";
         }
         char guessed = letter.charAt(0);
-
-        GameState game = (GameState) session.getAttribute("gameState");
-        String puzzleAfterGuess = gameService.guessLetter(game, guessed);
-        game.setMasked(puzzleAfterGuess);
-        model.addAttribute("masked", puzzleAfterGuess);
-        return "fragments/play :: puzzleField";
+        GameState gameState = gameSessionService.getOrCreateGameState(session);
+        if (gameState.ifLetterWasPicked(guessed)) {
+            model.addAttribute("letter", letter);
+            response.setHeader("HX-Retarget", ".message");
+            return "fragments/play :: alreadyPicked";
+        } else {
+            gameState.addCharacterToGuessedList(guessed);
+            String puzzleAfterGuess = gameService.guessLetter(gameState, guessed);
+            gameState.setMasked(puzzleAfterGuess);
+            gameSessionService.updateGameState(session, gameState);
+            model.addAttribute("masked", puzzleAfterGuess);
+//            response.setHeader("HX-Retarget", ".puzzle");
+            return "fragments/play :: puzzleField";
+        }
     }
 }
