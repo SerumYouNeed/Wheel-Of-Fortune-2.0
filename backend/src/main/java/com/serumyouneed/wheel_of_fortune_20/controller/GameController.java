@@ -74,16 +74,15 @@ public class GameController {
     @PostMapping("/guess-letter")
     public String guessLetter(@RequestParam("letter") String letter,
                               HttpSession session,
-                              Model model,
-                              HttpServletResponse response) {
+                              Model model) {
         if (letter == null || letter.isEmpty()) {
             return "fragments/play :: puzzleField";
         }
         char guessed = letter.charAt(0);
         GameState gameState = gameSessionService.getOrCreateGameState(session);
+
         if (gameState.ifLetterWasPicked(guessed)) {
             model.addAttribute("letter", letter);
-            response.setHeader("HX-Retarget", ".message");
             return "fragments/play :: alreadyPicked";
         } else {
             gameState.addCharacterToGuessedList(guessed);
@@ -91,7 +90,6 @@ public class GameController {
             gameState.setMasked(puzzleAfterGuess);
             gameSessionService.updateGameState(session, gameState);
             model.addAttribute("masked", puzzleAfterGuess);
-            response.setHeader("HX-Retarget", ".puzzle");
             return "fragments/play :: puzzleField";
         }
     }
