@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -74,23 +75,30 @@ public class GameController {
     @PostMapping("/guess-letter")
     public String guessLetter(@RequestParam("letter") String letter,
                               HttpSession session,
-                              Model model) {
+                              Model model,
+                              HttpServletResponse response) {
         if (letter == null || letter.isEmpty()) {
             return "fragments/play :: puzzleField";
         }
         char guessed = letter.charAt(0);
         GameState gameState = gameSessionService.getOrCreateGameState(session);
 
-        if (gameState.ifLetterWasPicked(guessed)) {
-            model.addAttribute("letter", letter);
-            return "fragments/play :: alreadyPicked";
-        } else {
+//        if (gameState.ifLetterWasPicked(guessed)) {
+//            model.addAttribute("letter", letter);
+//            response.setHeader("HX-Retarget", ".message");
+//            response.setHeader("HX-Reswap", "innerHTML");
+//            return "fragments/play :: alreadyPicked";
+//        } else {
             gameState.addCharacterToGuessedList(guessed);
             String puzzleAfterGuess = gameService.guessLetter(gameState, guessed);
             gameState.setMasked(puzzleAfterGuess);
+            List<String> maskedPuzzleAsList =  puzzleService.getMaskedPuzzleAsList(puzzleAfterGuess);
             gameSessionService.updateGameState(session, gameState);
-            model.addAttribute("masked", puzzleAfterGuess);
+            model.addAttribute("masked", maskedPuzzleAsList);
+
+//            response.setHeader("HX-Retarget", ".puzzle");
+//            response.setHeader("HX-Reswap", "innerHTML");
             return "fragments/play :: puzzleField";
-        }
+//        }
     }
 }

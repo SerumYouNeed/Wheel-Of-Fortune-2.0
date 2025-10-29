@@ -38,11 +38,12 @@ public class PuzzleController {
 
     @GetMapping("/select-puzzle")
     public String drawPuzzle(HttpSession session, Model model) {
-        Puzzle puzzle = puzzleService.getPuzzle(gameSessionService.getCategoryAttr(session));
         GameState gameState = gameSessionService.getOrCreateGameState(session);
-        gameState.setPuzzle(puzzle);
-        gameState.setMasked(puzzleService.maskingPuzzle(puzzle));
-
+        if (gameState.getPuzzle() == null) {
+            Puzzle puzzle = puzzleService.getPuzzle(gameSessionService.getCategoryAttr(session));
+            gameState.setPuzzle(puzzle);
+            gameState.setMasked(puzzleService.maskingPuzzle(puzzle));
+        }
         List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(gameState.getMasked());
         model.addAttribute("puzzle", maskedPuzzleAsList);
         gameSessionService.updateGameState(session, gameState);

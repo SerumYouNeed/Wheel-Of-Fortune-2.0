@@ -32,8 +32,7 @@ public class GameService {
             if (!found) {
                 return gameState.getMasked();
             }
-            String maskedUpdated = masked.toString();
-            return maskedUpdated;
+            return masked.toString();
         } else {
             return gameState.getMasked();
         }
