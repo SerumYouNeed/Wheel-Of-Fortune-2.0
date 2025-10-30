@@ -17,7 +17,6 @@ public class GameService {
      */
     public String guessLetter (String puzzle, String statePuzzle, char letter) {
         StringBuilder masked = new StringBuilder(statePuzzle);;
-
         boolean found = false;
 
         for (int i = 0; i < puzzle.length(); i++) {

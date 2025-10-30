@@ -239,11 +239,6 @@ input[type="text"], input[type="email"], input[type="password"] {
 }
 
 /* MESSAGES */
-.highlight {
-  color: red;
-  font-weight: bold;
-}
-
 .message {
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
@@ -252,4 +247,9 @@ input[type="text"], input[type="email"], input[type="password"] {
 
 .message.visible {
   opacity: 1;
+}
+
+.highlight {
+  color: red;
+  font-weight: bold;
 }

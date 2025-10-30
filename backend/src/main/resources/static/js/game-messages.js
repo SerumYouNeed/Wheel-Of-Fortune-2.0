@@ -1,19 +1,31 @@
-document.body.addEventListener("htmx:afterOnLoad", function (evt) {
-  const target = evt.detail.elt.closest(".message");
+document.body.addEventListener("htmx:afterSwap", function (evt) {
+  const target = evt.target.closest(".message");
   if (target) {
+    // show (fade in)
     target.classList.add("visible");
 
     setTimeout(() => {
       target.classList.remove("visible");
-      target.innerHTML = "";
+
+      // after transition (0.5s) remove text
+      setTimeout(() => {
+        target.innerHTML = "";
+      }, 500);
     }, 3000);
   }
-  console.log("htmx:afterOnLoad event fired!");
 });
 
-document.body.addEventListener("htmx:afterSwap", (e) => {
-  console.log("✅ HTMX swapped:", e.detail.target);
-});
+
+
+//document.body.addEventListener("htmx:afterSwap", (event) => {
+//  if (event.target.classList.contains("message")) {
+//    setTimeout(() => event.target.classList.add("show"), 10);
+//  }
+//});
+
+//document.body.addEventListener("htmx:afterSwap", (e) => {
+//  console.log("✅ HTMX swapped:", e.detail.target);
+//});
 
 
 //document.body.addEventListener("htmx:afterOnLoad", (event) => {
