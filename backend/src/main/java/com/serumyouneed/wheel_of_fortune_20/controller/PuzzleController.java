@@ -41,8 +41,8 @@ public class PuzzleController {
         GameState gameState = gameSessionService.getOrCreateGameState(session);
         if (gameState.getPuzzle() == null) {
             Puzzle puzzle = puzzleService.getPuzzle(gameSessionService.getCategoryAttr(session));
-            gameState.setPuzzle(puzzle);
-            gameState.setMasked(puzzleService.maskingPuzzle(puzzle));
+            gameState.setPuzzle(puzzle.getPuzzle().toUpperCase());
+            gameState.setMasked(puzzleService.maskingPuzzle(puzzle.getPuzzle()));
         }
         List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(gameState.getMasked());
         model.addAttribute("puzzle", maskedPuzzleAsList);

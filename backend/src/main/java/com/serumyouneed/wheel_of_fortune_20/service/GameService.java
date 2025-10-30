@@ -10,32 +10,26 @@ public class GameService {
 
     /**
      * Function unwield masked field if player input is in puzzle.
-     * @param gameState    (GameState): Actual state of the game before round.
+     * @param puzzle       (GameState): Actual puzzle.
+     * @param statePuzzle  (GameState): Actual state of the masked puzzle.
      * @param letter       (char): Player's guessed letter.
      * @return updated     (String): Modified masked puzzle after letter checking.
      */
-    public String guessLetter (GameState gameState, char letter) {
-        if (!gameState.ifLetterWasPicked(letter)) {
+    public String guessLetter (String puzzle, String statePuzzle, char letter) {
+        StringBuilder masked = new StringBuilder(statePuzzle);;
 
-            boolean found = false;
+        boolean found = false;
 
-            Puzzle puzzle = gameState.getPuzzle();
-            String puzzleString = puzzle.getPuzzle();
-            StringBuilder masked = new StringBuilder(gameState.getMasked());
-
-            for (int i = 0; i < puzzleString.length(); i++) {
-                if (puzzleString.charAt(i) == letter) {
-                    masked.setCharAt(i, letter);
-                    found = true;
-                }
+        for (int i = 0; i < puzzle.length(); i++) {
+            if (puzzle.charAt(i) == letter) {
+                masked.setCharAt(i, letter);
+                found = true;
             }
-            if (!found) {
-                return gameState.getMasked();
-            }
-            return masked.toString();
-        } else {
-            return gameState.getMasked();
         }
+        if (!found) {
+            return statePuzzle;
+        }
+        return masked.toString();
     }
 
     private int foundLetterCounter (String proverb, String input) {

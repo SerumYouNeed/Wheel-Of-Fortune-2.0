@@ -40,11 +40,10 @@ public class PuzzleService {
 
     /**
      * Function masking an input string
-     * @param p (Puzzle)
+     * @param puzzle (Puzzle)
      * @return masked (String): Letters covered by '_'. Spaces stays.
      */
-    public String maskingPuzzle(Puzzle p) {
-        String puzzle = p.getPuzzle();
+    public String maskingPuzzle(String puzzle) {
         StringBuilder masked = new StringBuilder();
         for (int i = 0; i < puzzle.length(); i++) {
             if (puzzle.charAt(i) == ' ') {

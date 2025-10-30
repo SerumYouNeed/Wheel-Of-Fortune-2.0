@@ -80,7 +80,8 @@ public class GameController {
         if (letter == null || letter.isEmpty()) {
             return "fragments/play :: puzzleField";
         }
-        char guessed = letter.charAt(0);
+
+        char guessed = Character.toUpperCase(letter.charAt(0));
         GameState gameState = gameSessionService.getOrCreateGameState(session);
 
 //        if (gameState.ifLetterWasPicked(guessed)) {
@@ -90,7 +91,10 @@ public class GameController {
 //            return "fragments/play :: alreadyPicked";
 //        } else {
             gameState.addCharacterToGuessedList(guessed);
-            String puzzleAfterGuess = gameService.guessLetter(gameState, guessed);
+            String stateOfThePuzzle = gameState.getMasked();
+            String puzzle = gameState.getPuzzle();
+            String puzzleAfterGuess = gameService.guessLetter(puzzle, stateOfThePuzzle, guessed);
+            System.out.println(puzzleAfterGuess);
             gameState.setMasked(puzzleAfterGuess);
             List<String> maskedPuzzleAsList =  puzzleService.getMaskedPuzzleAsList(puzzleAfterGuess);
             gameSessionService.updateGameState(session, gameState);

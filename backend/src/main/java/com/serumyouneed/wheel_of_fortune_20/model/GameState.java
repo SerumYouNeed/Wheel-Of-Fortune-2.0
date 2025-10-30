@@ -18,9 +18,8 @@ public class GameState {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "puzzle_id", nullable = true)
-    private Puzzle puzzle;
+    @Column
+    private String puzzle;
 
     @Column(length = 255)
     private String masked;
@@ -46,8 +45,8 @@ public class GameState {
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
 
-    public Puzzle getPuzzle() { return puzzle; }
-    public void setPuzzle(Puzzle puzzle) { this.puzzle = puzzle; }
+    public String getPuzzle() { return puzzle; }
+    public void setPuzzle(String puzzle) { this.puzzle = puzzle; }
 
     public String getMasked() { return masked; }
     public void setMasked(String masked) { this.masked = masked; }
