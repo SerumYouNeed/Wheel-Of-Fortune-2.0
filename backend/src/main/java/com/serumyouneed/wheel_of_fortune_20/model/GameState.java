@@ -26,6 +26,7 @@ public class GameState {
 
     private boolean solved = false;
     private int currentPrize;
+    private Turn currentTurn = new Turn();
 
     private final List<Character> guessedLetters = new ArrayList<>();
 
@@ -34,6 +35,9 @@ public class GameState {
     public GameState() {}
 
     // getters & setters
+    public Turn getCurrentTurn() { return currentTurn; }
+    public void setCurrentTurn(Turn currentTurn) { this.currentTurn = currentTurn; }
+
     public LocalDateTime getLastUpdated() { return lastUpdated; }
     public void setLastUpdated(LocalDateTime lastUpdated) { this.lastUpdated = lastUpdated; }
 

@@ -1,27 +1,43 @@
 package com.serumyouneed.wheel_of_fortune_20.model;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Turn {
-    private boolean spunWheel = false;
-    private boolean letterPicked = false;
+    private boolean wheelSpun;
+    private boolean letterPicked;
 
-    public boolean canSpinWheel() {
-        return !spunWheel;
+    public Turn() {
+        this.wheelSpun = false;
+        this.letterPicked = false;
     }
 
-    public boolean canPickLetter() {
-        return spunWheel && !letterPicked;
+    public boolean isWheelSpun() {
+        return wheelSpun;
     }
 
-    public void setSpunWheel(boolean spunWheel) {
-        this.spunWheel = spunWheel;
+    public void setWheelSpun(boolean wheelSpun) {
+        this.wheelSpun = wheelSpun;
+    }
+
+    public boolean isLetterPicked() {
+        return letterPicked;
     }
 
     public void setLetterPicked(boolean letterPicked) {
         this.letterPicked = letterPicked;
     }
 
+    public boolean canSpinWheel() {
+        return !wheelSpun;
+    }
+
+    public boolean canPickLetter() {
+        return wheelSpun && !letterPicked;
+    }
+
     public void reset() {
-        spunWheel = false;
-        letterPicked = false;
+        this.wheelSpun = false;
+        this.letterPicked = false;
     }
 }

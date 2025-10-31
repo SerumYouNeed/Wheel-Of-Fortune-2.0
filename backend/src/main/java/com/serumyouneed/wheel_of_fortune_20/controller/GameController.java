@@ -1,9 +1,6 @@
 package com.serumyouneed.wheel_of_fortune_20.controller;
 
-import com.serumyouneed.wheel_of_fortune_20.model.Category;
-import com.serumyouneed.wheel_of_fortune_20.model.GameState;
-import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
-import com.serumyouneed.wheel_of_fortune_20.model.User;
+import com.serumyouneed.wheel_of_fortune_20.model.*;
 import com.serumyouneed.wheel_of_fortune_20.repository.UserRepository;
 import com.serumyouneed.wheel_of_fortune_20.service.*;
 import jakarta.servlet.http.HttpServletResponse;
@@ -61,12 +58,23 @@ public class GameController {
     }
 
     @PostMapping("/spin-the-wheel")
-    public String spinTheWheel(HttpSession session, Model model) {
+    public String spinTheWheel(HttpSession session,
+                               Model model,
+                               HttpServletResponse response) {
         GameState gameState = gameSessionService.getOrCreateGameState(session);
+        Turn turn = gameState.getCurrentTurn();
+
+        if (!turn.canSpinWheel()) {
+            response.setHeader("HX-Retarget", ".message");
+            response.setHeader("HX-Reswap", "innerHTML");
+            return "fragments/play :: wheelAlreadySpun";
+        }
 
         int field = wheelService.spinTheWheel();
         int prize = wheelService.switchToField(field, 2000);
         gameState.setCurrentPrize(prize);
+        turn.setWheelSpun(true);
+        gameState.setCurrentTurn(turn);
         gameSessionService.updateGameState(session, gameState);
         model.addAttribute("prize", prize);
         return "fragments/play :: spinResult";
