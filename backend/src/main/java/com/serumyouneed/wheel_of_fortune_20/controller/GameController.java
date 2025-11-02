@@ -88,10 +88,10 @@ public class GameController {
         if (letter == null || letter.isEmpty()) {
             return "fragments/play :: puzzleField";
         }
-
         char guessed = Character.toUpperCase(letter.charAt(0));
         GameState gameState = gameSessionService.getOrCreateGameState(session);
-
+        Turn turn = gameState.getCurrentTurn();
+//        if (turn.canPickLetter())
         if (gameState.ifLetterWasPicked(guessed)) {
             model.addAttribute("letter", guessed);
             response.setHeader("HX-Retarget", ".message");
