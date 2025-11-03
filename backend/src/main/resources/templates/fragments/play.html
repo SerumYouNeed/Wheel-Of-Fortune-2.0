@@ -62,6 +62,14 @@
             </div>
         </form>
 
+        <!-- Input button for puzzle guess from user -->
+        <label t
+        <button class="guess-puzzle-btn"
+                hx-post="/game/know-the-answer"
+                hx-target="#main"
+                hx-swap="innerHTML">Answer!
+        </button>
+
     </div>
 </div>
 
@@ -88,5 +96,12 @@
 <div th:fragment="wheelAlreadySpun" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="alert">
         <span class="highlight">You have already spun the wheel this turn!</span>
+    </div>
+</div>
+
+<!-- Message for picking letter second time in the same turn -->
+<div th:fragment="wrongTurn" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="alert">
+        <span class="highlight">You can't pick the letter twice in the same turn!</span>
     </div>
 </div>

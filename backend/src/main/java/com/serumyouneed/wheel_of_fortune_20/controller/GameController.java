@@ -63,7 +63,9 @@ public class GameController {
                                HttpServletResponse response) {
         GameState gameState = gameSessionService.getOrCreateGameState(session);
         Turn turn = gameState.getCurrentTurn();
-
+        if (turn.isWheelSpun() && turn.isLetterPicked()) {
+            turn.reset();
+        }
         if (!turn.canSpinWheel()) {
             response.setHeader("HX-Retarget", ".message");
             response.setHeader("HX-Reswap", "innerHTML");
@@ -91,25 +93,30 @@ public class GameController {
         char guessed = Character.toUpperCase(letter.charAt(0));
         GameState gameState = gameSessionService.getOrCreateGameState(session);
         Turn turn = gameState.getCurrentTurn();
-//        if (turn.canPickLetter())
-        if (gameState.ifLetterWasPicked(guessed)) {
-            model.addAttribute("letter", guessed);
-            response.setHeader("HX-Retarget", ".message");
-            response.setHeader("HX-Reswap", "innerHTML");
-            return "fragments/play :: alreadyPicked";
-        } else {
-            gameState.addCharacterToGuessedList(guessed);
-            String stateOfThePuzzle = gameState.getMasked();
-            String puzzle = gameState.getPuzzle();
-            String puzzleAfterGuess = gameService.guessLetter(puzzle, stateOfThePuzzle, guessed);
-            gameState.setMasked(puzzleAfterGuess);
-            List<String> maskedPuzzleAsList =  puzzleService.getMaskedPuzzleAsList(puzzleAfterGuess);
-            gameSessionService.updateGameState(session, gameState);
-            model.addAttribute("masked", maskedPuzzleAsList);
-
-            response.setHeader("HX-Retarget", ".puzzle");
-            response.setHeader("HX-Reswap", "innerHTML");
-            return "fragments/play :: puzzleField";
+        if (turn.canPickLetter()) {
+            if (gameState.ifLetterWasPicked(guessed)) {
+                model.addAttribute("letter", guessed);
+                response.setHeader("HX-Retarget", ".message");
+                response.setHeader("HX-Reswap", "innerHTML");
+                return "fragments/play :: alreadyPicked";
+            } else {
+                gameState.addCharacterToGuessedList(guessed);
+                String stateOfThePuzzle = gameState.getMasked();
+                String puzzle = gameState.getPuzzle();
+                String puzzleAfterGuess = gameService.guessLetter(puzzle, stateOfThePuzzle, guessed);
+                gameState.setMasked(puzzleAfterGuess);
+                List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(puzzleAfterGuess);
+                model.addAttribute("masked", maskedPuzzleAsList);
+                response.setHeader("HX-Retarget", ".puzzle");
+                response.setHeader("HX-Reswap", "innerHTML");
+                turn.setLetterPicked(true);
+                gameState.setCurrentTurn(turn);
+                gameSessionService.updateGameState(session, gameState);
+                return "fragments/play :: puzzleField";
+            }
         }
+        response.setHeader("HX-Retarget", ".message");
+        response.setHeader("HX-Reswap", "innerHTML");
+        return "fragments/play :: wrongTurn";
     }
 }
