@@ -63,11 +63,11 @@
         </form>
 
         <!-- Input button for puzzle guess from user -->
-        <label t
+        <h4>Think you know the answer? Take a guess for $1000!</h4>
         <button class="guess-puzzle-btn"
-                hx-post="/game/know-the-answer"
+                hx-get="/game/know-the-answer"
                 hx-target="#main"
-                hx-swap="innerHTML">Answer!
+                hx-swap="innerHTML">Guess!
         </button>
 
     </div>

@@ -41,14 +41,8 @@ public class GameService {
         return counter;
     }
 
-//    private boolean guessAnswer(String input, String proverb) {
-//        if (input.toUpperCase().equals(proverb)) {
-//            Printer.print(Messages.CORRECT);
-//            return true;
-//        } else {
-//            Printer.print(Messages.WRONG);
-//            return false;
-//        }
-//    }
+    public boolean guessAnswer(String input, String puzzle) {
+        return input.toUpperCase().equals(puzzle);
+    }
 
 }

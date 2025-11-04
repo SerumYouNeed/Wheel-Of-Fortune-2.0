@@ -1,0 +1,20 @@
+<div th:fragment="guessField" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="container">
+
+        <h2>Before sending your answer, please check for typos. Letter case doesn’t matter.</h2>
+
+        <div class="final-guess">
+            <span class="letter" th:each="letter : ${puzzle}" th:text="${letter}"></span>&nbsp;
+        </div>
+
+        <!-- Input field for puzzle guess from user -->
+        <form hx-post="/game/guess-puzzle"
+              hx-swap="innerHTML">
+            <div class="puzzle-input">
+                <label for="custom-puzzle">Enter your guess:</label>
+                <input type="text" id="custom-puzzle" name="puzzle" required/>
+                <button type="submit" class="submit-letter-btn">OK</button>
+            </div>
+        </form>
+    </div>
+</div>

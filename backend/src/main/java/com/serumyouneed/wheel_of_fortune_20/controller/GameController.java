@@ -119,4 +119,27 @@ public class GameController {
         response.setHeader("HX-Reswap", "innerHTML");
         return "fragments/play :: wrongTurn";
     }
+
+    @GetMapping("/know-the-answer")
+    public String takeToGuessField(HttpSession session, Model model) {
+        GameState gameState = gameSessionService.getOrCreateGameState(session);
+        List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(gameState.getMasked());
+        model.addAttribute("puzzle", maskedPuzzleAsList);
+        return "fragments/guessing :: guessField";
+    }
+
+    @PostMapping("/guess-puzzle")
+    public String guessPuzzle(@RequestParam("guessedPuzzle") String answer,
+                              HttpSession session,
+                              HttpServletResponse response) {
+        if (answer == null || answer.isEmpty()) {
+            return "fragments/play :: puzzleField";
+        }
+
+        GameState gameState = gameSessionService.getOrCreateGameState(session);
+        String puzzle = gameState.getPuzzle();
+        boolean guesses = gameService.guessAnswer(answer, puzzle);
+
+        if
+    }
 }
