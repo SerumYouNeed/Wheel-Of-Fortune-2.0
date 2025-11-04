@@ -18,3 +18,12 @@
         </form>
     </div>
 </div>
+
+<!-- After correct answer -->
+<div th:fragment="successGuess" xmlns:th="http://www.w3.org/1999/xhtml">
+    <h1>
+        <span class="prize">Congratulations! You won $<b th:text="${prize}"></b></span>
+    </h1>
+
+
+</div>

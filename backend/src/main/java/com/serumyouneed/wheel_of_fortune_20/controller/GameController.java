@@ -131,6 +131,7 @@ public class GameController {
     @PostMapping("/guess-puzzle")
     public String guessPuzzle(@RequestParam("guessedPuzzle") String answer,
                               HttpSession session,
+                              Model model,
                               HttpServletResponse response) {
         if (answer == null || answer.isEmpty()) {
             return "fragments/play :: puzzleField";
@@ -138,8 +139,14 @@ public class GameController {
 
         GameState gameState = gameSessionService.getOrCreateGameState(session);
         String puzzle = gameState.getPuzzle();
-        boolean guesses = gameService.guessAnswer(answer, puzzle);
+        boolean guess = gameService.guessAnswer(answer, puzzle);
 
-        if
+        if (guess) {
+            String prize = gameState.getUserMoney();
+            model.addAttribute("prize", prize);
+            gameSessionService.clearGameState(session);
+            return "fragments/guessing :: successGuess";
+        }
+        return "fragments/guessing :: wrongGuess";
     }
 }
