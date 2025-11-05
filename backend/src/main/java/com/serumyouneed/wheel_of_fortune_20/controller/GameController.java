@@ -53,6 +53,9 @@ public class GameController {
     @GetMapping("/start-new-game")
     public String startNewGame(HttpSession session, Model model) {
         String nickname = gameSessionService.getUserNicknameAttr(session);
+        GameState gameState = gameSessionService.getOrCreateGameState(session);
+        gameState.setBigPrize(1000);
+        gameSessionService.updateGameState(session, gameState);
         model.addAttribute("user_name", nickname);
         return "fragments/play :: playField";
     }
@@ -105,11 +108,14 @@ public class GameController {
                 String puzzle = gameState.getPuzzle();
                 String puzzleAfterGuess = gameService.guessLetter(puzzle, stateOfThePuzzle, guessed);
                 gameState.setMasked(puzzleAfterGuess);
+                int wonInRound = gameService.foundLetterCounter(puzzle, letter) * gameState.getCurrentPrize();
                 List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(puzzleAfterGuess);
                 model.addAttribute("masked", maskedPuzzleAsList);
                 response.setHeader("HX-Retarget", ".puzzle");
                 response.setHeader("HX-Reswap", "innerHTML");
                 turn.setLetterPicked(true);
+                gameState.setUserMoney(wonInRound);
+                model.addAttribute("currentMoney", gameState.getUserMoney());
                 gameState.setCurrentTurn(turn);
                 gameSessionService.updateGameState(session, gameState);
                 return "fragments/play :: puzzleField";
@@ -142,7 +148,7 @@ public class GameController {
         boolean guess = gameService.guessAnswer(answer, puzzle);
 
         if (guess) {
-
+            gameState.setUserMoney(gameState.getBigPrize());
             String prize = gameState.getUserMoney();
             model.addAttribute("prize", prize);
             gameSessionService.clearGameState(session);

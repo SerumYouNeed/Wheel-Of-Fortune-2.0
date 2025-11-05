@@ -31,10 +31,10 @@ public class GameService {
         return masked.toString();
     }
 
-    private int foundLetterCounter (String proverb, String input) {
+    public int foundLetterCounter (String puzzle, String input) {
         int counter = 0;
-        for (int i = 0; i < proverb.length(); i++) {
-            if (proverb.charAt(i) == input.charAt(0)) {
+        for (int i = 0; i < puzzle.length(); i++) {
+            if (puzzle.charAt(i) == input.charAt(0)) {
                 counter += 1;
             }
         }

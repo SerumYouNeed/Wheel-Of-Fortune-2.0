@@ -4,7 +4,7 @@
         <!-- user nickname and money -->
         <div class="user">
             <span th:text="${user_name}"></span>
-            <span class="money">$0</span>
+            <span class="money">$<b th:text="${currentMoney}"></b></span>
         </div>
 
         <!-- Field with button for puzzle select and puzzle itself -->
