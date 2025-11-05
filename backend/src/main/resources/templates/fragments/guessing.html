@@ -12,7 +12,7 @@
               hx-swap="innerHTML">
             <div class="puzzle-input">
                 <label for="custom-puzzle">Enter your guess:</label>
-                <input type="text" id="custom-puzzle" name="puzzle" required/>
+                <input type="text" id="custom-puzzle" name="guessedPuzzle" required/>
                 <button type="submit" class="submit-letter-btn">OK</button>
             </div>
         </form>
@@ -24,6 +24,16 @@
     <h1>
         <span class="prize">Congratulations! You won $<b th:text="${prize}"></b></span>
     </h1>
+</div>
 
-
+<!-- After wrong answer -->
+<div th:fragment="wrongGuess" xmlns:th="http://www.w3.org/1999/xhtml">
+    <h1>
+        <span class="prize">Your answer is not correct.</span>
+    </h1>
+    <button class="back-button"
+            hx-get="/game/back-to-game"
+            hx-target="#main"
+            hx-swap="innerHTML">Back to game
+    </button>
 </div>

@@ -142,11 +142,17 @@ public class GameController {
         boolean guess = gameService.guessAnswer(answer, puzzle);
 
         if (guess) {
+
             String prize = gameState.getUserMoney();
             model.addAttribute("prize", prize);
             gameSessionService.clearGameState(session);
             return "fragments/guessing :: successGuess";
         }
         return "fragments/guessing :: wrongGuess";
+    }
+
+    @GetMapping("/back-to-game")
+    public String backToGameAfterWrongAnswer() {
+        return "fragments/play :: playField";
     }
 }
