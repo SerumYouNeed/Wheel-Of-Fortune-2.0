@@ -121,6 +121,7 @@ public class GameController {
                 return "fragments/play :: puzzleField";
             }
         }
+//        tutsj skońcxyłem
         response.setHeader("HX-Retarget", ".message");
         response.setHeader("HX-Reswap", "innerHTML");
         return "fragments/play :: wrongTurn";
