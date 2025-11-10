@@ -115,16 +115,22 @@ public class GameController {
                 response.setHeader("HX-Reswap", "innerHTML");
                 turn.setLetterPicked(true);
                 gameState.setUserMoney(wonInRound);
-                model.addAttribute("currentMoney", gameState.getUserMoney());
                 gameState.setCurrentTurn(turn);
                 gameSessionService.updateGameState(session, gameState);
                 return "fragments/play :: puzzleField";
             }
         }
-//        tutsj skońcxyłem
+
         response.setHeader("HX-Retarget", ".message");
         response.setHeader("HX-Reswap", "innerHTML");
         return "fragments/play :: wrongTurn";
+    }
+
+    @GetMapping("/balance")
+    public String balance(Model model, HttpSession session) {
+        GameState game = gameSessionService.getOrCreateGameState(session);
+        model.addAttribute("money", game.getUserMoney());
+        return "fragments/play :: balance";
     }
 
     @GetMapping("/know-the-answer")

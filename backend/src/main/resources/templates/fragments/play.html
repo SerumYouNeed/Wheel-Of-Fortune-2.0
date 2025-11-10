@@ -4,7 +4,7 @@
         <!-- user nickname and money -->
         <div class="user">
             <span th:text="${user_name}"></span>
-            <span class="money">$<b th:text="${currentMoney}"></b></span>
+            <span class="player-balance">$<b th:text="${money}"></b></span>
         </div>
 
         <!-- Field with button for puzzle select and puzzle itself -->
@@ -54,7 +54,8 @@
 
         <!-- Input field for letter from user -->
         <form hx-post="/game/guess-letter"
-              hx-swap="innerHTML">
+              hx-swap="innerHTML"
+              hx-on="htmx:afterSwap: htmx.ajax('GET', '/game/balance', {target:'#player-balance'})">
             <div class="letter-input">
                 <label for="custom-letter">Enter letter:</label>
                 <input type="text" id="custom-letter" name="letter" maxlength="1" pattern="[A-Za-z]" required/>
