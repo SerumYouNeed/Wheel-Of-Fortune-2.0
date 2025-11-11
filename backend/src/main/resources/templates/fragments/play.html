@@ -4,7 +4,7 @@
         <!-- user nickname and money -->
         <div class="user">
             <span th:text="${user_name}"></span>
-            <span class="player-balance">$<b th:text="${money}"></b></span>
+            <span id="player-balance"></span>
         </div>
 
         <!-- Field with button for puzzle select and puzzle itself -->
@@ -105,4 +105,9 @@
     <div class="alert">
         <span class="highlight">You can't pick the letter twice in the same turn!</span>
     </div>
+</div>
+
+<!-- Player balance -->
+<div th:fragment="balance" xmlns:th="http://www.w3.org/1999/xhtml">
+    <span>$<b th:text="${money}"></b></span>
 </div>
