@@ -15,6 +15,13 @@ document.body.addEventListener("htmx:afterSwap", function (evt) {
   }
 });
 
+document.body.addEventListener("htmx:afterSwap", (event) => {
+if (event.target.matches(".puzzle")) {
+  htmx.ajax('GET', '/game/balance', {target: '#player-balance'});
+}
+});
+
+
 
 
 //document.body.addEventListener("htmx:afterSwap", (event) => {
