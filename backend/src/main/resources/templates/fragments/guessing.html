@@ -9,7 +9,8 @@
 
         <!-- Input field for puzzle guess from user -->
         <form hx-post="/game/guess-puzzle"
-              hx-swap="innerHTML">
+              hx-swap="innerHTML"
+              hx-target="#main">
             <div class="puzzle-input">
                 <label for="custom-puzzle">Enter your guess:</label>
                 <input type="text" id="custom-puzzle" name="guessedPuzzle" required/>
@@ -24,6 +25,20 @@
     <h1>
         <span class="prize">Congratulations! You won $<b th:text="${prize}"></b></span>
     </h1>
+    <button
+            class="submit-letter-btn"
+            hx-get="/game/play-again"
+            hx-target="#main"
+            hx-swap="innerHTML">
+        Play again!
+    </button>
+    <button
+            class="submit-letter-btn"
+            hx-get="/game/exit"
+            hx-target="#main"
+            hx-swap="innerHTML">
+        Exit
+    </button>
 </div>
 
 <!-- After wrong answer -->

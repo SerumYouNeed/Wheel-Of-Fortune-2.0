@@ -109,11 +109,6 @@ public class GameController {
                 String puzzleAfterGuess = gameService.guessLetter(puzzle, stateOfThePuzzle, guessed);
                 gameState.setMasked(puzzleAfterGuess);
                 int wonInRound = gameService.foundLetterCounter(puzzle, letter) * gameState.getCurrentPrize();
-                System.out.println("Puzzle: " + puzzle);
-                System.out.println("Letter: " + letter);
-
-                System.out.println("Found " + gameService.foundLetterCounter(puzzle, letter) + " letters");
-                System.out.println("Won: " + wonInRound);
                 List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(puzzleAfterGuess);
                 model.addAttribute("masked", maskedPuzzleAsList);
                 response.setHeader("HX-Retarget", ".puzzle");
@@ -172,5 +167,15 @@ public class GameController {
     @GetMapping("/back-to-game")
     public String backToGameAfterWrongAnswer() {
         return "fragments/play :: playField";
+    }
+
+    @GetMapping("/game/play-again")
+    public String playAgain() {
+        return "fragments/user :: mode-card";
+    }
+
+    @GetMapping("/game/exit")
+    public String exitGame() {
+        return "fragments/play :: exitScreen";
     }
 }

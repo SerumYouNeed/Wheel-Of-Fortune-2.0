@@ -99,7 +99,7 @@
     </div>
 </div>
 
-<!-- Message for picking letter second time in the same turn -->
+<!-- Message for picking a letter second time in the same turn -->
 <div th:fragment="wrongTurn" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="alert">
         <span class="highlight">You can't pick the letter twice in the same turn!</span>
@@ -109,4 +109,21 @@
 <!-- Player balance -->
 <div th:fragment="balance" xmlns:th="http://www.w3.org/1999/xhtml">
     <span>$<b th:text="${money}"></b></span>
+</div>
+
+<!-- Exit card -->
+<div th:fragment="exitScreen" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="exit-screen" style="text-align: center; padding: 60px 20px;">
+        <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px;">
+            Thank you for playing!
+        </h1>
+        <p style="font-size: 1.2em; color: #555; margin-bottom: 40px;">
+            We hope you enjoyed the game. See you next time!
+        </p>
+        <button
+                hx-get="/"
+                hx-target="#main"
+                hx-swap="innerHTML">Back to main menu
+        </button>
+    </div>
 </div>
