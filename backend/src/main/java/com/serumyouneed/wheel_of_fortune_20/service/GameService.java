@@ -33,8 +33,9 @@ public class GameService {
 
     public int foundLetterCounter (String puzzle, String input) {
         int counter = 0;
+        String guessedLetter = input.toUpperCase();
         for (int i = 0; i < puzzle.length(); i++) {
-            if (puzzle.charAt(i) == input.charAt(0)) {
+            if (puzzle.charAt(i) == guessedLetter.charAt(0)) {
                 counter += 1;
             }
         }

@@ -109,6 +109,9 @@ public class GameController {
                 String puzzleAfterGuess = gameService.guessLetter(puzzle, stateOfThePuzzle, guessed);
                 gameState.setMasked(puzzleAfterGuess);
                 int wonInRound = gameService.foundLetterCounter(puzzle, letter) * gameState.getCurrentPrize();
+                System.out.println("Puzzle: " + puzzle);
+                System.out.println("Letter: " + letter);
+
                 System.out.println("Found " + gameService.foundLetterCounter(puzzle, letter) + " letters");
                 System.out.println("Won: " + wonInRound);
                 List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(puzzleAfterGuess);
