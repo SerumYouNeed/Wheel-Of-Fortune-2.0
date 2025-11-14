@@ -169,12 +169,12 @@ public class GameController {
         return "fragments/play :: playField";
     }
 
-    @GetMapping("/game/play-again")
+    @GetMapping("/play-again")
     public String playAgain() {
         return "fragments/user :: mode-card";
     }
 
-    @GetMapping("/game/exit")
+    @GetMapping("/exit")
     public String exitGame() {
         return "fragments/play :: exitScreen";
     }

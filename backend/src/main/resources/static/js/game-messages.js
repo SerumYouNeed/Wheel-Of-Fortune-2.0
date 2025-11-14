@@ -23,13 +23,6 @@ if (event.target.matches(".puzzle")) {
 
 
 
-
-//document.body.addEventListener("htmx:afterSwap", (event) => {
-//  if (event.target.classList.contains("message")) {
-//    setTimeout(() => event.target.classList.add("show"), 10);
-//  }
-//});
-
 //document.body.addEventListener("htmx:afterSwap", (e) => {
 //  console.log("✅ HTMX swapped:", e.detail.target);
 //});
