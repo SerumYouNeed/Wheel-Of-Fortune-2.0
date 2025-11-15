@@ -20,14 +20,3 @@ if (event.target.matches(".puzzle")) {
   htmx.ajax('GET', '/game/balance', {target: '#player-balance'});
 }
 });
-
-
-
-//document.body.addEventListener("htmx:afterSwap", (e) => {
-//  console.log("✅ HTMX swapped:", e.detail.target);
-//});
-
-
-//document.body.addEventListener("htmx:afterOnLoad", (event) => {
-//  console.log("htmx:afterOnLoad event fired!", event.detail.xhr.responseText);
-//});
