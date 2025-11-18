@@ -4,6 +4,8 @@
   </h1>
 </div>
 
-<div th:fragment="puzzleSelected" xmlns:th="http://www.w3.org/1999/xhtml">
+<div class="puzzle-wrapper"
+     th:style="'--letters:' + ${puzzle.size()}"
+     th:fragment="puzzleSelected" xmlns:th="http://www.w3.org/1999/xhtml">
     <span class="letters" th:each="letter : ${puzzle}" th:text="${letter}"></span>&nbsp;
 </div>
