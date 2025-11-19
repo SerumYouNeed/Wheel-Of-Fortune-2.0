@@ -44,8 +44,8 @@ public class PuzzleController {
             gameState.setPuzzle(puzzle.getPuzzle().toUpperCase());
             gameState.setMasked(puzzleService.maskingPuzzle(puzzle.getPuzzle()));
         }
-        List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(gameState.getMasked());
-        model.addAttribute("puzzle", maskedPuzzleAsList);
+        List<List<String>> wordsAsLetters = puzzleService.wordsAsLetters(gameState.getMasked());
+        model.addAttribute("words", wordsAsLetters);
         gameSessionService.updateGameState(session, gameState);
         return "fragments/selectors :: puzzleSelected";
     }

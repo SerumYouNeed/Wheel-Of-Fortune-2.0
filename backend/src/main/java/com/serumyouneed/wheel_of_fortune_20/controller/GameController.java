@@ -109,8 +109,8 @@ public class GameController {
                 String puzzleAfterGuess = gameService.guessLetter(puzzle, stateOfThePuzzle, guessed);
                 gameState.setMasked(puzzleAfterGuess);
                 int wonInRound = gameService.foundLetterCounter(puzzle, letter) * gameState.getCurrentPrize();
-                List<String> maskedPuzzleAsList = puzzleService.getMaskedPuzzleAsList(puzzleAfterGuess);
-                model.addAttribute("masked", maskedPuzzleAsList);
+                List<List<String>> wordsAsLetters = puzzleService.wordsAsLetters(gameState.getMasked());
+                model.addAttribute("words", wordsAsLetters);
                 response.setHeader("HX-Retarget", ".puzzle");
                 response.setHeader("HX-Reswap", "innerHTML");
                 turn.setLetterPicked(true);

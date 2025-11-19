@@ -81,8 +81,14 @@
 </div>
 
 <!-- Current state of the puzzle -->
-<div class="puzzle-wrapper" th:fragment="puzzleField" xmlns:th="http://www.w3.org/1999/xhtml">
-    <span class="letters" th:each="letter : ${masked}" th:text="${letter}"></span>&nbsp;
+<div class="puzzle"
+     th:fragment="puzzleField" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="word" th:each="word : ${words}">
+        <span class="letter"
+              th:each="letter : ${word}"
+              th:text="${letter}">
+        </span>
+    </div>
 </div>
 
 <!-- After picking the same letter again -->

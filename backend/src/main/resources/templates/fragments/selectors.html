@@ -4,8 +4,19 @@
   </h1>
 </div>
 
-<div class="puzzle-wrapper"
-     th:style="'--letters:' + ${puzzle.size()}"
+<!--<div class="puzzle-wrapper"-->
+<!--     th:style="'&#45;&#45;letters:' + ${puzzle.size()}"-->
+<!--     th:fragment="puzzleSelected" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--    <span class="letters" th:each="letter : ${puzzle}" th:text="${letter}"></span>&nbsp;-->
+<!--</div>-->
+
+
+<div class="puzzle"
      th:fragment="puzzleSelected" xmlns:th="http://www.w3.org/1999/xhtml">
-    <span class="letters" th:each="letter : ${puzzle}" th:text="${letter}"></span>&nbsp;
+    <div class="word" th:each="word : ${words}">
+        <span class="letter"
+              th:each="letter : ${word}"
+              th:text="${letter}">
+        </span>
+    </div>
 </div>

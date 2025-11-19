@@ -108,7 +108,7 @@ h1, h2 {
     max-width: 240px;
     margin: 0 auto;
     width: 100%;
-        min-width: 220px; /* możesz dostosować tę wartość */
+        min-width: 220px;
         box-sizing: border-box;
 }
 
@@ -133,29 +133,6 @@ button:hover,
 .spin-btn:hover,
 .submit-letter-btn:hover {
     background: #16325c;
-}
-
-.letters {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 50px;
-    margin: 4px;
-    padding: 4px;
-    font-size: 28px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background-color: #f3f3f3;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    color: #333;
-}
-
-.puzzle-wrapper {
-    white-space: nowrap;
-    font-size: calc(40vw / var(--letters));
 }
 
 .letter-input {
@@ -189,6 +166,60 @@ footer {
 }
 
 /* PUZZLE */
+:root{
+  --tile-w: 40px;      /* width */
+  --tile-h: 50px;      /* height */
+  --tile-gap: 8px;     /* space (margin) */
+  --words-gap: 12px;   /* space between words */
+  --max-per-line: 7;   /* limit of letters per line */
+}
+
+.puzzle {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--words-gap);          /* spaces between words / elements */
+    /* max width: for N letters (N * --tile-w) + (N-1)*--tile-gap */
+    max-width: calc(
+       (var(--max-per-line) * var(--tile-w)) +
+       ((var(--max-per-line) - 1) * var(--tile-gap))
+    );
+    align-items: flex-start;
+}
+
+/* one word - one flex-item, no inside splitting */
+.word {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--tile-gap);
+    margin-right: 0;
+    flex-shrink: 0;
+}
+
+.letter {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+
+    width: var(--tile-w);
+    height: var(--tile-h);
+    padding: 4px;
+
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1;
+
+    background-color: #f3f3f3;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+
+    color: #222;
+    user-select: none;
+}
+
 .puzzle-img {
     display: flex;
     flex-wrap: wrap;
@@ -199,7 +230,7 @@ footer {
     box-sizing: border-box;
 }
 
-.puzzle-img .letter {
+.puzzle-img {
     display: inline-block;
     width: 2em;
     text-align: center;
@@ -214,11 +245,6 @@ footer {
 .puzzle-img .space {
     display: inline-block;
     width: 1em;
-}
-
-.word {
-    display: flex;
-    gap: 0.2em;
 }
 
 .space {

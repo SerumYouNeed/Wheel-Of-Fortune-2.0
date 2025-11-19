@@ -5,6 +5,7 @@ import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
 import com.serumyouneed.wheel_of_fortune_20.repository.PuzzleRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -35,6 +36,18 @@ public class PuzzleService {
     public List<String> getMaskedPuzzleAsList(String puzzle) {
         return puzzle.chars()
                 .mapToObj(c -> String.valueOf((char) c))
+                .collect(Collectors.toList());
+    }
+
+    public List<String> splitIntoWords(String puzzle) {
+        return Arrays.asList(puzzle.split(" "));
+    }
+
+    public List<List<String>> wordsAsLetters(String puzzle) {
+        return Arrays.stream(puzzle.split(" "))
+                .map(word -> word.chars()
+                        .mapToObj(c -> String.valueOf((char) c))
+                        .collect(Collectors.toList()))
                 .collect(Collectors.toList());
     }
 
