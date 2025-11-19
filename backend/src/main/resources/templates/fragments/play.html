@@ -82,7 +82,8 @@
 
 <!-- Current state of the puzzle -->
 <div class="puzzle"
-     th:fragment="puzzleField" xmlns:th="http://www.w3.org/1999/xhtml">
+     th:fragment="puzzleField" xmlns:th="http://www.w3.org/1999/xhtml"
+     th:classappend="${#lists.size(words) == 1} ? ' word-1'">
     <div class="word" th:each="word : ${words}">
         <span class="letter"
               th:each="letter : ${word}"

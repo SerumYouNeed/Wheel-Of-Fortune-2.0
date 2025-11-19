@@ -196,6 +196,22 @@ footer {
     flex-shrink: 0;
 }
 
+/* do not left single letter at the end */
+.word-1 {
+    min-width: calc(2 * var(--tile-w) + var(--tile-gap));
+}
+
+.space-tile {
+    display: inline-flex;
+    width: var(--tile-w);
+    height: var(--tile-h);
+    margin: var(--tile-gap);
+    border-radius: 6px;
+
+    background-color: #ddd;
+    opacity: 0.6;
+}
+
 .letter {
     display: inline-flex;
     justify-content: center;

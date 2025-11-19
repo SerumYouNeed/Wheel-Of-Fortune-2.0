@@ -4,19 +4,17 @@
   </h1>
 </div>
 
-<!--<div class="puzzle-wrapper"-->
-<!--     th:style="'&#45;&#45;letters:' + ${puzzle.size()}"-->
-<!--     th:fragment="puzzleSelected" xmlns:th="http://www.w3.org/1999/xhtml">-->
-<!--    <span class="letters" th:each="letter : ${puzzle}" th:text="${letter}"></span>&nbsp;-->
-<!--</div>-->
-
-
 <div class="puzzle"
-     th:fragment="puzzleSelected" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div class="word" th:each="word : ${words}">
+     th:fragment="puzzleSelected" xmlns:th="http://www.w3.org/1999/xhtml"
+     th:classappend="${#lists.size(words) == 1} ? ' word-1'">
+    <div class="word" th:each="word, iter : ${words}">
         <span class="letter"
               th:each="letter : ${word}"
               th:text="${letter}">
+        </span>
+
+        <span class="space-tile"
+              th:if="${!iter.last}">
         </span>
     </div>
 </div>
