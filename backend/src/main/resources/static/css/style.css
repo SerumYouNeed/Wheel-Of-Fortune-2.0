@@ -174,19 +174,53 @@ footer {
   --max-per-line: 7;   /* limit of letters per line */
 }
 
+.puzzle .letter {
+    box-sizing: border-box;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    height: var(--tile-h);
+    padding: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #222;
+    background: #f3f3f3;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+    user-select: none;
+
+    width: min(
+        var(--tile-w),
+        calc((100% - ((var(--max-word) - 1) * var(--tile-gap))) / var(--max-word))
+    );
+    font-size: clamp(14px, calc(12px + (var(--tile-w) / 2)), 32px);
+}
+
+
 .puzzle {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--words-gap);          /* spaces between words / elements */
-    /* max width: for N letters (N * --tile-w) + (N-1)*--tile-gap */
-    max-width: calc(
-       (var(--max-per-line) * var(--tile-w)) +
-       ((var(--max-per-line) - 1) * var(--tile-gap))
-    );
+    gap: var(--words-gap);
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    align-content: flex-start;
     align-items: flex-start;
 }
 
-/* one word - one flex-item, no inside splitting */
+.puzzle::before,
+.puzzle::after {
+    content: "";
+    flex-basis: 100%;
+    width: 0;
+    height: 0;
+    order: 9999;
+}
+
+/* one word - one flex-item flex-item, no inside splitting */
 .word {
     display: inline-flex;
     flex-wrap: nowrap;
@@ -194,56 +228,6 @@ footer {
     gap: var(--tile-gap);
     margin-right: 0;
     flex-shrink: 0;
-}
-
-/* do not left single letter at the end */
-.word-1 {
-    min-width: calc(2 * var(--tile-w) + var(--tile-gap));
-}
-
-.space-tile {
-    display: inline-flex;
-    width: var(--tile-w);
-    height: var(--tile-h);
-    margin: var(--tile-gap);
-    border-radius: 6px;
-
-    background-color: #ddd;
-    opacity: 0.6;
-}
-
-.letter {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-
-    width: var(--tile-w);
-    height: var(--tile-h);
-    padding: 4px;
-
-    font-size: 28px;
-    font-weight: bold;
-    text-transform: uppercase;
-    line-height: 1;
-
-    background-color: #f3f3f3;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.12);
-
-    color: #222;
-    user-select: none;
-}
-
-.puzzle-img {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.5em;
-    max-width: 95vw;
-    margin: 0 auto;
-    box-sizing: border-box;
 }
 
 .puzzle-img {

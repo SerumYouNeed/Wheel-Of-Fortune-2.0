@@ -51,6 +51,13 @@ public class PuzzleService {
                 .collect(Collectors.toList());
     }
 
+    public int maxWordLength(List<List<String>> listOfWords) {
+        return listOfWords.stream()
+                .mapToInt(List::size)
+                .max()
+                .orElse(1);
+    }
+
     /**
      * Function masking an input string
      * @param puzzle (Puzzle)

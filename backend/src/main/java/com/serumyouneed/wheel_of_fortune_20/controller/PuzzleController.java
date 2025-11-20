@@ -45,6 +45,8 @@ public class PuzzleController {
             gameState.setMasked(puzzleService.maskingPuzzle(puzzle.getPuzzle()));
         }
         List<List<String>> wordsAsLetters = puzzleService.wordsAsLetters(gameState.getMasked());
+        int maxWordLength = puzzleService.maxWordLength(wordsAsLetters);
+        model.addAttribute("maxWordLength", maxWordLength);
         model.addAttribute("words", wordsAsLetters);
         gameSessionService.updateGameState(session, gameState);
         return "fragments/selectors :: puzzleSelected";

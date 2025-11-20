@@ -82,12 +82,18 @@
 
 <!-- Current state of the puzzle -->
 <div class="puzzle"
-     th:fragment="puzzleField" xmlns:th="http://www.w3.org/1999/xhtml"
-     th:classappend="${#lists.size(words) == 1} ? ' word-1'">
-    <div class="word" th:each="word : ${words}">
+     th:fragment="puzzleField"
+     xmlns:th="http://www.w3.org/1999/xhtml"
+     th:style="|--max-word: ${maxWordLength}|">
+    <div class="word" th:each="word, iter : ${words}"
+         th:classappend="${#lists.size(word) == 1} ? ' word-1'">
         <span class="letter"
               th:each="letter : ${word}"
               th:text="${letter}">
+        </span>
+
+        <span class="space-tile"
+              th:if="${!iter.last}">
         </span>
     </div>
 </div>
