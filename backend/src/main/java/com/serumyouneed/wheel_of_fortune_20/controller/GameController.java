@@ -1,7 +1,6 @@
 package com.serumyouneed.wheel_of_fortune_20.controller;
 
 import com.serumyouneed.wheel_of_fortune_20.model.*;
-import com.serumyouneed.wheel_of_fortune_20.repository.UserRepository;
 import com.serumyouneed.wheel_of_fortune_20.service.*;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
