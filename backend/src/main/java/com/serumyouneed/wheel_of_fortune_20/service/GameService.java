@@ -1,8 +1,5 @@
 package com.serumyouneed.wheel_of_fortune_20.service;
 
-import com.serumyouneed.wheel_of_fortune_20.model.GameState;
-import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
-import com.serumyouneed.wheel_of_fortune_20.model.User;
 import org.springframework.stereotype.Service;
 
 @Service
