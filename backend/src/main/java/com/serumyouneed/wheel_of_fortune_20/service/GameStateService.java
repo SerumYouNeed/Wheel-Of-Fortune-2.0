@@ -6,8 +6,6 @@ import com.serumyouneed.wheel_of_fortune_20.repository.GameStateRepository;
 import com.serumyouneed.wheel_of_fortune_20.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class GameStateService {
 
@@ -22,8 +20,8 @@ public class GameStateService {
                 .orElseThrow(() -> new IllegalStateException("No game found for user"));
     }
 
-    public GameState saveCurrentGameState(GameState state) {
-        return repo.save(state);
+    public void saveCurrentGameState(GameState state) {
+        repo.save(state);
     }
 
     public GameState getLastGame(User user) {

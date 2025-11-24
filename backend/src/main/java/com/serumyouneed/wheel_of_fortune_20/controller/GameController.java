@@ -40,12 +40,21 @@ public class GameController {
     }
 
     @GetMapping("/load-previous-game")
-    public String loadPreviousGame(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
-        GameState state = gameStateService.loadPreviousGame(user);
-        model.addAttribute("game", state);
-        model.addAttribute("user", user);
-        return "fragments/play :: playField";
+    public String loadPreviousGame(HttpSession session,
+                                   Model model,
+                                   HttpServletResponse response) {
+        GameState state = gameSessionService.getOrCreateGameState(session);
+        if (state.getUser().isGuest()) {
+            response.setHeader("HX-Retarget", ".not-logged");
+            response.setHeader("HX-Reswap", "innerHTML");
+            return "fragments/messages :: notLogged";
+        } else {
+            User user = (User) session.getAttribute("user");
+            state = gameStateService.loadPreviousGame(user);
+            model.addAttribute("game", state);
+            model.addAttribute("user", user);
+            return "fragments/play :: playField";
+        }
     }
 
     @GetMapping("/start-new-game")
@@ -173,8 +182,14 @@ public class GameController {
         return "fragments/user :: starting-singleplayer-card";
     }
 
+
+
     @GetMapping("/exit")
     public String exitGame(HttpSession session) {
+        GameState state = gameSessionService.getOrCreateGameState(session);
+        if (!state.getUser().isGuest()) {
+            gameStateService.saveCurrentGameState(state);
+        }
         gameSessionService.clearGameState(session);
         return "fragments/play :: exitScreen";
     }

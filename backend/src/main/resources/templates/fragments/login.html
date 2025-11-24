@@ -24,7 +24,7 @@
     </div>
 </div>
 
-<div th:fragment="loginFragment">
+<div th:fragment="loginFragment" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container">
         <h2>Login</h2>
         <form hx-post="users/api/login" hx-target="#main" hx-swap="innerHTML">
@@ -46,7 +46,7 @@
     </div>
 </div>
 
-<div th:fragment="guestFragment">
+<div th:fragment="guestFragment" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container">
         <h2>Enter nickname</h2>
         <form hx-post="users/api/guest" hx-target="#main" hx-swap="innerHTML">

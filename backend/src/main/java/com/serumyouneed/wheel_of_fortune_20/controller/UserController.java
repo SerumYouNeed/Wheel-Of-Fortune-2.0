@@ -60,6 +60,7 @@ public class UserController {
                         Model model) {
         User user = userService.createGuestUser(nickname);
         GameState gameState = gameSessionService.getOrCreateGameState(session);
+        gameState.setUser(user);
         gameSessionService.setUserNickname(session, user.getNickname());
         model.addAttribute("user_name", user.getNickname());
         return "fragments/user :: mode-card";
