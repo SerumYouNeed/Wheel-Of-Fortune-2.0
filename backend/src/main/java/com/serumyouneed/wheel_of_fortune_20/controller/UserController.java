@@ -1,5 +1,6 @@
 package com.serumyouneed.wheel_of_fortune_20.controller;
 
+import com.serumyouneed.wheel_of_fortune_20.model.Category;
 import com.serumyouneed.wheel_of_fortune_20.model.GameState;
 import com.serumyouneed.wheel_of_fortune_20.model.User;
 import com.serumyouneed.wheel_of_fortune_20.service.GameSessionService;
@@ -31,6 +32,7 @@ public class UserController {
             User newUser = userService.registerUser(nickname, password);
             gameSessionService.setUserNickname(session, newUser.getNickname());
             model.addAttribute("user_name", newUser.getNickname());
+            model.addAttribute("categories", Category.values());
             return "fragments/user :: mode-card";
         } catch (IllegalArgumentException e) {
             model.addAttribute("error", "Nickname already used");
@@ -47,6 +49,7 @@ public class UserController {
         if (user != null) {
             gameSessionService.setUserNickname(session, user.getNickname());
             model.addAttribute("user_name", user.getNickname());
+            model.addAttribute("categories", Category.values());
             return "fragments/user :: mode-card";
         } else {
             model.addAttribute("error", "Invalid credentials");
@@ -63,6 +66,7 @@ public class UserController {
         gameState.setUser(user);
         gameSessionService.setUserNickname(session, user.getNickname());
         model.addAttribute("user_name", user.getNickname());
+        model.addAttribute("categories", Category.values());
         return "fragments/user :: mode-card";
     }
 

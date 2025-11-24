@@ -1,11 +1,22 @@
 <div th:fragment="starting-singleplayer-card" xmlns:th="http://www.w3.org/1999/xhtml">
-    <h1>Welcome, <span th:text="${user_name}"></span>!</h1>
-    <div class="btn-group">
-        <button class="select-category-btn"
-                hx-get="/select-category"
-                hx-target="#category-result"
-                hx-swap="innerHTML">Draw category
-        </button>
+    <select id="category-select"
+            name="category"
+            hx-post="/select-category"
+            hx-trigger="change"
+            hx-target="#category-result"
+            hx-swap="innerHTML">
+        <option disabled selected>Choose category...</option>
+        <option th:each="c : ${categories}"
+                th:value="${c}"
+                th:text="${c.label}">
+        </option>
+    </select>
+<!--    <div class="btn-group">-->
+<!--        <button class="select-category-btn"-->
+<!--                hx-get="/select-category"-->
+<!--                hx-target="#category-result"-->
+<!--                hx-swap="innerHTML">Draw category-->
+<!--        </button>-->
         <div id="category-result"></div>
         <button class="start-new-game-btn"
                 hx-get="/game/start-new-game"
@@ -19,7 +30,7 @@
         </button>
         <div class="not-logged"></div>
     </div>
-</div>
+<!--</div>-->
 
 <div th:fragment="mode-card" xmlns:th="http://www.w3.org/1999/xhtml">
     <h1>Welcome, <span th:text="${user_name}"></span>!</h1>

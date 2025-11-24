@@ -182,8 +182,6 @@ public class GameController {
         return "fragments/user :: starting-singleplayer-card";
     }
 
-
-
     @GetMapping("/exit")
     public String exitGame(HttpSession session) {
         GameState state = gameSessionService.getOrCreateGameState(session);
