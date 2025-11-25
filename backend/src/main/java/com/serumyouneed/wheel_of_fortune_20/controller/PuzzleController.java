@@ -45,8 +45,12 @@ public class PuzzleController {
     @GetMapping("/select-puzzle")
     public String drawPuzzle(HttpSession session, Model model) {
         GameState gameState = gameSessionService.getOrCreateGameState(session);
+        List<String> solvedPuzzles = gameState.getSolvedPuzzles();
         if (gameState.getPuzzle() == null) {
             Puzzle puzzle = puzzleService.getPuzzle(gameSessionService.getCategoryAttr(session));
+            while (solvedPuzzles.contains(puzzle.getPuzzle())) {
+                puzzle = puzzleService.getPuzzle(gameSessionService.getCategoryAttr(session));
+            }
             gameState.setPuzzle(puzzle.getPuzzle().toUpperCase());
             gameState.setMasked(puzzleService.maskingPuzzle(puzzle.getPuzzle()));
         }

@@ -30,6 +30,8 @@ public class GameState {
     private Integer userMoney = 0;
     private Integer bigPrize;
 
+    private List<String> solvedPuzzles = new ArrayList<>();
+
     private final List<Character> guessedLetters = new ArrayList<>();
 
     private LocalDateTime lastUpdated = LocalDateTime.now();
@@ -71,4 +73,8 @@ public class GameState {
     }
 
     public boolean ifLetterWasPicked(char letter) { return guessedLetters.contains(letter); }
+
+    public List<String> getSolvedPuzzles() { return solvedPuzzles; }
+
+    public void setSolvedPuzzles(List<String> solvedPuzzles) { this.solvedPuzzles = solvedPuzzles; }
 }
