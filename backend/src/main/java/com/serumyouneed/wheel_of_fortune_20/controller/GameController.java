@@ -172,6 +172,7 @@ public class GameController {
             gameState.setUserMoney(gameState.getBigPrize());
             String prize = gameState.getUserMoney();
             model.addAttribute("prize", prize);
+            gameState.setSolved(true);
             return "fragments/guessing :: successGuess";
         }
         return "fragments/guessing :: wrongGuess";
@@ -184,6 +185,10 @@ public class GameController {
 
     @GetMapping("/play-again")
     public String playAgain(HttpSession session, Model model) {
+        GameState state = gameSessionService.getOrCreateGameState(session);
+        if (state.isSolved()) {
+            state.setPuzzle(null);
+        }
         String userNickname = gameSessionService.getUserNicknameAttr(session);
         model.addAttribute("user_name", userNickname);
         return "fragments/user :: starting-singleplayer-card";
