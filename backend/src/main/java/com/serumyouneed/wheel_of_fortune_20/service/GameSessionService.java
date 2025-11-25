@@ -15,14 +15,10 @@ public class GameSessionService {
 
 
     public GameState getOrCreateGameState(HttpSession session) {
-        GameState gameState = (GameState) session.getAttribute(GAME_STATE_ATTR);
-
-        if (gameState == null) {
-            gameState = new GameState();
-            session.setAttribute(GAME_STATE_ATTR, gameState);
+        if (session.getAttribute(GAME_STATE_ATTR) == null) {
+            session.setAttribute(GAME_STATE_ATTR, new GameState());
         }
-
-        return gameState;
+        return (GameState) session.getAttribute(GAME_STATE_ATTR);
     }
 
     public Category getCategoryAttr(HttpSession session) {

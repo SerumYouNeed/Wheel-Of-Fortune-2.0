@@ -27,24 +27,20 @@ public class PuzzleController {
     }
 
     @PostMapping("/select-category")
-    public String receiveCategory(@RequestParam String category, Model model) {
-        model.addAttribute("message", "You selected: " + category);
+    public String receiveCategory(@RequestParam Category category,
+                                  Model model,
+                                  HttpSession session) {
+
+        gameSessionService.setCategoryAttr(session, category);
+        model.addAttribute("category", category);
         return "fragments/messages :: selectedCategory";
     }
 
     @GetMapping("/categories")
     public String getCategories(Model model) {
         model.addAttribute("categories", Category.values());
-        return "fragments/categories :: categorySelect";
+        return "fragments/user :: categorySelect";
     }
-
-//    @GetMapping("/select-category")
-//    public String drawCategory(HttpSession session, Model model) {
-//        Category randomCategory = CategorySelector.selectCategory();
-//        gameSessionService.setCategoryAttr(session, randomCategory);
-//        model.addAttribute("category", randomCategory.name());
-//        return "fragments/selectors :: categorySelected";
-//    }
 
     @GetMapping("/select-puzzle")
     public String drawPuzzle(HttpSession session, Model model) {
@@ -58,6 +54,8 @@ public class PuzzleController {
         int maxWordLength = puzzleService.maxWordLength(wordsAsLetters);
         model.addAttribute("maxWordLength", maxWordLength);
         model.addAttribute("words", wordsAsLetters);
+        String category = gameSessionService.getCategoryAttr(session).getLabel();
+        model.addAttribute("category", category);
         gameSessionService.updateGameState(session, gameState);
         return "fragments/selectors :: puzzleSelected";
     }

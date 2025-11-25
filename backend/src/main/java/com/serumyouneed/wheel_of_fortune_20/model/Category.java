@@ -2,8 +2,8 @@ package com.serumyouneed.wheel_of_fortune_20.model;
 
 public enum Category {
 
-    MOVIES("Movies"),
-    PROVERBS("Proverbs");
+    MOVIE("Movies"),
+    PROVERB("Proverbs");
 
     private final String label;
 

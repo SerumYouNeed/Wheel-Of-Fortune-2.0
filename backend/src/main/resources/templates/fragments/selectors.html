@@ -8,6 +8,9 @@
      th:fragment="puzzleSelected"
      xmlns:th="http://www.w3.org/1999/xhtml"
      th:style="|--max-word: ${maxWordLength}|">
+    <h3>
+    <span class="category">Category: <b th:text="${category}"></b></span>
+    </h3>
     <div class="word" th:each="word, iter : ${words}"
          th:classappend="${#lists.size(word) == 1} ? ' word-1'">
         <span class="letter"

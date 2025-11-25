@@ -2,6 +2,7 @@ package com.serumyouneed.wheel_of_fortune_20.controller;
 
 import com.serumyouneed.wheel_of_fortune_20.model.*;
 import com.serumyouneed.wheel_of_fortune_20.service.*;
+import com.serumyouneed.wheel_of_fortune_20.utils.CategorySelector;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -59,10 +60,15 @@ public class GameController {
 
     @GetMapping("/start-new-game")
     public String startNewGame(HttpSession session, Model model) {
+        if (gameSessionService.getCategoryAttr(session) == null) {
+            Category randomCategory = CategorySelector.selectCategory();
+            gameSessionService.setCategoryAttr(session, randomCategory);
+        }
         String nickname = gameSessionService.getUserNicknameAttr(session);
         GameState gameState = gameSessionService.getOrCreateGameState(session);
         gameState.setBigPrize(1000);
         gameSessionService.updateGameState(session, gameState);
+        model.addAttribute("category", gameSessionService.getCategoryAttr(session));
         model.addAttribute("user_name", nickname);
         return "fragments/play :: playField";
     }
@@ -97,6 +103,7 @@ public class GameController {
                               HttpSession session,
                               Model model,
                               HttpServletResponse response) {
+        model.addAttribute("category", gameSessionService.getCategoryAttr(session).getLabel());
         if (letter == null || letter.isEmpty()) {
             return "fragments/play :: puzzleField";
         }
