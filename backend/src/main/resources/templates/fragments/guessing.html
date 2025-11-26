@@ -3,7 +3,7 @@
 
         <h2>Before sending your answer, please check for typos. Letter case doesn’t matter.</h2>
 
-        <div class="final-guess">
+        <div class="puzzle">
             <span class="letter" th:each="letter : ${puzzle}" th:text="${letter}"></span>&nbsp;
         </div>
 
@@ -11,14 +11,17 @@
         <form hx-post="/game/guess-puzzle"
               hx-swap="innerHTML"
               hx-target="#main">
-            <div class="puzzle-input">
-                <label for="custom-puzzle">Enter your guess:</label>
-                <input type="text" id="custom-puzzle" name="guessedPuzzle" required/>
-                <button type="submit" class="submit-letter-btn">OK</button>
+
+            <div class="floating-group">
+                <input type="text" id="custom-puzzle" name="guessedPuzzle" placeholder=" " required/>
+                <label for="custom-puzzle">Enter your guess</label>
             </div>
+            <button type="submit" class="submit-letter-btn">OK</button>
+
         </form>
     </div>
 </div>
+
 
 <!-- After correct answer -->
 <div th:fragment="successGuess" xmlns:th="http://www.w3.org/1999/xhtml">

@@ -1,25 +1,28 @@
 <div th:fragment="starting-singleplayer-card" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div id="category-container"
-         hx-get="/categories"
-         hx-trigger="load"
-         hx-swap="innerHTML">
-        <select disabled>
-            <option>Loading categories…</option>
-        </select>
-    </div>
+    <div class="btn-group">
+        <div id="category-container"
+             hx-get="/categories"
+             hx-trigger="load"
+             hx-swap="innerHTML">
+            <select disabled>
+                <option>Loading categories…</option>
+            </select>
+        </div>
 
-    <div id="category-result"></div>
-    <button class="start-new-game-btn"
-            hx-get="/game/start-new-game"
-            hx-target="#main"
-            hx-swap="innerHTML">Star new game
-    </button>
-    <button class="load-previous-game-btn"
-            hx-get="/game/load-previous-game"
-            hx-target="#main"
-            hx-swap="innerHTML">Load previous game
-    </button>
-    <div class="not-logged"></div>
+        <div id="category-result"></div>
+            <button class="start-new-game-btn"
+                    hx-get="/game/start-new-game"
+                    hx-target="#main"
+                    hx-swap="innerHTML">Star new game
+            </button>
+            <button class="load-previous-game-btn"
+                    hx-get="/game/load-previous-game"
+                    hx-target="#main"
+                    hx-swap="innerHTML">Load previous game
+            </button>
+
+            <div class="not-logged"></div>
+    </div>
 </div>
 
 
@@ -40,11 +43,11 @@
     </div>
 </div>
 
-<div th:fragment="error">
+<div th:fragment="error" xmlns:th="http://www.w3.org/1999/xhtml">
     <p th:text="${error}"></p>
 </div>
 
-<div th:fragment="categorySelect">
+<div th:fragment="categorySelect" xmlns:th="http://www.w3.org/1999/xhtml">
     <select id="category-select"
             name="category"
             hx-post="/select-category"

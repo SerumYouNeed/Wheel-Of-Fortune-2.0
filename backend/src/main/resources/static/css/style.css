@@ -49,7 +49,7 @@ body {
     padding: 12px 0;
 }
 
-h1, h2 {
+h1, h2, h3 {
     font-size: 2em;
     font-weight: 700;
     margin: 0 0 12px 0;
@@ -288,4 +288,104 @@ input[type="text"], input[type="email"], input[type="password"] {
 .highlight {
   color: red;
   font-weight: bold;
+}
+
+/* CATEGORY SELECT WRAPPER */
+#category-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* SELECT */
+#category-container select {
+    width: 100%;
+    max-width: 260px;
+    padding: 12px 14px;
+    font-size: 1em;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    background: #f9f9f9;
+    color: #2a4d7c;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    cursor: pointer;
+    appearance: none; /* cancel arrow */
+    position: relative;
+}
+
+/* CUSTOM ARROW */
+#category-container select {
+    background-image:
+        linear-gradient(45deg, transparent 50%, #2a4d7c 50%),
+        linear-gradient(135deg, #2a4d7c 50%, transparent 50%);
+    background-position:
+        calc(100% - 18px) calc(50% - 3px),
+        calc(100% - 12px) calc(50% - 3px);
+    background-size: 6px 6px, 6px 6px;
+    background-repeat: no-repeat;
+}
+
+/* HOVER */
+#category-container select:hover:enabled {
+    background-color: #f2f4f8;
+    border-color: #c5c5c5;
+}
+
+/* DISABLED */
+#category-container select:disabled {
+    color: #777;
+    cursor: not-allowed;
+    background: #f1f1f1;
+    box-shadow: none;
+}
+
+/* OPTION STYLE */
+#category-container option {
+    padding: 8px;
+    font-size: 1em;
+}
+
+/* Floating label container */
+.floating-group {
+    position: relative;
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+}
+
+.floating-group input {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1em;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #2a4d7c;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+/* Label positioned inside input */
+.floating-group label {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #888;
+    transition: all 0.2s ease;
+    background: transparent;
+    padding: 0 4px;
+}
+
+/* When user types or input is focused */
+.floating-group input:focus + label,
+.floating-group input:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 8px;
+    transform: none;
+    font-size: 0.85em;
+    color: #2a4d7c;
+    background: #fff;
+    padding: 0 4px;
 }

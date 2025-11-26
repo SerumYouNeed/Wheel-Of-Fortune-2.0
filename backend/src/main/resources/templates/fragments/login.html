@@ -48,11 +48,12 @@
 
 <div th:fragment="guestFragment" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="container">
-        <h2>Enter nickname</h2>
         <form hx-post="users/api/guest" hx-target="#main" hx-swap="innerHTML">
-            <label for="username">User name</label>
-            <input type="text" id="nickname" name="nickname" required>
-            <button class="submit-btn" type="submit">Submit</button>
+            <div class="floating-group">
+                <input type="text" id="nickname" name="nickname" placeholder=" " required>
+                <label for="nickname">Enter nickname</label>
+            </div>
+                <button class="submit-btn" type="submit">Submit</button>
         </form>
         <div class="btn-group">
             <button class="back-button"

@@ -4,8 +4,8 @@
         <!-- user nickname and money -->
         <div class="user">
             <span th:text="${user_name}"></span>
+            <div id="player-balance"></div>
         </div>
-        <div id="player-balance"></div>
 
         <!-- Field with button for puzzle select and puzzle itself -->
         <div class="puzzle" id="puzzle"
@@ -20,12 +20,12 @@
                 <svg width="220" height="220" viewBox="0 0 220 220">
                     <g>
                         <!-- 6 sectors on wheel -->
-                        <path d="M110,110 L110,10 A100,100 0 0,1 203.511,55.000 Z" fill="#FFD700"/>
-                        <path d="M110,110 L203.511,55.000 A100,100 0 0,1 203.511,165.000 Z" fill="#FF6347"/>
-                        <path d="M110,110 L203.511,165.000 A100,100 0 0,1 110,210 Z" fill="#90EE90"/>
-                        <path d="M110,110 L110,210 A100,100 0 0,1 16.489,165.000 Z" fill="#87CEEB"/>
-                        <path d="M110,110 L16.489,165.000 A100,100 0 0,1 16.489,55.000 Z" fill="#FFB6C1"/>
-                        <path d="M110,110 L16.489,55.000 A100,100 0 0,1 110,10 Z" fill="#D3D3D3"/>
+                        <path id="sector-0" d="M110,110 L110,10 A100,100 0 0,1 203.511,55.000 Z" fill="#FFD700"/>
+                        <path id="sector-1" d="M110,110 L203.511,55.000 A100,100 0 0,1 203.511,165.000 Z" fill="#FF6347"/>
+                        <path id="sector-2" d="M110,110 L203.511,165.000 A100,100 0 0,1 110,210 Z" fill="#90EE90"/>
+                        <path id="sector-3" d="M110,110 L110,210 A100,100 0 0,1 16.489,165.000 Z" fill="#87CEEB"/>
+                        <path id="sector-4" d="M110,110 L16.489,165.000 A100,100 0 0,1 16.489,55.000 Z" fill="#FFB6C1"/>
+                        <path id="sector-5" d="M110,110 L16.489,55.000 A100,100 0 0,1 110,10 Z" fill="#D3D3D3"/>
                         <!-- Prices -->
                         <text x="110" y="40" text-anchor="middle" font-size="16" fill="#333">$10</text>
                         <text x="175" y="80" text-anchor="middle" font-size="16" fill="#333">$20</text>
@@ -62,7 +62,7 @@
         </form>
 
         <!-- Input button for puzzle guess from user -->
-        <h4>Think you know the answer? Take a guess for $1000!</h4>
+        <h3>Think you know the answer? Take a guess for $1000!</h3>
         <button class="guess-puzzle-btn"
                 hx-get="/game/know-the-answer"
                 hx-target="#main"
@@ -143,7 +143,7 @@
             We hope you enjoyed the game. See you next time!
         </p>
         <button
-                hx-get="/"
+                hx-get="/home"
                 hx-target="#main"
                 hx-swap="innerHTML">Back to main menu
         </button>
