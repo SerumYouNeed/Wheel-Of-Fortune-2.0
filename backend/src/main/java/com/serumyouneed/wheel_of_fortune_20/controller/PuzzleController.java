@@ -3,7 +3,6 @@ package com.serumyouneed.wheel_of_fortune_20.controller;
 import com.serumyouneed.wheel_of_fortune_20.model.Category;
 import com.serumyouneed.wheel_of_fortune_20.model.GameState;
 import com.serumyouneed.wheel_of_fortune_20.model.Puzzle;
-import com.serumyouneed.wheel_of_fortune_20.model.User;
 import com.serumyouneed.wheel_of_fortune_20.service.GameSessionService;
 import com.serumyouneed.wheel_of_fortune_20.service.GameStateService;
 import com.serumyouneed.wheel_of_fortune_20.service.PuzzleService;

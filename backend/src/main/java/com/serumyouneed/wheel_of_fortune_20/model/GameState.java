@@ -75,6 +75,5 @@ public class GameState {
     public boolean ifLetterWasPicked(char letter) { return guessedLetters.contains(letter); }
 
     public List<String> getSolvedPuzzles() { return solvedPuzzles; }
-
-    public void setSolvedPuzzles(List<String> solvedPuzzles) { this.solvedPuzzles = solvedPuzzles; }
+    public void addToSolvedPuzzles(String puzzle) { this.solvedPuzzles.add(puzzle); }
 }

@@ -169,6 +169,7 @@ public class GameController {
         boolean guess = gameService.guessAnswer(answer, puzzle);
 
         if (guess) {
+            gameState.addToSolvedPuzzles(puzzle);
             gameState.setUserMoney(gameState.getBigPrize());
             String prize = gameState.getUserMoney();
             model.addAttribute("prize", prize);
