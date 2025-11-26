@@ -89,7 +89,7 @@ public class GameController {
         }
 
         int field = wheelService.spinTheWheel();
-        int prize = wheelService.switchToField(field, 2000);
+        int prize = wheelService.switchToField(field);
         gameState.setCurrentPrize(prize);
         turn.setWheelSpun(true);
         gameState.setCurrentTurn(turn);

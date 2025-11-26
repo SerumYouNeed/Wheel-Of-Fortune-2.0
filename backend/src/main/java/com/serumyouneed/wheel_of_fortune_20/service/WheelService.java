@@ -22,33 +22,16 @@ public class WheelService {
      * @param random      (int): Generate number simulating spin of the wheel.
      * @return multiplier (int): How many times will be multiplied each uncovered letter
      */
-    public int switchToField(int random, long millis) {
-        int multiplier = 0;
-        switch (random) {
-            case 1:
-                sleeper.sleep(millis);
-                multiplier = 10;
-                break;
-            case 2:
-                sleeper.sleep(millis);
-                multiplier = 20;
-                break;
-            case 3:
-                sleeper.sleep(millis);
-                multiplier = 30;
-                break;
-            case 4:
-                sleeper.sleep(millis);
-                multiplier = 50;
-                break;
-            case 5:
-                sleeper.sleep(millis);
-                multiplier = 100;
-                break;
-            default:
-                multiplier = 1;
-        }
-        return multiplier;
+    public int switchToField(int random) {
+        return switch (random) {
+            case 1 -> 10;
+            case 2 -> 20;
+            case 3 -> 30;
+            case 4 -> 40;
+            case 5 -> 50;
+            case 6 -> 100;
+            default -> 1;
+        };
     }
 
     /**
@@ -58,7 +41,7 @@ public class WheelService {
     public int spinTheWheel() {
         Random random = new Random();
         int field;
-        field = random.nextInt(1, 6);
+        field = random.nextInt(1, 7);
         return  field;
     }
 }

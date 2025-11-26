@@ -98,6 +98,13 @@ h1, h2, h3 {
     padding: 18px 0;
 }
 
+.sector-highlight {
+    stroke: #000;
+    stroke-width: 3;
+    filter: brightness(1.5);
+    transition: filter 0.1s, stroke-width 0.1s;
+}
+
 /* BUTTONS */
 .btn-group {
     display: flex;

@@ -20,19 +20,19 @@
                 <svg width="220" height="220" viewBox="0 0 220 220">
                     <g>
                         <!-- 6 sectors on wheel -->
-                        <path id="sector-0" d="M110,110 L110,10 A100,100 0 0,1 203.511,55.000 Z" fill="#FFD700"/>
-                        <path id="sector-1" d="M110,110 L203.511,55.000 A100,100 0 0,1 203.511,165.000 Z" fill="#FF6347"/>
-                        <path id="sector-2" d="M110,110 L203.511,165.000 A100,100 0 0,1 110,210 Z" fill="#90EE90"/>
-                        <path id="sector-3" d="M110,110 L110,210 A100,100 0 0,1 16.489,165.000 Z" fill="#87CEEB"/>
-                        <path id="sector-4" d="M110,110 L16.489,165.000 A100,100 0 0,1 16.489,55.000 Z" fill="#FFB6C1"/>
-                        <path id="sector-5" d="M110,110 L16.489,55.000 A100,100 0 0,1 110,10 Z" fill="#D3D3D3"/>
+                        <path data-sector="1" id="sector-0" d="M110,110 L110,10 A100,100 0 0,1 203.511,55.000 Z" fill="#FFD700"/>
+                        <path data-sector="2" id="sector-1" d="M110,110 L203.511,55.000 A100,100 0 0,1 203.511,165.000 Z" fill="#FF6347"/>
+                        <path data-sector="3" id="sector-2" d="M110,110 L203.511,165.000 A100,100 0 0,1 110,210 Z" fill="#90EE90"/>
+                        <path data-sector="4" id="sector-3" d="M110,110 L110,210 A100,100 0 0,1 16.489,165.000 Z" fill="#87CEEB"/>
+                        <path data-sector="5" id="sector-4" d="M110,110 L16.489,165.000 A100,100 0 0,1 16.489,55.000 Z" fill="#FFB6C1"/>
+                        <path data-sector="6" id="sector-5" d="M110,110 L16.489,55.000 A100,100 0 0,1 110,10 Z" fill="#D3D3D3"/>
                         <!-- Prices -->
-                        <text x="110" y="40" text-anchor="middle" font-size="16" fill="#333">$10</text>
-                        <text x="175" y="80" text-anchor="middle" font-size="16" fill="#333">$20</text>
-                        <text x="175" y="150" text-anchor="middle" font-size="16" fill="#333">$30</text>
-                        <text x="110" y="190" text-anchor="middle" font-size="16" fill="#333">$40</text>
-                        <text x="45" y="150" text-anchor="middle" font-size="16" fill="#333">$50</text>
-                        <text x="45" y="80" text-anchor="middle" font-size="16" fill="#333">$100</text>
+                        <text id="label-0" x="110" y="40" text-anchor="middle" font-size="16" fill="#333">$10</text>
+                        <text id="label-1" x="175" y="80" text-anchor="middle" font-size="16" fill="#333">$20</text>
+                        <text id="label-2" x="175" y="150" text-anchor="middle" font-size="16" fill="#333">$30</text>
+                        <text id="label-3" x="110" y="190" text-anchor="middle" font-size="16" fill="#333">$40</text>
+                        <text id="label-4" x="45" y="150" text-anchor="middle" font-size="16" fill="#333">$50</text>
+                        <text id="label-5" x="45" y="80" text-anchor="middle" font-size="16" fill="#333">$100</text>
                     </g>
                     <!-- Arrow on top -->
                     <polygon points="105,0 115,0 110,20" fill="#333"/>
@@ -81,9 +81,13 @@
 
 <!-- Current prize from wheel -->
 <div th:fragment="spinResult" xmlns:th="http://www.w3.org/1999/xhtml">
-    <h1>
-        <span class="prize">Each letter is worth: $<b th:text="${prize}"></b></span>
-    </h1>
+    <div th:attr="data-result=${field}">
+        <h2>Each letter is worth <span th:text="${prize}"></span>$!</h2>
+    </div>
+
+<!--    <h1>-->
+<!--        <span class="prize">Each letter is worth: $<b th:text="${prize}"></b></span>-->
+<!--    </h1>-->
 </div>
 
 <!-- Current state of the puzzle -->
