@@ -81,14 +81,19 @@
 
 <!-- Current prize from wheel -->
 <div th:fragment="spinResult" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div th:attr="data-result=${field}">
+    <div class="result-box" th:attr="data-result=${field}">
         <h2>Each letter is worth <span th:text="${prize}"></span>$!</h2>
     </div>
+</div>
 
+<!--<div th:fragment="spinResult" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--    <div th:attr="data-result=${field}">-->
+<!--        <h2>Each letter is worth <span th:text="${prize}"></span>$!</h2>-->
+<!--    </div>-->
 <!--    <h1>-->
 <!--        <span class="prize">Each letter is worth: $<b th:text="${prize}"></b></span>-->
 <!--    </h1>-->
-</div>
+<!--</div>-->
 
 <!-- Current state of the puzzle -->
 <div class="puzzle"

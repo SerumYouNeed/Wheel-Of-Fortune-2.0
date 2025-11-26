@@ -94,6 +94,7 @@ public class GameController {
         turn.setWheelSpun(true);
         gameState.setCurrentTurn(turn);
         gameSessionService.updateGameState(session, gameState);
+        model.addAttribute("field", field);
         model.addAttribute("prize", prize);
         return "fragments/play :: spinResult";
     }
