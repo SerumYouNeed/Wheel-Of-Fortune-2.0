@@ -1,3 +1,17 @@
+:root{
+    --bg-main: #f7f7fa;
+    --bg-light: #f9f9f9;
+    --bg-card: #fff;
+    --color-primary: #2a4d7c;
+    --radius: 12px;
+    --shadow: 0 2px 8px rgba(0,0,0,0.07);
+    --tile-w: 40px;      /* width */
+    --tile-h: 50px;      /* height */
+    --tile-gap: 8px;     /* space (margin) */
+    --words-gap: 12px;   /* space between words */
+    --max-per-line: 7;   /* limit of letters per line */
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -14,7 +28,7 @@ body {
 #main {
     max-width: 600px;
     margin: 40px auto;
-    background: #fff;
+    background: var(--bg-card);
     border-radius: 16px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
     padding: 32px 24px;
@@ -41,11 +55,11 @@ body {
     gap: 15px;
     margin-top: 20px;
     font-size: 1.5em;
-    color: #2a4d7c;
+    color: var(--color-primary);
     font-weight: bold;
-    background: #f7f7fa;
+    background: var(--bg-main);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    box-shadow: var(--shadow);
     padding: 12px 0;
 }
 
@@ -53,19 +67,19 @@ h1, h2, h3 {
     font-size: 2em;
     font-weight: 700;
     margin: 0 0 12px 0;
-    color: #2a4d7c;
+    color: var(--color-primary);
     letter-spacing: 1px;
     text-align: center;
 }
 
-#category, #puzzle, #wheel, #player {
+#category, #puzzle, #player {
     margin: 10px 0;
     text-align: center;
     border: 1px solid #e0e0e0;
     padding: 14px;
-    border-radius: 12px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-radius: var(--radius);
+    background-color: var(--bg-main);
+    box-shadow: var(--shadow);
     max-width: 100%;
     box-sizing: border-box;
 }
@@ -91,30 +105,18 @@ h1, h2, h3 {
     gap: 15px;
     font-size: 1.2em;
     font-weight: bold;
-    color: #2a4d7c;
-    background: #f7f7fa;
+    color: var(--color-primary);
+    background: var(--bg-main);
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    box-shadow: var(--shadow);
     padding: 18px 0;
 }
-/*path[data-sector][style*="fill-opacity"] {
-    filter: drop-shadow(0 0 15px gold) !important;
-    transition: filter 0.2s, fill-opacity 0.2s;
-}
-
-.sector-highlight {
-    stroke: #000;
-    stroke-width: 3;
-    filter: brightness(1.5);
-    transition: filter 0.1s, stroke-width 0.1s;
-}*/
 
 /* BUTTONS */
 .btn-group {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    /*align-items: center;*/
     align-items: stretch;
     max-width: 240px;
     margin: 0 auto;
@@ -127,8 +129,8 @@ button,
 .spin-btn,
 .submit-letter-btn {
     padding: 10px 24px;
-    background: #2a4d7c;
-    color: #fff;
+    background: var(--color-primary);
+    color: var(--bg-card);
     border: none;
     border-radius: 8px;
     font-size: 1em;
@@ -155,7 +157,7 @@ button:hover,
 .letter-input label {
     font-size: 1.1em;
     font-weight: 600;
-    color: #2a4d7c;
+    color: var(--color-primary);
 }
 
 #custom-letter {
@@ -165,7 +167,7 @@ button:hover,
     padding: 4px;
     border-radius: 8px;
     border: 1px solid #bbb;
-    background: #fff;
+    background: var(--bg-card);
     box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 
@@ -177,13 +179,6 @@ footer {
 }
 
 /* PUZZLE */
-:root{
-  --tile-w: 40px;      /* width */
-  --tile-h: 50px;      /* height */
-  --tile-gap: 8px;     /* space (margin) */
-  --words-gap: 12px;   /* space between words */
-  --max-per-line: 7;   /* limit of letters per line */
-}
 
 .puzzle .letter {
     box-sizing: border-box;
@@ -248,7 +243,7 @@ footer {
     font-size: 2em;
     border-bottom: 2px solid #2a4d7c;
     margin: 0 0.2em;
-    color: #2a4d7c;
+    color: var(--color-primary);
     background: #eaf0fa;
     border-radius: 4px;
 }
@@ -282,7 +277,7 @@ input[type="text"], input[type="email"], input[type="password"] {
     margin-bottom: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background: #fff;
+    background: var(--bg-card);
 }
 
 /* MESSAGES */
@@ -313,12 +308,12 @@ input[type="text"], input[type="email"], input[type="password"] {
     max-width: 260px;
     padding: 12px 14px;
     font-size: 1em;
-    border-radius: 12px;
+    border-radius: var(--radius);
     border: 1px solid #e0e0e0;
-    background: #f9f9f9;
-    color: #2a4d7c;
+    background: var(--bg-light);
+    color: var(--color-primary);
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    box-shadow: var(--shadow);
     cursor: pointer;
     appearance: none; /* cancel arrow */
     position: relative;
@@ -368,12 +363,12 @@ input[type="text"], input[type="email"], input[type="password"] {
     width: 100%;
     padding: 12px 14px;
     font-size: 1em;
-    border-radius: 12px;
+    border-radius: var(--radius);
     border: 1px solid #ccc;
-    background: #fff;
-    color: #2a4d7c;
+    background: var(--bg-card);
+    color: var(--color-primary);
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    box-shadow: var(--shadow);
 }
 
 /* Label positioned inside input */
@@ -396,7 +391,7 @@ input[type="text"], input[type="email"], input[type="password"] {
     left: 8px;
     transform: none;
     font-size: 0.85em;
-    color: #2a4d7c;
-    background: #fff;
+    color: var(--color-primary);
+    background: var(--bg-card);
     padding: 0 4px;
 }

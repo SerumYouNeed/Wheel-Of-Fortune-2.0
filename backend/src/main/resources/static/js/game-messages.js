@@ -92,21 +92,21 @@ function animateWheelTo(targetSector) {
 
         });
 
-        // lightning sector
-        sectors[index].style.fillOpacity = "0.5";
-        sectors[index].style.filter = "drop-shadow(0 0 30px gold)";
-        sectors[index].style.stroke = "gold";
-        sectors[index].style.strokeWidth = "4";
+    // lightning sector
+    sectors[index].style.fillOpacity = "0.5";
+    sectors[index].style.filter = "drop-shadow(0 0 30px gold)";
+    sectors[index].style.stroke = "gold";
+    sectors[index].style.strokeWidth = "4";
 
 
-        index = (index + 1) % sectors.length;
+    index = (index + 1) % sectors.length;
 
-        if (index === 0) cycles++;
+    if (index === 0) cycles++;
 
-        if (cycles >= maxCycles) {
-            clearInterval(spinningInterval);
-            slowDownToTarget(targetSector);
-        }
+    if (cycles >= maxCycles) {
+        clearInterval(spinningInterval);
+        slowDownToTarget(targetSector);
+    }
 
     }, 80);
 }
@@ -130,22 +130,22 @@ function slowDownToTarget(targetSector) {
 
                 });
 
-        // lightning sector
-        sectors[index].style.fillOpacity = "0.5";
-        sectors[index].style.filter = "drop-shadow(0 0 30px gold)";
-        sectors[index].style.stroke = "gold";
-        sectors[index].style.strokeWidth = "4";
+    // lightning sector
+    sectors[index].style.fillOpacity = "0.5";
+    sectors[index].style.filter = "drop-shadow(0 0 30px gold)";
+    sectors[index].style.stroke = "gold";
+    sectors[index].style.strokeWidth = "4";
 
 
-        // If target sector than stop
-        if (parseInt(sectors[index].dataset.sector) === targetSector) {
-            return;
-        }
+    // If target sector than stop
+    if (parseInt(sectors[index].dataset.sector) === targetSector) {
+        return;
+    }
 
-        index = (index + 1) % sectors.length;
-        delay += 45;
+    index = (index + 1) % sectors.length;
+    delay += 45;
 
-        setTimeout(step, delay);
+    setTimeout(step, delay);
     };
 
     step();
