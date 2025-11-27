@@ -97,13 +97,17 @@ h1, h2, h3 {
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     padding: 18px 0;
 }
+/*path[data-sector][style*="fill-opacity"] {
+    filter: drop-shadow(0 0 15px gold) !important;
+    transition: filter 0.2s, fill-opacity 0.2s;
+}
 
 .sector-highlight {
     stroke: #000;
     stroke-width: 3;
     filter: brightness(1.5);
     transition: filter 0.1s, stroke-width 0.1s;
-}
+}*/
 
 /* BUTTONS */
 .btn-group {

@@ -34,8 +34,6 @@
                         <text id="label-4" x="45" y="150" text-anchor="middle" font-size="16" fill="#333">$50</text>
                         <text id="label-5" x="45" y="80" text-anchor="middle" font-size="16" fill="#333">$100</text>
                     </g>
-                    <!-- Arrow on top -->
-                    <polygon points="105,0 115,0 110,20" fill="#333"/>
                 </svg>
             </div>
 
@@ -85,15 +83,6 @@
         <h2>Each letter is worth <span th:text="${prize}"></span>$!</h2>
     </div>
 </div>
-
-<!--<div th:fragment="spinResult" xmlns:th="http://www.w3.org/1999/xhtml">-->
-<!--    <div th:attr="data-result=${field}">-->
-<!--        <h2>Each letter is worth <span th:text="${prize}"></span>$!</h2>-->
-<!--    </div>-->
-<!--    <h1>-->
-<!--        <span class="prize">Each letter is worth: $<b th:text="${prize}"></b></span>-->
-<!--    </h1>-->
-<!--</div>-->
 
 <!-- Current state of the puzzle -->
 <div class="puzzle"

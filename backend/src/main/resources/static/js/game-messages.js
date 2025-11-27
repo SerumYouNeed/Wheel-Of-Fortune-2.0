@@ -21,36 +21,56 @@ if (event.target.matches(".puzzle")) {
 }
 });
 
+// ----------------------------------------
+// WHEEL ANIMATION
+// ----------------------------------------
+
 let sectors = [];
 let spinningInterval = null;
 
-// Po KAŻDYM swapie HTMX – próbujemy odczytać wynik i uruchomić animację
-document.body.addEventListener("htmx:afterSwap", (event) => {
-
-    // 1. Pobierz SVG koła (zawsze istnieje)
+function initSectors() {
     const wheelSvg = document.querySelector(".wheel svg");
     if (wheelSvg) {
         sectors = Array.from(wheelSvg.querySelectorAll("[data-sector]"));
     }
+}
 
-    // 2. Pobierz miejsce, gdzie HTMX wkłada wynik
-    const resultContainer = document.querySelector(".spinning-result");
-    if (!resultContainer) return;
+document.addEventListener("DOMContentLoaded", initSectors);
 
-    // 3. Znajdź element z `data-result`
-    const resultBox = resultContainer.querySelector("[data-result]");
-    if (!resultBox) return;
+// MAIN LISTENER - only if SWAP .spinning-result
+document.body.addEventListener("htmx:afterSwap", (event) => {
+    initSectors();
 
-    const targetSector = parseInt(resultBox.dataset.result);
-    if (!targetSector) return;
+    // check if swap is for .spinning-result
+    const swapTarget = event.detail && event.detail.target ? event.detail.target : null;
 
-    // 4. Uruchom animację
+    // fallback: if event.detail.target is not there, use event.target only
+    // if event.target is .spinning-result (rare, chatGPT suggestion)
+    const fallbackTarget = event.target && event.target.classList && event.target.classList.contains('spinning-result')
+        ? event.target
+        : null;
+
+    const actualTarget = swapTarget || fallbackTarget;
+
+    // if swap is not for container (important with HX-Retarget)
+    if (!actualTarget || !actualTarget.classList || !actualTarget.classList.contains('spinning-result')) {
+        return; // ===> STOP
+    }
+
+    const resultBox = actualTarget.querySelector("[data-result]");
+    if (!resultBox) {
+        return; // ===> STOP
+    }
+
+    // Parse and start animation
+    const targetSector = parseInt(resultBox.dataset.result, 10);
+    if (!Number.isFinite(targetSector)) return;
+
     animateWheelTo(targetSector);
 });
 
-
 // ----------------------------------------
-// ANIMACJA – FAZA SZYBKA
+// ANIMATION - FAST FAZE
 // ----------------------------------------
 function animateWheelTo(targetSector) {
     if (!sectors.length) return;
@@ -63,8 +83,21 @@ function animateWheelTo(targetSector) {
 
     spinningInterval = setInterval(() => {
 
-        sectors.forEach(s => s.style.fillOpacity = "1");
+        // cleaning effects
+        sectors.forEach(s => {
+            s.style.fillOpacity = "1";
+            s.style.filter = "none";
+            s.style.stroke = "";
+            s.style.strokeWidth = "";
+
+        });
+
+        // lightning sector
         sectors[index].style.fillOpacity = "0.5";
+        sectors[index].style.filter = "drop-shadow(0 0 30px gold)";
+        sectors[index].style.stroke = "gold";
+        sectors[index].style.strokeWidth = "4";
+
 
         index = (index + 1) % sectors.length;
 
@@ -78,9 +111,8 @@ function animateWheelTo(targetSector) {
     }, 80);
 }
 
-
 // ----------------------------------------
-// ANIMACJA – FAZA ZWALNIANIA I ZATRZYMANIE
+// ANIMATION - SLOW FAZE AND STOP
 // ----------------------------------------
 function slowDownToTarget(targetSector) {
     if (!sectors.length) return;
@@ -88,20 +120,40 @@ function slowDownToTarget(targetSector) {
     let index = 0;
     let delay = 150;
 
+    // cleaning effects
     const step = () => {
-        sectors.forEach(s => s.style.fillOpacity = "1");
-        sectors[index].style.fillOpacity = "0.5";
+        sectors.forEach(s => {
+                    s.style.fillOpacity = "1";
+                    s.style.filter = "none";
+                    s.style.stroke = "";
+                    s.style.strokeWidth = "";
 
-        // Jeżeli trafiliśmy we właściwy sektor → STOP
+                });
+
+        // lightning sector
+        sectors[index].style.fillOpacity = "0.5";
+        sectors[index].style.filter = "drop-shadow(0 0 30px gold)";
+        sectors[index].style.stroke = "gold";
+        sectors[index].style.strokeWidth = "4";
+
+
+        // If target sector than stop
         if (parseInt(sectors[index].dataset.sector) === targetSector) {
             return;
         }
 
         index = (index + 1) % sectors.length;
-        delay += 45; // stopniowe zwalnianie
+        delay += 45;
 
         setTimeout(step, delay);
     };
 
     step();
+}
+
+// Spin enable during animation
+function setSpinEnabled(enabled) {
+    const btn = document.querySelector(".spin-btn");
+    if (!btn) return;
+    btn.disabled = !enabled;
 }
