@@ -128,7 +128,6 @@ function slowDownToTarget(targetSector) {
 
     step();
 }
-
 // --- ENABLE/DISABLE BUTTON ---
 function setSpinEnabled(enabled) {
     const btn = document.querySelector(".spin-btn");
