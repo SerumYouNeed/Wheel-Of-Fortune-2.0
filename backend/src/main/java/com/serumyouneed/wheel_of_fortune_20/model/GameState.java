@@ -30,7 +30,7 @@ public class GameState {
     private Integer userMoney = 0;
     private Integer bigPrize;
 
-    private List<String> solvedPuzzles = new ArrayList<>();
+    private final List<String> solvedPuzzles = new ArrayList<>();
 
     private final List<Character> guessedLetters = new ArrayList<>();
 

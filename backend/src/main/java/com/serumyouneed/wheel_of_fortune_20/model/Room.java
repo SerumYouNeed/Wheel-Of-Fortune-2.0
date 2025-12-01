@@ -7,14 +7,17 @@ import java.util.UUID;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Room {
-    private final UUID id = UUID.randomUUID();
+    private final UUID RoomId = UUID.randomUUID();
     private final List<User> players;
-    private final GameState state;
+    private final RoomState state;
     private final List<SseEmitter> emitters = new CopyOnWriteArrayList<>();
 
     public Room(List<User> players) {
         this.players = players;
-        this.state = new GameState();
+        this.state = new RoomState();
+        for (User u : players) {
+            this.state.getPlayerStates().add(new PlayerState(u.getId().toString()));
+        }
     }
 
     public void addEmitter(SseEmitter emitter) {
@@ -26,6 +29,10 @@ public class Room {
             try { e.send(data); }
             catch (Exception ex) { emitters.remove(e); }
         });
+    }
+
+    public List<User> getPlayers() {
+        return players;
     }
 }
 

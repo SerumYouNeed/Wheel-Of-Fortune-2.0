@@ -6,6 +6,7 @@ import java.util.UUID;
 
 public class Player {
 
+
     private final String sessionId;
     private final User user;
     private final SseEmitter emitter;
@@ -19,6 +20,7 @@ public class Player {
         this.emitter = new SseEmitter(0L);
     }
 
+    public String getSessionId() { return sessionId; }
     public SseEmitter getEmitter() { return emitter; }
     public Long getRoomId() { return roomId; }
     public void setRoomId(Long roomId) { this.roomId = roomId; }
