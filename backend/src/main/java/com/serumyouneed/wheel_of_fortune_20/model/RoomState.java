@@ -4,6 +4,10 @@ import java.util.*;
 
 public class RoomState {
 
+    public Collection<PlayerState> getPlayerStates() {
+        return ;
+    }
+
     public class RoomState {
         private final List<PlayerState> playerStates = new ArrayList<>();
         private int currentPlayerIndex = 0;
