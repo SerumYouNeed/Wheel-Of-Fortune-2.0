@@ -19,7 +19,7 @@ public class Room {
             this.state.getPlayerStates().add(new PlayerState(u.getId().toString()));
         }
     }
-
+// do poprawy
     public void addEmitter(SseEmitter emitter) {
         emitters.add(emitter);
     }
