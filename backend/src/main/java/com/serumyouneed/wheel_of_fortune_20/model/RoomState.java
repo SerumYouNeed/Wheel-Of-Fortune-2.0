@@ -3,10 +3,15 @@ package com.serumyouneed.wheel_of_fortune_20.model;
 import java.util.*;
 
 public class RoomState {
-    private final List<PlayerState> playerStates = new ArrayList<>();
-    private int currentPlayerIndex = 0;
-    private String puzzle;
-    private Set<Character> usedLetters = new HashSet<>();
+    private final Map<Long, PlayerState> players = new HashMap<>();
+    private String currentPuzzle;
+    private int currentPlayerIndex;
 
-    public List<PlayerState> getPlayerStates() { return playerStates; }
+    public void addPlayer(User user) {
+        players.put(user.getId(), new PlayerState(user.getId()));
+    }
+
+    public PlayerState getPlayerState(Long userId) {
+        return players.get(userId);
+    }
 }

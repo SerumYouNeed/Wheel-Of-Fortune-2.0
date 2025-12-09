@@ -1,7 +1,6 @@
 package com.serumyouneed.wheel_of_fortune_20.model;
 
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
-
 import java.util.UUID;
 
 public class Player {

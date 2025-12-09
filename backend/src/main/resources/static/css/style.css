@@ -115,10 +115,9 @@ h1, h2, h3 {
     flex-direction: column;
     gap: 16px;
     align-items: stretch;
-    max-width: 240px;
+    max-width: 240px; /* grupa nie powinna wymuszać min-width */
     margin: 0 auto;
     width: 100%;
-    min-width: 220px;
     box-sizing: border-box;
 }
 
@@ -197,30 +196,18 @@ footer {
 
     width: min(
         var(--tile-w),
-        calc((100% - ((var(--max-word) - 1) * var(--tile-gap))) / var(--max-word))
+        calc((100% - ((var(--max-per-line) - 1) * var(--tile-gap))) / var(--max-per-line))
     );
     font-size: clamp(14px, calc(12px + (var(--tile-w) / 2)), 32px);
 }
 
-
-.puzzle {
+.puzzle-img {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: var(--words-gap);
     width: 100%;
     box-sizing: border-box;
-    justify-content: center;
-    align-content: flex-start;
-    align-items: flex-start;
-}
-
-.puzzle::before,
-.puzzle::after {
-    content: "";
-    flex-basis: 100%;
-    width: 0;
-    height: 0;
-    order: 9999;
 }
 
 /* one word - one flex-item flex-item, no inside splitting */
@@ -231,23 +218,6 @@ footer {
     gap: var(--tile-gap);
     margin-right: 0;
     flex-shrink: 0;
-}
-
-.puzzle-img {
-    display: inline-block;
-    width: 2em;
-    text-align: center;
-    font-size: 2em;
-    border-bottom: 2px solid #2a4d7c;
-    margin: 0 0.2em;
-    color: var(--color-primary);
-    background: #eaf0fa;
-    border-radius: 4px;
-}
-
-.puzzle-img .space {
-    display: inline-block;
-    width: 1em;
 }
 
 .space {
