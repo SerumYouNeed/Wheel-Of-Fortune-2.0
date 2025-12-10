@@ -1,16 +1,16 @@
 package com.serumyouneed.wheel_of_fortune_20.model;
 
 public class PlayerState {
-    private final Long playerId;
+    private final String playerId;
     private int prizeMoney;
     private boolean turn;
     private char lastSpinLetter;
 
-    public PlayerState(Long playerId) {
+    public PlayerState(String playerId) {
         this.playerId = playerId;
     }
 
-    public Long getPlayerId() {
+    public String getPlayerId() {
         return playerId;
     }
 

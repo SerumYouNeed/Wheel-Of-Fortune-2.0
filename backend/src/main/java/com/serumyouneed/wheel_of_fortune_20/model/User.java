@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Class for logging purpose. Represents a player profile in the database.
@@ -24,6 +25,9 @@ public class User {
 
     @Column(nullable = false)
     private boolean guest;
+
+    @Transient
+    private String runtimeId = UUID.randomUUID().toString();
 
     // Relation to GameState entity
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -49,6 +53,8 @@ public class User {
     public Long getId() {
         return id;
     }
+
+    public String getRuntimeId() { return runtimeId; }
 
     public String getNickname() {
         return nickname;
