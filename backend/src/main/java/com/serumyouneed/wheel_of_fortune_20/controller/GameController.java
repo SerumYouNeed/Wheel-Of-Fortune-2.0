@@ -33,6 +33,11 @@ public class GameController {
         this.gameService = gameService;
     }
 
+    @GetMapping("/multiplayer-mode")
+    public String multiplayerMode(HttpSession session, Model model) {
+        return "fragments/multiplayer :: multiplayer-card";
+    }
+
     @GetMapping("/single-player-mode")
     public String singlePlayerMode(HttpSession session, Model model) {
         String userNickname = gameSessionService.getUserNicknameAttr(session);
