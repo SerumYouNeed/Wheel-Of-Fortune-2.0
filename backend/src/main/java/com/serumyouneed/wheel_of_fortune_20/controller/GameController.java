@@ -35,6 +35,7 @@ public class GameController {
 
     @GetMapping("/multiplayer-mode")
     public String multiplayerMode(HttpSession session, Model model) {
+
         return "fragments/multiplayer :: multiplayer-card";
     }
 
