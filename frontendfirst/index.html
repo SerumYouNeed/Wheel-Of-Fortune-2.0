@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wheel of fortune!</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js" integrity="sha384-Akqfrbj/HpNVo8k11SXBb6TlBWmXXlYQrCSqEWmyKJe+hDm3Z/B2WVG4smwBkRVm" crossorigin="anonymous"></script>
+</head>
+
+<body>
+   <div id="main">
+
+        <div th:fragment="home" class="container">
+            <h1>Wheel of Fortune</h1>
+            <div class="btn-group">
+                <button
+                        hx-get="/guest"
+                        hx-target="#main"
+                        hx-swap="innerHTML">Play as Guest</button>
+
+                <button
+                        hx-get="/register"
+                        hx-target="#main"
+                        hx-swap="innerHTML">Create New Account</button>
+
+                <button
+                        hx-get="/login"
+                        hx-target="#main"
+                        hx-swap="innerHTML">My Account</button>
+            </div>
+
+        </div>
+
+   </div>
+
+   <footer>&copy; 2025 Created by SerumYouNeed</footer>
+
+   <script src="/js/game-messages.js"></script>
+   <script src="/js/game-wheel-animations.js"></script>
+</body>
+</html>
