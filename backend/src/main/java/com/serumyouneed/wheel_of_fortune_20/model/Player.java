@@ -7,11 +7,9 @@ public class Player {
 
 
     private final String sessionId;
-    private final User user;
     private final SseEmitter emitter;
     private Long roomId;
-    private boolean ready;
-    private boolean turn;
+    private User user;
 
     public Player(User user) {
         this.user = user;
